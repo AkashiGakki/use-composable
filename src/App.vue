@@ -1,15 +1,17 @@
 <script setup lang="ts">
 import { defineAsyncComponent } from 'vue'
 import HelloWorld from './components/HelloWorld.vue'
-const TextEditor = defineAsyncComponent(() => import('@use-kit/editor-vue'))
-console.log('t: ', TextEditor)
+// const TextEditor = defineAsyncComponent(() => import('@use-kit/editor-vue'))
+// console.log('t: ', TextEditor)
+
+import EditorVue from '@use-kit/editor-vue'
 </script>
 
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Vue 3 + TypeScript + Vite" />
+  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
+  <!-- <HelloWorld msg="Vue 3 + TypeScript + Vite" /> -->
   <div id="editor">
-    <TextEditor />
+    <EditorVue />
   </div>
 </template>
 
