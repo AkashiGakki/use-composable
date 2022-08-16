@@ -7,9 +7,6 @@ import Editor from './components/Editor.vue'
 </script>
 
 <template>
-  <!-- <img alt="Vue logo" src="./assets/logo.png" /> -->
-  <!-- <HelloWorld msg="Vue 3 + TypeScript + Vite" /> -->
-
   <!-- <div id="editor">
     <EditorVue />
   </div> -->
