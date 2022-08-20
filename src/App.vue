@@ -7,9 +7,9 @@ import Editor from './components/Editor.vue'
 </script>
 
 <template>
-  <!-- <div id="editor">
+  <div id="editor">
     <EditorVue />
-  </div> -->
+  </div>
 
   <Editor />
 </template>
