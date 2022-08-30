@@ -1,17 +1,21 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
-import EditorVue from '@use-kit/editor-vue'
+// import { defineAsyncComponent } from 'vue'
+// import EditorVue from '@use-kit/editor-vue'
 
-import HelloWorld from './components/HelloWorld.vue'
-import Editor from './components/Editor.vue'
+// import HelloWorld from './components/HelloWorld.vue'
+// import Editor from './components/Editor.vue'
+
+import Components from './components/Components.vue'
 </script>
 
 <template>
-  <div id="editor">
+  <!-- <div id="editor">
     <EditorVue />
   </div>
 
-  <Editor />
+  <Editor /> -->
+
+  <Components />
 </template>
 
 <style>
