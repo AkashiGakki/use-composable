@@ -12,8 +12,8 @@ export default async function useCall() {
     user = ret
   })
 
-  setTimeout(() => obs.emit('test'), 300)
-  // obs.emit('test')
+  // setTimeout(() => obs.emit('test'), 300)
+  obs.emit('test')
 
   return user
 }
