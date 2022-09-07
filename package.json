@@ -12,8 +12,11 @@
     "vue": "^3.2.37"
   },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.26.3",
     "@use-kit/editor-vue": "0.0.3",
     "@vitejs/plugin-vue": "^3.0.3",
+    "@vueuse/core": "^9.2.0",
+    "dayjs": "^1.11.5",
     "eslint": "^8.22.0",
     "observer-emit": "^1.0.0",
     "sass": "^1.54.5",

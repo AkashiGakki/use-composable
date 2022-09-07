@@ -1,7 +1,7 @@
 import obs from 'observer-emit'
 
 let user: Promise<any> | string = 'default'
-export default async function useCall() {
+export async function useCall() {
   obs.on('test', () => {
     const ret = new Promise(resolve => {
       setTimeout(() => {

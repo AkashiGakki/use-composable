@@ -1,12 +1,23 @@
 <script setup lang="ts">
-import obs from "observer-emit";
+import { unref } from 'vue'
+import obs from 'observer-emit'
+import { useDark, useToggle, useNow } from '@vueuse/core'
 
-import useCall from "../hooks/useCall";
+import { useCall, useDate } from '../hooks'
+import { formatDate } from '../utils'
 
-const ret = await useCall();
-console.log("ret", ret);
+const ret = await useCall()
+console.log("ret", ret)
+
+const isDark = useDark()
+const toggleDark = () => useToggle(isDark)
+
+const now = useDate(useNow())
 </script>
 
 <template>
-  <div>{{ ret }}</div>
+  <h5>Components</h5>
+  <!-- <div>{{ isDark }}</div>
+  <button @click="toggleDark">toggle dark</button> -->
+  <div>{{ now }}</div>
 </template>
