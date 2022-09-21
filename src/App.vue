@@ -6,6 +6,7 @@ import HelloWorld from './components/HelloWorld.vue'
 import Editor from './components/Editor.vue'
 
 import Components from './components/Components.vue'
+import SetupView from './components/SetupView.vue'
 </script>
 
 <template>
@@ -17,6 +18,10 @@ import Components from './components/Components.vue'
 
   <Suspense>
     <Components />
+  </Suspense>
+
+  <Suspense>
+    <SetupView />
   </Suspense>
 </template>
 
