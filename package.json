@@ -16,6 +16,8 @@
     "@use-kit/editor-vue": "0.0.3",
     "@vitejs/plugin-vue": "^3.0.3",
     "@vueuse/core": "^9.2.0",
+    "aes-everywhere": "^1.0.0",
+    "crypto-js": "^4.1.1",
     "dayjs": "^1.11.5",
     "eslint": "^8.22.0",
     "observer-emit": "^1.0.0",
