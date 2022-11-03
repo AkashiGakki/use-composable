@@ -1,29 +1,15 @@
 {
-  "name": "vue-composable",
-  "private": true,
+  "name": "@use-kit/composable",
   "version": "0.0.0",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
+  "packageManager": "pnpm@7.9.0",
+  "author": "Akashi Sai <akashi_sai@163.com>",
+  "license": "MIT",
+  "funding": "https://github.com/sponsors/akashigakki",
+  "homepage": "https://github.com/akashigakki/vue-composable#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akashigakki/vue-composable.git"
   },
-  "dependencies": {
-    "vue": "^3.2.37"
-  },
-  "devDependencies": {
-    "@antfu/eslint-config": "^0.26.3",
-    "@use-kit/editor-vue": "0.0.3",
-    "@vitejs/plugin-vue": "^3.0.3",
-    "@vueuse/core": "^9.2.0",
-    "aes-everywhere": "^1.0.0",
-    "crypto-js": "^4.1.1",
-    "dayjs": "^1.11.5",
-    "eslint": "^8.22.0",
-    "observer-emit": "^1.0.0",
-    "sass": "^1.54.5",
-    "typescript": "^4.8.2",
-    "vite": "^3.0.9",
-    "vue-tsc": "^0.36.1"
-  }
+  "bugs": "https://github.com/akashigakki/vue-composable/issues",
+  "keywords": []
 }
