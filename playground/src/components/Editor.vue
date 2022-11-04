@@ -5,8 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 
 const editor: any = useEditor({
   content: '<p>Typing something you want……</p>',
-  extensions: [
-    StarterKit]
+  extensions: [StarterKit]
 })
 
 const useBold = () => editor.value.chain().focus().toggleBold().run()
