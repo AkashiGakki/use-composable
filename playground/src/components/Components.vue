@@ -10,14 +10,17 @@ const ret = await useCall()
 console.log("ret", ret)
 
 const isDark = useDark()
-const toggleDark = () => useToggle(isDark)
+const toggleDark = useToggle(isDark)
 
 const now = useDate(useNow())
 </script>
 
 <template>
   <h5>Components</h5>
-  <!-- <div>{{ isDark }}</div>
-  <button @click="toggleDark">toggle dark</button> -->
+  <div>
+    is dark: {{ isDark }}
+    <button @click="toggleDark()">toggle dark</button>
+  </div>
+
   <div>{{ now }}</div>
 </template>

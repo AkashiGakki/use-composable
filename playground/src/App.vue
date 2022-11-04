@@ -20,9 +20,9 @@ import SetupView from './components/SetupView.vue'
     <Components />
   </Suspense>
 
-  <Suspense>
+  <!-- <Suspense>
     <SetupView />
-  </Suspense>
+  </Suspense> -->
 </template>
 
 <style>
