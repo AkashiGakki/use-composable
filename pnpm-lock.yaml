@@ -19,7 +19,7 @@ importers:
   playground:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
-      '@composable/core': workspace:^0.0.1
+      '@composable/core': workspace:*
       '@use-kit/editor-vue': 0.0.3
       '@vitejs/plugin-vue': ^3.2.0
       '@vueuse/core': ^9.4.0

@@ -7,12 +7,14 @@ import { useTest } from '@composable/core'
 import { useCall, useDate } from '../hooks'
 import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
+import { contactList } from '../config'
 
 import EditorVue from '@use-kit/editor-vue'
 import SetupView from './SetupView.vue'
 import HelloWorld from './HelloWorld.vue'
 import Editor from './Editor.vue'
 import ShapeTree from './ShapeTree.vue'
+import RenderTree from './RenderTree.vue'
 
 const ret = await useCall()
 console.log("ret", ret)
@@ -44,5 +46,7 @@ const test = useTest()
 
   <div>test: {{ test }}</div>
 
-  <ShapeTree :tree-data="shapeData.shapeIndex" />
+  <!-- <ShapeTree :tree-data="shapeData.shapeIndex" /> -->
+
+  <RenderTree :tree-data="contactList" />
 </template>
