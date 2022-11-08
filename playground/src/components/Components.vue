@@ -9,12 +9,13 @@ import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
 
+import { RenderTree } from '@composable/components'
+
 import EditorVue from '@use-kit/editor-vue'
 import SetupView from './SetupView.vue'
 import HelloWorld from './HelloWorld.vue'
 import Editor from './Editor.vue'
 import ShapeTree from './ShapeTree.vue'
-import RenderTree from './RenderTree.vue'
 
 const ret = await useCall()
 console.log("ret", ret)

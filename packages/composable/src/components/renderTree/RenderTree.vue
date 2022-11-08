@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, h } from 'vue'
+import { defineComponent, h } from 'vue-demi'
 
 const createDom = (list) => {
   return list.map(node => h('ul', null, [

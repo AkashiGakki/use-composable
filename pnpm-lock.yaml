@@ -42,6 +42,7 @@ importers:
   playground:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
+      '@composable/components': workspace:^0.0.1
       '@composable/core': workspace:*
       '@use-kit/editor-vue': 0.0.3
       '@vitejs/plugin-vue': ^3.2.0
@@ -60,6 +61,7 @@ importers:
       vue: 3.2.41
     devDependencies:
       '@antfu/eslint-config': 0.26.3_wyqvi574yv7oiwfeinomdzmc3m
+      '@composable/components': link:../packages/composable
       '@composable/core': link:../packages/core
       '@use-kit/editor-vue': 0.0.3_4focsuckzeocqotdxlryrtksam
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.2+vue@3.2.41
