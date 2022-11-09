@@ -16,6 +16,7 @@ import SetupView from './SetupView.vue'
 import HelloWorld from './HelloWorld.vue'
 import Editor from './Editor.vue'
 import ShapeTree from './ShapeTree.vue'
+import AnimateFrame from './AnimationFrame.vue'
 
 const ret = await useCall()
 console.log("ret", ret)
@@ -50,4 +51,6 @@ const test = useTest()
   <!-- <ShapeTree :tree-data="shapeData.shapeIndex" /> -->
 
   <RenderTree :tree-data="contactList" />
+
+  <AnimateFrame />
 </template>
