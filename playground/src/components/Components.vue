@@ -21,7 +21,12 @@ import AnimateFrame from './AnimationFrame.vue'
 const ret = await useCall()
 console.log("ret", ret)
 
-const isDark = useDark()
+const isDark = useDark({
+  selector: 'html',
+  attribute: 'color-scheme',
+  valueDark: 'dark',
+  valueLight: 'light',
+})
 const toggleDark = useToggle(isDark)
 
 const now = useDate(useNow())

@@ -1,4 +1,4 @@
-.light {
+html[color-scheme="light"] {
   background-color: aliceblue;
   color: gray;
 }
