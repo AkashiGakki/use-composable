@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { unref } from 'vue'
-import obs from 'observer-emit'
+import observer from 'observer-emit'
 import { useDark, useToggle, useNow } from '@vueuse/core'
 import { useTest } from '@composable/core'
 
@@ -11,12 +11,9 @@ import { contactList } from '../config'
 
 import { RenderTree } from '@composable/components'
 
-import EditorVue from '@use-kit/editor-vue'
-import SetupView from './SetupView.vue'
-import HelloWorld from './HelloWorld.vue'
-import Editor from './Editor.vue'
-import ShapeTree from './ShapeTree.vue'
-import AnimateFrame from './AnimationFrame.vue'
+import SetupView from './setup/SetupView.vue'
+import ShapeTree from './tree/ShapeTree.vue'
+import AnimateFrame from './animations/AnimationFrame.vue'
 
 const ret = await useCall()
 console.log("ret", ret)
@@ -42,12 +39,6 @@ const test = useTest()
   </div>
 
   <div>now: {{ now }}</div>
-
-  <!-- <div id="editor">
-    <EditorVue />
-  </div> -->
-
-  <!-- <Editor /> -->
 
   <!-- <SetupView /> -->
 
