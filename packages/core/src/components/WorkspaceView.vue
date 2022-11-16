@@ -12,8 +12,8 @@ import {
   WorkspaceConfig,
   DockConfig,
   WidgetConfig,
-} from "@nip/framework-workspace";
-import { Workspace } from "../Workspace";
+} from "../interfaces";
+import { Workspace } from "../implements";
 
 import DockView from "./DockView.vue";
 import WidgetView from "./WidgetView.vue";

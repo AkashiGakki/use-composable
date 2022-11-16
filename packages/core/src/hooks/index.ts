@@ -1,1 +1,2 @@
-export { useTest } from './useTest'
+export * from './useTest'
+export * from './useWorkspaceStyle'
