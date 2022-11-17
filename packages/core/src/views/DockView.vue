@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, reactive, onMounted, computed, nextTick } from "vue-demi";
-import { ServiceView } from "@nip/framework-vue2";
 import type { DockConfig, DockTabConfig } from "../interfaces";
 
 import { useClassJoin, useAreaStyle } from "../hooks";

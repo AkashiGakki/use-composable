@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue-demi";
-import { ServiceView } from "@nip/framework-vue2";
 import type { DockConfig, DockTabConfig } from "@nip/framework-workspace";
 
 import {
@@ -100,8 +99,9 @@ const nextTabClick = (el, dock) => {
           @click="setDockCollapsed(dock)"
         />
       </div>
-      <ServiceView
+      <component
         v-show="tab.active"
+        :is="tab.component"
         :service="tab.service"
         :operation="tab.operation"
         :params="tab.params"

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch, watchEffect } from "vue-demi";
-import { ServiceView } from "@nip/framework-vue2";
 
 import { useClassJoin, useAreaStyle } from "../hooks";
 
@@ -27,7 +26,8 @@ const styleInject = (widget, rect) => {
       class="widget-content"
       :style="styleInject(widget, rect)"
     >
-      <ServiceView
+      <component
+        :is="widget.component"
         :service="widget.service"
         :operation="widget.operation"
         :params="widget.params"

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { reactive } from "vue-demi";
-import { ServiceView } from "@nip/framework-vue2";
 
 import { setIconAreaType, setIconStyle, setDockCollapsed } from "../../utils";
 
@@ -24,7 +23,8 @@ const dock = reactive(props.dock);
         @click="setDockCollapsed(dock)"
       />
     </div>
-    <ServiceView
+    <component
+      :is="dock.component"
       :service="dock.service"
       :operation="dock.operation"
       :params="dock.params"

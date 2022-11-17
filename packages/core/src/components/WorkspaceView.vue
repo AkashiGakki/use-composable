@@ -18,7 +18,6 @@ import { Workspace } from "../implements";
 import DockView from "./DockView.vue";
 import WidgetView from "./WidgetView.vue";
 
-const $nipApp: any = inject("$nipApp");
 const instance = getCurrentInstance();
 const emit = defineEmits(["accept"]);
 const props = defineProps<{
