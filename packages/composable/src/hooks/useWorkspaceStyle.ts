@@ -1,4 +1,4 @@
-import { DockConfig, WidgetConfig } from "../../../core/src/interfaces";
+import { DockConfig, WidgetConfig } from "@composable/core/src/interfaces";
 
 export type Content = DockConfig | WidgetConfig;
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue-demi";
-import type { DockConfig, DockTabConfig } from "@nip/framework-workspace";
+import type { DockConfig, DockTabConfig } from "../../implements";
 
 import {
   setIconAreaType,
@@ -32,8 +32,7 @@ const prevTabClick = (el, dock) => {
   const dom: HTMLElement = document.querySelector(`#${dock.id}`);
   const content: HTMLElement = dom.querySelector(".title-content");
 
-  if (!content.style.transform)
-    content.style.transform = "translate3d(0px, 0px, 0px)";
+  if (!content.style.transform) content.style.transform = "translate3d(0px, 0px, 0px)";
 
   const x = changeTranslateX(content.style.transform, 200);
   content.style.transform = `translate3d(${x}px, 0px, 0px)`;
@@ -43,8 +42,7 @@ const nextTabClick = (el, dock) => {
   const dom: HTMLElement = document.querySelector(`#${dock.id}`);
   const content: HTMLElement = dom.querySelector(".title-content");
 
-  if (!content.style.transform)
-    content.style.transform = "translate3d(0px, 0px, 0px)";
+  if (!content.style.transform) content.style.transform = "translate3d(0px, 0px, 0px)";
 
   const x = changeTranslateX(content.style.transform, -200);
   content.style.transform = `translate3d(${x}px, 0px, 0px)`;
@@ -111,7 +109,7 @@ const nextTabClick = (el, dock) => {
   </section>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .tab-content {
   display: flex;
   justify-content: center;
@@ -128,14 +126,14 @@ const nextTabClick = (el, dock) => {
   display: flex;
   transform: translate3d(0px, 0px, 0px);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-  .title {
-    cursor: pointer;
-    margin: 0.5rem;
-  }
+.title {
+  cursor: pointer;
+  margin: 0.5rem;
+}
 
-  .title:hover {
-    color: white;
-  }
+.title:hover {
+  color: white;
 }
 </style>

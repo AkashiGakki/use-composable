@@ -66,7 +66,7 @@ const handleTabClick = (tab: DockTabConfig, tabs: DockTabConfig[]) => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .dock {
   position: absolute;
   transition: 0.5s;
