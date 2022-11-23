@@ -14,6 +14,7 @@ import { RenderTree } from '@composable/components'
 import SetupView from './setup/SetupView.vue'
 import ShapeTree from './tree/ShapeTree.vue'
 import AnimateFrame from './animations/AnimationFrame.vue'
+import MouseDown from './use/MouseDown.vue'
 
 const ret = await useCall()
 console.log("ret", ret)
@@ -46,7 +47,9 @@ const test = useTest()
 
   <!-- <ShapeTree :tree-data="shapeData.shapeIndex" /> -->
 
-  <RenderTree :tree-data="contactList" />
+  <!-- <RenderTree :tree-data="contactList" /> -->
 
-  <AnimateFrame />
+  <!-- <AnimateFrame /> -->
+
+  <MouseDown />
 </template>
