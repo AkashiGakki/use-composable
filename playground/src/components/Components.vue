@@ -15,6 +15,7 @@ import SetupView from './setup/SetupView.vue'
 import ShapeTree from './tree/ShapeTree.vue'
 import AnimateFrame from './animations/AnimationFrame.vue'
 import MouseDown from './use/MouseDown.vue'
+import ValidateView from './use/ValidateView.vue'
 
 const ret = await useCall()
 console.log("ret", ret)
@@ -52,4 +53,6 @@ const test = useTest()
   <!-- <AnimateFrame /> -->
 
   <MouseDown />
+
+  <ValidateView />
 </template>
