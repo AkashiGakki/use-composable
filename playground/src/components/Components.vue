@@ -9,7 +9,7 @@ import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
 
-import { RenderTree } from '@composable/components'
+import { RenderTree, SwitchButton } from '@composable/components'
 
 import SetupView from './setup/SetupView.vue'
 import ShapeTree from './tree/ShapeTree.vue'
@@ -53,9 +53,11 @@ const test = useTest()
 
   <!-- <AnimateFrame /> -->
 
-  <MouseDown />
+  <!-- <MouseDown /> -->
 
-  <ValidateView />
+  <!-- <ValidateView /> -->
 
   <ThemeFilter />
+
+  <SwitchButton />
 </template>

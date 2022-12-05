@@ -41,7 +41,7 @@ export class Workspace implements WorkspaceBase {
   getTab(id: string) {
     const tabs = this.component.docks.flatMap((dock) => {
       if (!dock.tabs)
-        return
+        return []
 
       return dock.tabs.map((tab: DockTabConfig) => tab)
     })

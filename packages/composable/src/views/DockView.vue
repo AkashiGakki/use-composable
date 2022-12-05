@@ -28,7 +28,7 @@ const styleInject = (dock: DockConfig, rect: any) => {
 const setActiveTabs = (docks: DockConfig[]) => {
   activeTabs.value = docks.flatMap((dock) => {
     if (!dock.tabs)
-      return
+      return []
 
     return dock.tabs
       .map((tab: DockTabConfig) => (tab.active ? tab : undefined))
