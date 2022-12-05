@@ -1,36 +1,53 @@
 <script setup lang="ts">
-import { computed, defineEmits, defineProps, ref } from "vue-demi";
+import { computed, defineEmits, defineProps, ref } from 'vue-demi'
 
 const props = defineProps<{
-  defaultContent: string;
-  asideContent: string;
+  defaultContent: string
+  asideContent: string
 }>();
-const emit = defineEmits(["change"]);
+const emit = defineEmits(['change'])
 
-const defaultContent = computed(() => props.defaultContent ?? "default");
-const asideContent = computed(() => props.asideContent ?? "aside");
+const defaultContent = computed(() => props.defaultContent ?? 'default')
+const asideContent = computed(() => props.asideContent ?? 'aside')
 
-const active = ref(true);
+const active = ref(true)
 
 const activeChange = (change) => {
-  active.value = change;
-  emit("change", change);
+  active.value = change
+  emit('change', change)
+  console.log("active: ", active)
 };
+
+const defaultStyle = computed(() => {
+  return {
+    border: '1px solid #d9d9d9',
+    color: '#5f5f5f',
+    'background-color': '#ffffff'
+  }
+})
+
+const primaryStyle = computed(() => {
+  return {
+    border: '1px solid #1890ff',
+    color: '#ffffff',
+    'background-color': '#1890ff'
+  }
+})
 </script>
 
 <template>
   <div class="switch-button">
     <button
-      :type="active ? 'primary' : 'default'"
-      class="left"
+      class="left-btn"
+      :style="active ? primaryStyle : defaultStyle"
       @click="activeChange(true)"
     >
       {{ defaultContent }}
     </button>
 
     <button
-      :type="active ? 'default' : 'primary'"
-      class="right"
+      class="right-btn"
+      :style="active ? defaultStyle : primaryStyle"
       @click="activeChange(false)"
     >
       {{ asideContent }}
@@ -47,14 +64,16 @@ const activeChange = (change) => {
 
 button {
   width: 150px;
+  height: 26px;
   border: 1px solid #d9d9d9;
+  color: #5f5f5f;
 }
 
-.left {
+.left-btn {
   border-radius: 15px 0 0 15px;
 }
 
-.right {
+.right-btn {
   border-radius: 0 15px 15px 0;
 }
 </style>
