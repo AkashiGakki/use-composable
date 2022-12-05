@@ -1,25 +1,23 @@
 {
   "name": "@composable/components",
   "version": "0.0.1",
-  "main": "dist/composable.umd.js",
-  "module": "dist/composable.mjs",
-  "types": "dist/types/index.d.ts",
   "license": "MIT",
   "exports": {
     ".": {
-      "import": "./dist/composable.mjs",
-      "require": "./dist/composable.umd.js"
+      "require": "./dist/composable.umd.js",
+      "import": "./dist/composable.mjs"
     }
   },
+  "main": "dist/composable.umd.js",
+  "module": "dist/composable.mjs",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
-  },
-  "dependencies": {
-    "vue-demi": "latest"
+    "build": "vite build",
+    "lint": "eslint ."
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
@@ -30,9 +28,14 @@
       "optional": true
     }
   },
+  "dependencies": {
+    "vue-demi": "latest"
+  },
   "devDependencies": {
+    "@antfu/eslint-config": "^0.26.3",
     "@composable/core": "workspace:*",
     "@vitejs/plugin-vue": "^3.2.0",
+    "eslint": "^8.26.0",
     "typescript": "^4.8.4",
     "vite": "^3.2.3",
     "vite-plugin-dts": "^1.7.0",

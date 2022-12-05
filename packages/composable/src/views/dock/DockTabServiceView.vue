@@ -1,52 +1,55 @@
 <script setup lang="ts">
-import { ref, reactive } from "vue-demi";
-import type { DockConfig, DockTabConfig } from "../../implements";
+import { reactive, ref } from 'vue-demi'
+import type { DockConfig, DockTabConfig } from '../../implements'
 
 import {
+  changeTranslateX,
+  setDockCollapsed,
   setIconAreaType,
   setIconStyle,
-  setDockCollapsed,
-  changeTranslateX,
-} from "../../utils";
+} from '../../utils'
 
 const props = defineProps<{
-  dock: any;
-}>();
-const emit = defineEmits(["active-tab"]);
+  dock: any
+}>()
+const emit = defineEmits(['active-tab'])
 
-const dock = reactive(props.dock);
+const dock = reactive(props.dock)
 
 const activeStyle = (tab: DockTabConfig) => {
-  if (!tab.active) return;
+  if (!tab.active)
+    return
 
   return {
-    color: "#fafafa",
-  };
-};
+    color: '#fafafa',
+  }
+}
 
 const activeTabChange = (tab, tabs) => {
-  emit("active-tab", tab, tabs);
-};
+  emit('active-tab', tab, tabs)
+}
 
 const prevTabClick = (el, dock) => {
-  const dom: HTMLElement = document.querySelector(`#${dock.id}`);
-  const content: HTMLElement = dom.querySelector(".title-content");
+  const dom: HTMLElement = document.querySelector(`#${dock.id}`)
+  const content: HTMLElement = dom.querySelector('.title-content')
 
-  if (!content.style.transform) content.style.transform = "translate3d(0px, 0px, 0px)";
+  if (!content.style.transform)
+    content.style.transform = 'translate3d(0px, 0px, 0px)'
 
-  const x = changeTranslateX(content.style.transform, 200);
-  content.style.transform = `translate3d(${x}px, 0px, 0px)`;
-};
+  const x = changeTranslateX(content.style.transform, 200)
+  content.style.transform = `translate3d(${x}px, 0px, 0px)`
+}
 
 const nextTabClick = (el, dock) => {
-  const dom: HTMLElement = document.querySelector(`#${dock.id}`);
-  const content: HTMLElement = dom.querySelector(".title-content");
+  const dom: HTMLElement = document.querySelector(`#${dock.id}`)
+  const content: HTMLElement = dom.querySelector('.title-content')
 
-  if (!content.style.transform) content.style.transform = "translate3d(0px, 0px, 0px)";
+  if (!content.style.transform)
+    content.style.transform = 'translate3d(0px, 0px, 0px)'
 
-  const x = changeTranslateX(content.style.transform, -200);
-  content.style.transform = `translate3d(${x}px, 0px, 0px)`;
-};
+  const x = changeTranslateX(content.style.transform, -200)
+  content.style.transform = `translate3d(${x}px, 0px, 0px)`
+}
 </script>
 
 <template>
@@ -98,8 +101,8 @@ const nextTabClick = (el, dock) => {
         />
       </div>
       <component
-        v-show="tab.active"
         :is="tab.component"
+        v-show="tab.active"
         :service="tab.service"
         :operation="tab.operation"
         :params="tab.params"

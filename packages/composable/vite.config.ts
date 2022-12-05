@@ -9,14 +9,14 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: '@composable',
-      fileName: 'composable'
+      fileName: 'composable',
     },
   },
   plugins: [
     vue(),
     dts({
-      outputDir: 'dist/types'
+      outputDir: 'dist/types',
     }),
     libCss(),
-  ]
+  ],
 })

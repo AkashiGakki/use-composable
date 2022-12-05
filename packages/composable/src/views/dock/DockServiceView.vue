@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { reactive } from "vue-demi";
+import { reactive } from 'vue-demi'
 
-import { setIconAreaType, setIconStyle, setDockCollapsed } from "../../utils";
+import { setDockCollapsed, setIconAreaType, setIconStyle } from '../../utils'
 
 const props = defineProps<{
-  dock: any;
-}>();
+  dock: any
+}>()
 
-const dock = reactive(props.dock);
+const dock = reactive(props.dock)
 </script>
 
 <template>

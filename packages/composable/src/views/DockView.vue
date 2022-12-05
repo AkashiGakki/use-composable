@@ -1,58 +1,60 @@
 <script setup lang="ts">
-import { ref, reactive, onMounted, computed, nextTick } from "vue-demi";
-import type { DockConfig, DockTabConfig } from "@composable/core";
+import { computed, nextTick, onMounted, reactive, ref } from 'vue-demi'
+import type { DockConfig, DockTabConfig } from '@composable/core'
 
-import { useClassJoin, useAreaStyle } from "../hooks";
+import { useAreaStyle, useClassJoin } from '../hooks'
 
-import DockServiceView from "./dock/DockServiceView.vue";
-import DockTabServiceView from "./dock/DockTabServiceView.vue";
+import DockServiceView from './dock/DockServiceView.vue'
+import DockTabServiceView from './dock/DockTabServiceView.vue'
 
 const props = defineProps<{
-  docks: any[];
-  rect: any;
-}>();
-const activeTabs = ref([]);
+  docks: any[]
+  rect: any
+}>()
+const activeTabs = ref([])
 
 onMounted(() => {
-  setActiveTabs(props.docks);
-});
+  setActiveTabs(props.docks)
+})
 
 const cssInject = (list: any) => {
-  return useClassJoin(list);
-};
+  return useClassJoin(list)
+}
 
 const styleInject = (dock: DockConfig, rect: any) => {
-  return useAreaStyle(dock, rect);
-};
+  return useAreaStyle(dock, rect)
+}
 
 const setActiveTabs = (docks: DockConfig[]) => {
   activeTabs.value = docks.flatMap((dock) => {
-    if (!dock.tabs) return;
+    if (!dock.tabs)
+      return
 
     return dock.tabs
       .map((tab: DockTabConfig) => (tab.active ? tab : undefined))
-      .filter(Boolean);
-  });
-};
+      .filter(Boolean)
+  })
+}
 
 const handleTabClick = (tab: DockTabConfig, tabs: DockTabConfig[]) => {
-  const active = tabs.find((tab) => tab.active);
-  const isExist = tab.id === active.id;
-  if (isExist) return;
+  const active = tabs.find(tab => tab.active)
+  const isExist = tab.id === active.id
+  if (isExist)
+    return
 
-  const index = activeTabs.value.findIndex((t) => t.id === active.id);
-  active.active = !active.active;
-  tab.active = !tab.active;
-  activeTabs.value.splice(index, 1, tab);
-};
+  const index = activeTabs.value.findIndex(t => t.id === active.id)
+  active.active = !active.active
+  tab.active = !tab.active
+  activeTabs.value.splice(index, 1, tab)
+}
 </script>
 
 <template>
   <div class="dock">
     <div
       v-for="dock of props.docks"
-      :key="dock.id"
       :id="dock.id"
+      :key="dock.id"
       :class="cssInject(dock.cssClass)"
       class="dock-content"
       :style="styleInject(dock, rect)"

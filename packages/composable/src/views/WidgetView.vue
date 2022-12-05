@@ -1,20 +1,20 @@
 <script setup lang="ts">
-import { ref, reactive, computed, watch, watchEffect } from "vue-demi";
+import { computed, reactive, ref, watch, watchEffect } from 'vue-demi'
 
-import { useClassJoin, useAreaStyle } from "../hooks";
+import { useAreaStyle, useClassJoin } from '../hooks'
 
 const props = defineProps<{
-  widgets: any[];
-  rect: any;
-}>();
+  widgets: any[]
+  rect: any
+}>()
 
 const cssInject = (list) => {
-  return useClassJoin(list);
-};
+  return useClassJoin(list)
+}
 
 const styleInject = (widget, rect) => {
-  return useAreaStyle(widget, rect);
-};
+  return useAreaStyle(widget, rect)
+}
 </script>
 
 <template>

@@ -1,13 +1,13 @@
-import { Widget as WidgetBase, WidgetConfig } from "../../../core/src/interfaces";
+import type { Widget as WidgetBase, WidgetConfig } from '../../../core/src/interfaces'
 
 export class Widget implements WidgetBase {
-  config: WidgetConfig;
+  config: WidgetConfig
 
   constructor(config: WidgetConfig) {
-    this.config = config;
+    this.config = config
   }
 
   setVisible(visible: boolean) {
-    this.config.visible = visible;
+    this.config.visible = visible
   }
 }

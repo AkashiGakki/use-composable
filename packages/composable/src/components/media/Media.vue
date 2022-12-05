@@ -2,9 +2,11 @@
 import { ref } from 'vue-demi'
 
 const props = defineProps<{
-  type: string;
-  content: any;
-}>();
+  type: string
+  content: any
+}>()
 </script>
 
-<template></template>
+<template>
+  <div />
+</template>

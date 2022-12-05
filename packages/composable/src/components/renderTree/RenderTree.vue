@@ -6,21 +6,21 @@ const createDom = (list) => {
     h(
       'li',
       { title: node.title, id: node.key },
-      [node.title, node.children ? createDom(node.children) : null]
-    )
+      [node.title, node.children ? createDom(node.children) : null],
+    ),
   ]))
 }
 
 export default defineComponent({
   props: {
     treeData: {
-      type: Object
-    }
+      type: Object,
+    },
   },
 
   setup(props) {
     // console.log('props: ', props.treeData)
     return () => createDom(props.treeData)
-  }
+  },
 })
 </script>
