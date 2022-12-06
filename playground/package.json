@@ -17,16 +17,16 @@
     "@composable/core": "workspace:*",
     "@use-kit/editor-vue": "0.0.3",
     "@vitejs/plugin-vue": "^3.2.0",
-    "@vueuse/core": "^9.4.0",
+    "@vueuse/core": "^9.6.0",
     "aes-everywhere": "^1.0.0",
     "crypto-js": "^4.1.1",
     "dayjs": "^1.11.6",
-    "eslint": "^8.26.0",
+    "eslint": "^8.29.0",
     "observer-emit": "^1.0.0",
     "sass": "^1.56.1",
     "typescript": "^4.9.3",
     "vee-validate": "4.7.3",
-    "vite": "^3.2.2",
+    "vite": "^3.2.5",
     "vue-tsc": "^0.36.1"
   }
 }

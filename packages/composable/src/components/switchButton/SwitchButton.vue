@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, defineEmits, defineProps, ref } from 'vue-demi'
+import { computed, ref } from 'vue'
 
 const props = defineProps<{
   defaultContent: string
@@ -65,8 +65,6 @@ const primaryStyle = computed(() => {
 button {
   width: 150px;
   height: 26px;
-  border: 1px solid #d9d9d9;
-  color: #5f5f5f;
 }
 
 .left-btn {
