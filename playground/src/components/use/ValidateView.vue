@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
+import { reactive, ref } from 'vue'
 import { useField, useForm } from 'vee-validate'
 
 const formState = reactive({
@@ -8,13 +8,11 @@ const formState = reactive({
 })
 
 const validateField = (value) => {
-  if (!value) {
+  if (!value)
     return '字段不能为空！'
-  }
 
-  if (value.length < 8) {
+  if (value.length < 8)
     return '请输入至少8个字符以上！'
-  }
 
   return true
 }
@@ -24,7 +22,7 @@ const { value: name, errorMessage } = useField(formState.name, validateField)
 const schema = {
   email(value) {
     //
-  }
+  },
 }
 
 useForm({
@@ -35,7 +33,7 @@ useForm({
 <template>
   <div class="validate-view">
     <span>Validate: </span>
-    <input v-model="name" placeholder="please input..." />
+    <input v-model="name" placeholder="please input...">
     <div>{{ errorMessage }}</div>
   </div>
 </template>

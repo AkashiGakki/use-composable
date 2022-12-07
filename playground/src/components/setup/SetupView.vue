@@ -28,7 +28,7 @@ export default defineComponent({
       pwd,
       aesPwd,
     }
-  }
+  },
 })
 </script>
 

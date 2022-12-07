@@ -5,7 +5,7 @@ const props = defineProps<{
   treeData: any
 }>()
 
-console.log("tree data: ", props.treeData)
+console.log('tree data: ', props.treeData)
 </script>
 
 <template>

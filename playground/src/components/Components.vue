@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { unref } from 'vue'
 import observer from 'observer-emit'
-import { useDark, useToggle, useNow } from '@vueuse/core'
+import { useDark, useNow, useToggle } from '@vueuse/core'
 import { useTest } from '@composable/core'
 
+import { RenderTree, SwitchButton } from '@composable/components'
 import { useCall, useDate } from '../hooks'
 import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
-
-import { RenderTree, SwitchButton } from '@composable/components'
 
 import SetupView from './setup/SetupView.vue'
 import ShapeTree from './tree/ShapeTree.vue'
@@ -19,7 +18,7 @@ import ValidateView from './use/ValidateView.vue'
 import ThemeFilter from './use/ThemeFilter.vue'
 
 const ret = await useCall()
-console.log("ret", ret)
+console.log('ret', ret)
 
 const isDark = useDark({
   selector: 'html',
@@ -38,7 +37,9 @@ const test = useTest()
   <h5>Components</h5>
   <div>
     is dark: {{ isDark }}
-    <button @click="toggleDark()">toggle dark</button>
+    <button @click="toggleDark()">
+      toggle dark
+    </button>
   </div>
 
   <div>now: {{ now }}</div>

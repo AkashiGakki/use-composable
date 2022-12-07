@@ -6,11 +6,12 @@ const useAnimation = () => {
   let start
 
   const step = (timestamp) => {
-    if (start === undefined) start = timestamp
+    if (start === undefined)
+      start = timestamp
     const elapsed = timestamp - start
 
-    //这里使用`Math.min()`确保元素刚好停在 400px 的位置。
-    element.style.transform = 'translateX(' + Math.min(0.2 * elapsed, 400) + 'px)'
+    // 这里使用`Math.min()`确保元素刚好停在 400px 的位置。
+    element.style.transform = `translateX(${Math.min(0.2 * elapsed, 400)}px)`
 
     if (elapsed < 2000) {
       // 在两秒后停止动画

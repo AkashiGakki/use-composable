@@ -1,19 +1,21 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 
-const use = ref(true);
+const use = ref(true)
 
 const switchTheme = () => {
-  use.value = !use.value;
+  use.value = !use.value
 
   const dom = document.querySelector('body')
-  dom.style.filter = use.value ? 'none' : 'grayscale(1)';
+  dom.style.filter = use.value ? 'none' : 'grayscale(1)'
 }
 </script>
 
 <template>
   <div class="theme-filter">
-    <button @click="switchTheme">useGrayTheme</button>
+    <button @click="switchTheme">
+      useGrayTheme
+    </button>
     <div class="test" />
   </div>
 </template>

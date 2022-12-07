@@ -5,7 +5,7 @@ import StarterKit from '@tiptap/starter-kit'
 
 const editor: any = useEditor({
   content: '<p>Typing something you want……</p>',
-  extensions: [StarterKit]
+  extensions: [StarterKit],
 })
 
 const useBold = () => editor.value.chain().focus().toggleBold().run()
@@ -16,11 +16,13 @@ const isBoldActive = computed(() => editor.value.isActive('bold'))
   <div>
     <div v-if="editor">
       <button :class="{ 'is-active': isBoldActive }" @click="useBold">
-        <div title="粗体">Bold</div>
+        <div title="粗体">
+          Bold
+        </div>
       </button>
     </div>
 
-    <EditorContent :editor="(editor as any)" />
+    <EditorContent :editor="editor as any" />
   </div>
 </template>
 
