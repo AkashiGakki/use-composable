@@ -1,20 +1,20 @@
-import { Dock, DockConfig, DockTabConfig, DockTab } from "./Dock";
-import { Widget, WidgetConfig } from "./Widget";
+import type { Dock, DockConfig, DockTab, DockTabConfig } from './Dock'
+import type { Widget, WidgetConfig } from './Widget'
 
 export interface WorkspaceConfig {
-  docks: DockConfig[];
+  docks: DockConfig[]
 
-  widgets: WidgetConfig[];
+  widgets: WidgetConfig[]
 }
 
 export interface Workspace {
-  addDock(config: DockConfig): Dock;
+  addDock(config: DockConfig): Dock
 
-  getDock(id: string): Dock;
+  getDock(id: string): Dock
 
-  addWidget(config: WidgetConfig): Widget;
+  addWidget(config: WidgetConfig): Widget
 
-  getWidget(id: string): Widget;
+  getWidget(id: string): Widget
 
-  addTab(id: string, config: DockTabConfig): DockTab;
+  addTab(id: string, config: DockTabConfig): DockTab
 }

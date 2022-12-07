@@ -1,52 +1,52 @@
-import { Area } from "../types/Area";
+import type { Area } from '../types/Area'
 
 export interface DockTabConfig {
-  id: string;
+  id: string
 
-  title: string;
+  title: string
 
-  active?: boolean;
+  active?: boolean
 
-  visible: boolean;
+  visible: boolean
 
-  service: string;
+  service: string
 
-  operation: string;
+  operation: string
 
-  params?: any;
+  params?: any
 }
 
 export interface DockConfig {
-  id: string;
+  id: string
 
-  title: string;
+  title: string
 
-  area: Area;
+  area: Area
 
-  visible: boolean;
+  visible: boolean
 
-  collapsible?: boolean;
+  collapsible?: boolean
 
-  collapsed?: boolean;
+  collapsed?: boolean
 
-  cssClass?: string[];
+  cssClass?: string[]
 
-  tabs?: DockTabConfig[];
+  tabs?: DockTabConfig[]
 
-  service?: string;
+  service?: string
 
-  operation?: string;
+  operation?: string
 
-  params?: any;
+  params?: any
 
 }
 
 export interface Dock {
-  config: DockConfig;
+  config: DockConfig
 
-  setVisible(visible: boolean): void;
+  setVisible(visible: boolean): void
 }
 
 export interface DockTab {
-  config: DockTabConfig;
+  config: DockTabConfig
 }

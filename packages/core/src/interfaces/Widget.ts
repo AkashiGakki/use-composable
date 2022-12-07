@@ -1,29 +1,29 @@
-import { Area } from "../types/Area";
+import type { Area } from '../types/Area'
 
 export interface WidgetConfig {
-  id: string;
+  id: string
 
-  title: string;
+  title: string
 
-  area: Area;
+  area: Area
 
-  visible: boolean;
+  visible: boolean
 
-  collapsible?: boolean;
+  collapsible?: boolean
 
-  collapsed?: boolean;
+  collapsed?: boolean
 
-  cssClass?: string[];
+  cssClass?: string[]
 
-  service: string;
+  service: string
 
-  operation: string;
+  operation: string
 
-  params?: any;
+  params?: any
 }
 
 export interface Widget {
-  config: WidgetConfig;
+  config: WidgetConfig
 
-  setVisible(visible: boolean): void;
+  setVisible(visible: boolean): void
 }
