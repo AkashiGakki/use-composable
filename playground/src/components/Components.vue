@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { unref } from 'vue'
+import { unref, onMounted } from 'vue'
 import observer from 'observer-emit'
 import { useDark, useNow, useToggle } from '@vueuse/core'
 import { useTest } from '@composable/core'
@@ -31,6 +31,7 @@ const toggleDark = useToggle(isDark)
 const now = useDate(useNow())
 
 const test = useTest()
+console.log("test: ", test)
 </script>
 
 <template>
@@ -46,7 +47,7 @@ const test = useTest()
 
   <!-- <SetupView /> -->
 
-  <div>test: {{ test }}</div>
+  <!-- <div>test: {{ test }}</div> -->
 
   <!-- <ShapeTree :tree-data="shapeData.shapeIndex" /> -->
 

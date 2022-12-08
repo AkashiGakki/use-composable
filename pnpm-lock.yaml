@@ -50,7 +50,7 @@ importers:
   playground:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
-      '@composable/components': workspace:^0.0.1
+      '@composable/components': workspace:*
       '@composable/core': workspace:*
       '@use-kit/editor-vue': 0.0.3
       '@vitejs/plugin-vue': ^3.2.0
