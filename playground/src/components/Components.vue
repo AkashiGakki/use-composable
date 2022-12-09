@@ -16,6 +16,8 @@ import AnimateFrame from './animations/AnimationFrame.vue'
 import MouseDown from './use/MouseDown.vue'
 import ValidateView from './use/ValidateView.vue'
 import ThemeFilter from './use/ThemeFilter.vue'
+import SlotView from './slot/SlotView.vue'
+import UseSlotNode from './slot/UseSlotNode.vue'
 
 const ret = await useCall()
 console.log('ret', ret)
@@ -59,7 +61,15 @@ console.log("test: ", test)
 
   <!-- <ValidateView /> -->
 
-  <ThemeFilter />
+  <!-- <ThemeFilter /> -->
 
   <SwitchButton />
+
+  <!-- <SlotView>
+    <template #node>
+      <UseSlotNode v-slot="slotProps">
+        <div>test: {{ slotProps.count }}</div>
+      </UseSlotNode>
+    </template>
+  </SlotView> -->
 </template>
