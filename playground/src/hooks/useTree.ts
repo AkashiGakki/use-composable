@@ -37,8 +37,10 @@ export const useTree = () => {
 
   const updateTreeNode = (id: string, data: Partial<TreeNode>) => {
     const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
+    if (!node) throw new Error(`can't find node with id: ${id}`);
+
     const parent = getTreeNode(tree.value, (n: TreeNode) => n.id === node.parent)
-    if (!parent) return
+    if (!parent) return Object.assign(node, data)
 
     const index = parent.children.findIndex((n: TreeNode) => n.id === id)
     parent.children.splice(index, 1, data)
