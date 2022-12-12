@@ -39,11 +39,7 @@ export const useTree = () => {
     const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
     if (!node) throw new Error(`can't find node with id: ${id}`);
 
-    const parent = getTreeNode(tree.value, (n: TreeNode) => n.id === node.parent)
-    if (!parent) return Object.assign(node, data)
-
-    const index = parent.children.findIndex((n: TreeNode) => n.id === id)
-    parent.children.splice(index, 1, data)
+    Object.assign(node, data)
   }
 
   const findTreeNode = (id: string) => {
@@ -52,8 +48,14 @@ export const useTree = () => {
 
   const removeTreeNode = (id: string) => {
     const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
+    if (!node) throw new Error(`can't find node with id: ${id}`);
+
     const parent = getTreeNode(tree.value, (n: TreeNode) => n.id === node.parent)
-    if (!parent) return
+    if (!parent) {
+      // TODO: if parent id is not in the true sort
+      tree.value = []
+      return
+    }
 
     const index = parent.children.findIndex((n: TreeNode) => n.id === id)
     parent.children.splice(index, 1)

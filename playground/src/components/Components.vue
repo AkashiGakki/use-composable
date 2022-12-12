@@ -43,7 +43,8 @@ addTreeNode('test', { id: 'asuka', parent: 'test', children: [] })
 updateTreeNode('asuka', { id: 'shori', parent: 'test', children: [] })
 removeTreeNode('akashi')
 
-updateTreeNode('root', { id: 'root1' })
+// updateTreeNode('root', { id: 'root1' })
+// removeTreeNode('root')
 console.log('tree: ', tree)
 </script>
 
