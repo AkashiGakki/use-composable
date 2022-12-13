@@ -52,8 +52,8 @@ export const useTree = () => {
 
     const parent = getTreeNode(tree.value, (n: TreeNode) => n.id === node.parent)
     if (!parent) {
-      // TODO: if parent id is not in the true sort
-      tree.value = []
+      const index = tree.value.findIndex((n: TreeNode) => n.id === id)
+      tree.value.splice(index, 1)
       return
     }
 
