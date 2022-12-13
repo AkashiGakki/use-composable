@@ -19,6 +19,19 @@ const getTreeNode = (tree: any, callback: Function, ret = undefined) => {
   return ret
 }
 
+const getParentTree = (tree: any, callback: Function, ret = undefined) => {
+  tree.forEach((node: any) => {
+    if (callback(node))
+      ret = tree
+
+    const { children } = node
+    if (Array.isArray(children))
+      ret = getParentTree(children, callback, ret)
+  })
+
+  return ret
+}
+
 export const useTree = () => {
   const tree = ref([{ id: 'root', parent: '', children: [] }])
 
@@ -47,18 +60,11 @@ export const useTree = () => {
   }
 
   const removeTreeNode = (id: string) => {
-    const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
-    if (!node) throw new Error(`can't find node with id: ${id}`);
+    const parent = getParentTree(tree.value, (node: TreeNode) => node.id === id)
+    if (!parent) throw new Error(`can't find node with id: ${id}`);
 
-    const parent = getTreeNode(tree.value, (n: TreeNode) => n.id === node.parent)
-    if (!parent) {
-      const index = tree.value.findIndex((n: TreeNode) => n.id === id)
-      tree.value.splice(index, 1)
-      return
-    }
-
-    const index = parent.children.findIndex((n: TreeNode) => n.id === id)
-    parent.children.splice(index, 1)
+    const index = parent.findIndex((n: TreeNode) => n.id === id)
+    parent.splice(index, 1)
   }
 
   return {
@@ -69,3 +75,19 @@ export const useTree = () => {
     removeTreeNode,
   }
 }
+
+const tree = [
+  {
+    id: 'nogi', children: [
+      {
+        id: 'asuka', parent: 'nogi', children: [
+          { id: 'ume', parent: 'asuka', children: [] }
+        ]
+      },
+      { id: 'shiori', parent: 'nogi', children: [] }
+    ]
+  },
+]
+
+// const ret = getParentTree(tree, (node: any) => node.id === 'asuka')
+// console.log('ret: ', ret)
