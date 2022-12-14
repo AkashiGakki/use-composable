@@ -32,6 +32,21 @@ const getParentTree = (tree: any, callback: Function, ret = undefined) => {
   return ret
 }
 
+const flattenTree = (tree: any) => {
+  let ret: any[] = []
+
+  tree.forEach((node: any) => {
+    const { children, ...i } = node
+
+    if (Array.isArray(children))
+      ret = [...ret, ...flattenTree(children)]
+
+    ret.push(i)
+  })
+
+  return ret
+}
+
 export const useTree = () => {
   const tree = ref([{ id: 'root', parent: '', children: [] }])
 
@@ -61,10 +76,16 @@ export const useTree = () => {
 
   const removeTreeNode = (id: string) => {
     const parent = getParentTree(tree.value, (node: TreeNode) => node.id === id)
-    if (!parent) throw new Error(`can't find node with id: ${id}`);
+    if (!parent) throw new Error(`can't find node with id: ${id}`)
 
     const index = parent.findIndex((n: TreeNode) => n.id === id)
     parent.splice(index, 1)
+  }
+
+  const getTreeFields = (tree: any, field: string) => {
+    const list = flattenTree(tree)
+    const arr = list.map(l => l[field]).filter(Boolean).flat(Infinity)
+    return Array.from(new Set(arr))
   }
 
   return {
@@ -73,6 +94,7 @@ export const useTree = () => {
     updateTreeNode,
     findTreeNode,
     removeTreeNode,
+    getTreeFields,
   }
 }
 
@@ -84,10 +106,8 @@ const tree = [
           { id: 'ume', parent: 'asuka', children: [] }
         ]
       },
-      { id: 'shiori', parent: 'nogi', children: [] }
+      { id: 'shiori', parent: 'nogi', children: [], test: [1, 2, 3, 4, [1, 5, 6]] },
+      { id: 'asuka', parent: 'xxx', test: [1, 2, 3] }
     ]
   },
 ]
-
-// const ret = getParentTree(tree, (node: any) => node.id === 'asuka')
-// console.log('ret: ', ret)
