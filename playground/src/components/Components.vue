@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { unref, onMounted } from 'vue'
+import { onMounted, unref } from 'vue'
 import observer from 'observer-emit'
 import { useDark, useNow, useToggle } from '@vueuse/core'
 import { useTest } from '@composable/core'
@@ -33,7 +33,7 @@ const toggleDark = useToggle(isDark)
 const now = useDate(useNow())
 
 const test = useTest()
-console.log("test: ", test)
+console.log('test: ', test)
 
 const { getTree, addTreeNode, updateTreeNode, removeTreeNode } = useTree()
 const tree = getTree()

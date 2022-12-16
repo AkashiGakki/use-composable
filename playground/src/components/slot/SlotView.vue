@@ -4,6 +4,6 @@ import { ref } from 'vue'
 
 <template>
   <div class="slot-view">
-    <slot name="node" id="akashi" :count="1" />
+    <slot id="akashi" name="node" :count="1" />
   </div>
 </template>
