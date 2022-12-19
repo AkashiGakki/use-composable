@@ -18,6 +18,7 @@ import ValidateView from './use/ValidateView.vue'
 import ThemeFilter from './use/ThemeFilter.vue'
 import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
+import UpdateView from './update/UpdateView.vue'
 
 const ret = await useCall()
 console.log('ret', ret)
@@ -84,4 +85,6 @@ console.log('tree: ', tree)
       </UseSlotNode>
     </template>
   </SlotView> -->
+
+  <UpdateView />
 </template>
