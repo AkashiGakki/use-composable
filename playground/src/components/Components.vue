@@ -2,10 +2,10 @@
 import { onMounted, unref } from 'vue'
 import observer from 'observer-emit'
 import { useDark, useNow, useToggle } from '@vueuse/core'
-import { useTest } from '@composable/core'
+import { useTest, useTree } from '@composable/core'
 
 import { RenderTree, SwitchButton } from '@composable/components'
-import { useCall, useDate, useTree } from '../hooks'
+import { useCall, useDate } from '../hooks'
 import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'

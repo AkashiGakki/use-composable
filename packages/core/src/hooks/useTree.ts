@@ -60,7 +60,7 @@ export const useTree = () => {
     const node: TreeNode = findTreeNode(parentId)
     if (!node) return
 
-    node.children.push(data)
+    (node as any).children.push(data)
   }
 
   const updateTreeNode = (id: string, data: Partial<TreeNode>) => {
