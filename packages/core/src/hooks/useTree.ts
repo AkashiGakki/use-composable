@@ -3,7 +3,7 @@ import { ref } from 'vue'
 interface TreeNode {
   id: string
   parent: string
-  children: TreeNode[] | never[]
+  children: TreeNode[]
 }
 
 const getTreeNode = (tree: any, callback: Function, ret = undefined) => {
@@ -51,35 +51,44 @@ export const useTree = () => {
   const tree = ref([{ id: 'root', parent: '', children: [] }])
 
   const getTree = (node?: any[]) => {
-    if (node) tree.value = node
+    if (node)
+      tree.value = node
 
     return tree
-  }
-
-  const addTreeNode = (parentId: string, data: TreeNode) => {
-    const node: TreeNode = findTreeNode(parentId)
-    if (!node) return
-
-    (node as any).children.push(data)
-  }
-
-  const updateTreeNode = (id: string, data: Partial<TreeNode>) => {
-    const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
-    if (!node) throw new Error(`can't find node with id: ${id}`);
-
-    Object.assign(node, data)
   }
 
   const findTreeNode = (id: string) => {
     return getTreeNode(tree.value, (node: TreeNode) => node.id === id)
   }
 
-  const removeTreeNode = (id: string) => {
-    const parent = getParentTree(tree.value, (node: TreeNode) => node.id === id)
-    if (!parent) throw new Error(`can't find node with id: ${id}`)
+  const addTreeNode = (parentId: string, data: TreeNode) => {
+    const node: TreeNode | undefined = findTreeNode(parentId)
+    if (!node) {
+      tree.value.push(data as any)
+      return
+    }
 
-    const index = parent.findIndex((n: TreeNode) => n.id === id)
-    parent.splice(index, 1)
+    (node as any).children.push(data)
+  }
+
+  const updateTreeNode = (id: string, data: Partial<TreeNode>) => {
+    const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
+    if (!node)
+      throw new Error(`can't find node with id: ${id}`)
+
+    Object.assign(node, data)
+  }
+
+  const removeTreeNode = (id: string) => {
+    const parent = getParentTree(
+      tree.value,
+      (node: TreeNode) => node.id === id,
+    )
+    if (!parent)
+      throw new Error(`can't find node with id: ${id}`)
+
+    const index = (parent as any).findIndex((n: TreeNode) => n.id === id);
+    (parent as any).splice(index, 1)
   }
 
   const getTreeFields = (tree: any, field: string) => {
@@ -97,17 +106,3 @@ export const useTree = () => {
     getTreeFields,
   }
 }
-
-const tree = [
-  {
-    id: 'nogi', children: [
-      {
-        id: 'asuka', parent: 'nogi', children: [
-          { id: 'ume', parent: 'asuka', children: [] }
-        ]
-      },
-      { id: 'shiori', parent: 'nogi', children: [], test: [1, 2, 3, 4, [1, 5, 6]] },
-      { id: 'asuka', parent: 'xxx', test: [1, 2, 3] }
-    ]
-  },
-]
