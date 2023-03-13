@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { unref, onMounted } from 'vue'
+import { onMounted, unref } from 'vue'
 import observer from 'observer-emit'
 import { useDark, useNow, useToggle } from '@vueuse/core'
-import { useTest } from '@composable/core'
+import { useTest, useTree } from '@composable/core'
 
 import { RenderTree, SwitchButton } from '@composable/components'
-import { useCall, useDate, useTree, useClipboard } from '../hooks'
+import { useCall, useDate, useClipboard } from '../hooks'
 import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
@@ -18,6 +18,7 @@ import ValidateView from './use/ValidateView.vue'
 import ThemeFilter from './use/ThemeFilter.vue'
 import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
+import UpdateView from './update/UpdateView.vue'
 
 const ret = await useCall()
 console.log('ret', ret)
@@ -33,7 +34,7 @@ const toggleDark = useToggle(isDark)
 const now = useDate(useNow())
 
 const test = useTest()
-console.log("test: ", test)
+console.log('test: ', test)
 
 const { getTree, addTreeNode, updateTreeNode, removeTreeNode } = useTree()
 const tree = getTree()
@@ -42,6 +43,9 @@ addTreeNode('test', { id: 'akashi', parent: 'test', children: [] })
 addTreeNode('test', { id: 'asuka', parent: 'test', children: [] })
 updateTreeNode('asuka', { id: 'shori', parent: 'test', children: [] })
 removeTreeNode('akashi')
+
+// updateTreeNode('root', { id: 'root1' })
+// removeTreeNode('root')
 console.log('tree: ', tree)
 
 const clip = useClipboard()
@@ -83,4 +87,6 @@ const clip = useClipboard()
       </UseSlotNode>
     </template>
   </SlotView> -->
+
+  <UpdateView />
 </template>
