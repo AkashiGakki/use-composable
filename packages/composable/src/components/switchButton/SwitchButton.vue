@@ -2,8 +2,8 @@
 import { computed, ref } from 'vue'
 
 const props = defineProps<{
-  defaultContent: string
-  asideContent: string
+  defaultContent?: string
+  asideContent?: string
 }>();
 const emit = defineEmits(['change'])
 
