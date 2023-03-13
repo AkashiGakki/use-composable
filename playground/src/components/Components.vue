@@ -5,7 +5,7 @@ import { useDark, useNow, useToggle } from '@vueuse/core'
 import { useTest } from '@composable/core'
 
 import { RenderTree, SwitchButton } from '@composable/components'
-import { useCall, useDate, useTree } from '../hooks'
+import { useCall, useDate, useTree, useClipboard } from '../hooks'
 import { formatDate } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
@@ -43,6 +43,8 @@ addTreeNode('test', { id: 'asuka', parent: 'test', children: [] })
 updateTreeNode('asuka', { id: 'shori', parent: 'test', children: [] })
 removeTreeNode('akashi')
 console.log('tree: ', tree)
+
+const clip = useClipboard()
 </script>
 
 <template>
