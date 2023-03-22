@@ -28,6 +28,7 @@
     "vue-demi": "latest"
   },
   "devDependencies": {
+    "dayjs": "^1.11.6",
     "vue": "^3.0.0"
   }
 }

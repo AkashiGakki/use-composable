@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { onMounted, unref } from 'vue'
+import { onMounted, unref, watch } from 'vue'
 import observer from 'observer-emit'
 import { useDark, useNow, useToggle } from '@vueuse/core'
-import { useTest, useTree } from '@composable/core'
+import { useTest, useTree, useTime } from '@composable/core'
 
 import { RenderTree, SwitchButton } from '@composable/components'
 import { useCall, useDate } from '../hooks'
@@ -49,6 +49,10 @@ removeTreeNode('akashi')
 console.log('tree: ', tree)
 
 setClipboard('copy test')
+
+const testTime = useTime()
+watch(testTime, () => console.log('time: ', testTime.value))
+
 </script>
 
 <template>

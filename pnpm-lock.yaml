@@ -37,14 +37,16 @@ importers:
   packages/core:
     specifiers:
       '@vue/composition-api': ^1.0.0-rc.1
+      dayjs: ^1.11.6
       typedoc: ^0.23.21
       vue: ^3.0.0
       vue-demi: latest
     dependencies:
       '@vue/composition-api': 1.7.1_vue@3.2.41
       typedoc: 0.23.21_typescript@4.9.3
-      vue-demi: 0.13.11_dyjqe6a6hnb4vyzxfuk6bzpiny
+      vue-demi: 0.13.11_vue@3.2.41
     devDependencies:
+      dayjs: 1.11.6
       vue: 3.2.41
 
   playground:
@@ -6512,7 +6514,7 @@ packages:
     resolution: {integrity: sha512-gu73tuZfJgu+mvCSy4UZwd2JXykjK9zAZsfmDeut5dx/1a7FeTk0XwJsSuqQn+cuMCGVbIBfl+s53X4T19DnzQ==}
     dev: false
 
-  /vue-demi/0.13.11_dyjqe6a6hnb4vyzxfuk6bzpiny:
+  /vue-demi/0.13.11_vue@3.2.41:
     resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
     engines: {node: '>=12'}
     hasBin: true
@@ -6524,7 +6526,6 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@vue/composition-api': 1.7.1_vue@3.2.41
       vue: 3.2.41
     dev: false
 
