@@ -6,7 +6,8 @@ type Size = 'default' | 'medium' | 'large'
 const props = defineProps<{
   defaultContent?: string
   asideContent?: string
-}>();
+  size?: string
+}>()
 const emit = defineEmits(['change'])
 
 const defaultContent = computed(() => props.defaultContent ?? 'default')
