@@ -11,6 +11,7 @@ importers:
       '@composable/core': workspace:*
       '@vitejs/plugin-vue': ^3.2.0
       '@vue/composition-api': ^1.0.0-rc.1
+      bson: ^5.1.0
       eslint: ^8.29.0
       typescript: ^4.9.3
       vite: ^3.2.5
@@ -21,11 +22,12 @@ importers:
       vue-tsc: ^1.0.11
     dependencies:
       '@vue/composition-api': 1.7.1_vue@3.2.45
-      vue-demi: 0.13.11_y3dbsgppqv4jnxjxtdjaj42kje
+      vue-demi: 0.13.11_vue@3.2.45
     devDependencies:
       '@antfu/eslint-config': 0.26.3_s5ps7njkmjlaqajutnox5ntcla
       '@composable/core': link:../core
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
+      bson: 5.1.0
       eslint: 8.29.0
       typescript: 4.9.3
       vite: 3.2.5
@@ -1823,6 +1825,11 @@ packages:
       util: 0.10.4
       vm-browserify: 1.1.2
       xtend: 4.0.2
+    dev: true
+
+  /bson/5.1.0:
+    resolution: {integrity: sha512-FEecNHkhYRBe7X9KDkdG12xNuz5VHGeH6mCE0B5sBmYtiR/Ux/9vUH/v4NUoBCDr6NuEhvahjoLiiRogptVW0A==}
+    engines: {node: '>=14.20.1'}
     dev: true
 
   /buffer-from/1.1.2:
@@ -6542,23 +6549,6 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.45
-    dev: true
-
-  /vue-demi/0.13.11_y3dbsgppqv4jnxjxtdjaj42kje:
-    resolution: {integrity: sha512-IR8HoEEGM65YY3ZJYAjMlKygDQn25D5ajNFNoKh9RSDMQtlzCxtfQjdQgv9jjK+m3377SsJXY8ysq8kLCZL25A==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      '@vue/composition-api': 1.7.1_vue@3.2.45
-      vue: 3.2.45
-    dev: false
 
   /vue-eslint-parser/9.1.0_eslint@8.29.0:
     resolution: {integrity: sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ==}

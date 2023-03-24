@@ -14,6 +14,7 @@ export function useTime() {
   })
 
   const format = dayjs(now.value, "YYYY-MM-DD")
+  // console.log("format", format)
 
-  return format
+  return now
 }
