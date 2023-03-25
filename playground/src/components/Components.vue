@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { onMounted, unref, watch } from 'vue'
+import { onMounted, watch } from 'vue'
 import observer from 'observer-emit'
-import { useDark, useNow, useToggle } from '@vueuse/core'
-import { useTest, useTree, useTime } from '@composable/core'
+import { useTest, useTime } from '@composable/core'
 
 import { RenderTree, SwitchButton } from '@composable/components'
 import { useCall, useDate } from '../hooks'
@@ -10,6 +9,8 @@ import { formatDate, setClipboard } from '../utils'
 import shapeData from '../config/shape.json'
 import { contactList } from '../config'
 
+import UseTheme from './use/UseTheme.vue'
+import UseNow from './use/UseNow.vue'
 import SetupView from './setup/SetupView.vue'
 import ShapeTree from './tree/ShapeTree.vue'
 import AnimateFrame from './animations/AnimationFrame.vue'
@@ -23,48 +24,21 @@ import UpdateView from './update/UpdateView.vue'
 const ret = await useCall()
 console.log('ret', ret)
 
-const isDark = useDark({
-  selector: 'html',
-  attribute: 'color-scheme',
-  valueDark: 'dark',
-  valueLight: 'light',
-})
-const toggleDark = useToggle(isDark)
-
-const now = useDate(useNow())
-
 const test = useTest()
-console.log('test: ', test)
-
-const { getTree, addTreeNode, updateTreeNode, removeTreeNode } = useTree()
-const tree = getTree()
-addTreeNode('root', { id: 'test', parent: 'root', children: [] })
-addTreeNode('test', { id: 'akashi', parent: 'test', children: [] })
-addTreeNode('test', { id: 'asuka', parent: 'test', children: [] })
-updateTreeNode('asuka', { id: 'shori', parent: 'test', children: [] })
-removeTreeNode('akashi')
-
-// updateTreeNode('root', { id: 'root1' })
-// removeTreeNode('root')
-console.log('tree: ', tree)
+console.log('test: ', test.value)
 
 setClipboard('copy test')
 
 const testTime = useTime()
 watch(testTime, () => console.log('time: ', testTime.value))
-
 </script>
 
 <template>
   <h5>Components</h5>
-  <div>
-    is dark: {{ isDark }}
-    <button @click="toggleDark()">
-      toggle dark
-    </button>
-  </div>
 
-  <div>now: {{ now }}</div>
+  <UseTheme />
+
+  <UseNow />
 
   <!-- <SetupView /> -->
 
@@ -92,5 +66,5 @@ watch(testTime, () => console.log('time: ', testTime.value))
     </template>
   </SlotView> -->
 
-  <UpdateView />
+  <!-- <UpdateView /> -->
 </template>

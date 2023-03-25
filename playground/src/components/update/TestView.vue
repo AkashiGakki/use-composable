@@ -10,5 +10,7 @@ console.log('arr: ', arr)
 </script>
 
 <template>
-  <div class="update-view">Update</div>
+  <div class="update-view">
+    Update
+  </div>
 </template>

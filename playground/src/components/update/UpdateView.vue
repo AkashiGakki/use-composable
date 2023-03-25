@@ -1,10 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+import { useUpdate } from '../../hooks/useUpdate'
 import TestView from './TestView.vue'
 import TestView2 from './TestView2.vue'
-
-import { useUpdate } from '../../hooks/useUpdate'
 
 const { getData, update } = useUpdate()
 const arr = getData()
