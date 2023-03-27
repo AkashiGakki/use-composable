@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
-import observer from 'observer-emit'
-import { useTest, useTime } from '@composable/core'
-
 import { RenderTree, SwitchButton } from '@composable/components'
-import { useCall, useDate } from '../hooks'
-import { formatDate, setClipboard } from '../utils'
-import shapeData from '../config/shape.json'
-import { contactList } from '../config'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'
@@ -20,17 +13,6 @@ import ThemeFilter from './use/ThemeFilter.vue'
 import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
 import UpdateView from './update/UpdateView.vue'
-
-const ret = await useCall()
-console.log('ret', ret)
-
-const test = useTest()
-console.log('test: ', test.value)
-
-setClipboard('copy test')
-
-const testTime = useTime()
-watch(testTime, () => console.log('time: ', testTime.value))
 </script>
 
 <template>
