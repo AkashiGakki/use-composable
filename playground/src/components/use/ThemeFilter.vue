@@ -6,7 +6,7 @@ const use = ref(true)
 const switchTheme = () => {
   use.value = !use.value
 
-  const dom = document.querySelector('body')
+  const dom = document.querySelector('body') as HTMLBodyElement
   dom.style.filter = use.value ? 'none' : 'grayscale(1)'
 }
 </script>

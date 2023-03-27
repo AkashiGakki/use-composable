@@ -10,3 +10,9 @@ const now = useDate(useNow() as any)
     now: {{ now }}
   </div>
 </template>
+
+<style scoped>
+.use-now {
+  padding: 20px 0;
+}
+</style>

@@ -5,7 +5,6 @@ import { RenderTree, SwitchButton } from '@composable/components'
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'
 import SetupView from './setup/SetupView.vue'
-import ShapeTree from './tree/ShapeTree.vue'
 import AnimateFrame from './animations/AnimationFrame.vue'
 import MouseDown from './use/MouseDown.vue'
 import ValidateView from './use/ValidateView.vue'
@@ -22,31 +21,27 @@ import UpdateView from './update/UpdateView.vue'
 
   <UseNow />
 
-  <!-- <SetupView /> -->
+  <Suspense v-if="false">
+    <SetupView />
+  </Suspense>
 
-  <!-- <div>test: {{ test }}</div> -->
+  <AnimateFrame v-if="false" />
 
-  <!-- <ShapeTree :tree-data="shapeData.shapeIndex" /> -->
+  <MouseDown v-if="false" />
 
-  <!-- <RenderTree :tree-data="contactList" /> -->
+  <ValidateView v-if="false" />
 
-  <!-- <AnimateFrame /> -->
-
-  <!-- <MouseDown /> -->
-
-  <!-- <ValidateView /> -->
-
-  <!-- <ThemeFilter /> -->
+  <ThemeFilter />
 
   <SwitchButton />
 
-  <!-- <SlotView>
+  <SlotView v-if="false">
     <template #node>
       <UseSlotNode v-slot="slotProps">
-        <div>test: {{ slotProps.count }}</div>
+        <div>test: {{ (slotProps as any).count }}</div>
       </UseSlotNode>
     </template>
-  </SlotView> -->
+  </SlotView>
 
-  <!-- <UpdateView /> -->
+  <UpdateView v-if="false" />
 </template>

@@ -5,9 +5,7 @@ import Components from './components/Components.vue'
 </script>
 
 <template>
-  <Suspense>
-    <Components />
-  </Suspense>
+  <Components />
 </template>
 
 <style>
