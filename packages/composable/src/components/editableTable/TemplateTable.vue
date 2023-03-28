@@ -213,7 +213,7 @@ const showOperator = computed(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .template-table {
   position: relative;
   width: 100%;
@@ -221,7 +221,7 @@ const showOperator = computed(() => {
 }
 
 .operator-content {
-  // width: 400px;
+  /* width: 400px; */
 }
 
 .operator-content button {
