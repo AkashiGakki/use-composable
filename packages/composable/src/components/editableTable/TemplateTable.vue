@@ -218,38 +218,38 @@ const showOperator = computed(() => {
   position: relative;
   width: 100%;
   height: 100%;
+}
 
-  .operator-content {
-    // width: 400px;
+.operator-content {
+  // width: 400px;
+}
 
-    button {
-      margin-right: 20px;
-    }
+.operator-content button {
+    margin-right: 20px;
   }
 
-  .table-content {
-    height: 100%;
-    margin: 20px auto;
-    text-align: center;
+.table-content {
+  height: 100%;
+  margin: 20px auto;
+  text-align: center;
+}
 
-    table {
-      width: 100%;
+table {
+  width: 100%;
+}
 
-      .table-field {
-        line-height: 28px;
-        height: 28px;
-        width: 300px;
-      }
-    }
+.table-field {
+  line-height: 28px;
+  height: 28px;
+  width: 300px;
+}
 
-    .empty-content {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  }
+.empty-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 </style>

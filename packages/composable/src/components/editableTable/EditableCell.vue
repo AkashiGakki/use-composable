@@ -38,7 +38,7 @@ const edit = () => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .editable-cell {
   position: relative;
 }
@@ -51,7 +51,6 @@ const edit = () => {
 
 .editable-cell-text-wrapper {
   padding: 5px 24px 5px 5px;
-  // max-width: 200px;
 }
 
 .editable-cell-icon,
