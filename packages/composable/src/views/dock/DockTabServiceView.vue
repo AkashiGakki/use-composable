@@ -50,13 +50,15 @@ const nextTabClick = (el, dock) => {
   const x = changeTranslateX(content.style.transform, -200)
   content.style.transform = `translate3d(${x}px, 0px, 0px)`
 }
+
+const showDevelop = ref(false)
 </script>
 
 <template>
   <section>
     <div class="tab-content">
       <a-icon
-        v-show="false"
+        v-show="showDevelop"
         class="tab-icon"
         type="left"
         @click="prevTabClick($el, dock)"
@@ -80,7 +82,7 @@ const nextTabClick = (el, dock) => {
       </div>
 
       <a-icon
-        v-show="false"
+        v-show="showDevelop"
         class="tab-icon"
         type="right"
         @click="nextTabClick($el, dock)"

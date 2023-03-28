@@ -1,3 +1,4 @@
+import type { StyleValue } from 'vue'
 import type { DockConfig, DockTabConfig } from '@composable/core'
 
 export const setIconAreaType = (area: string) => {
@@ -8,7 +9,7 @@ export const setIconAreaType = (area: string) => {
   return null
 }
 
-export const setIconStyle = (dock: DockConfig) => {
+export const setIconStyle = (dock: DockConfig): StyleValue => {
   const type = setIconAreaType(dock.area)
   if (!type)
     return

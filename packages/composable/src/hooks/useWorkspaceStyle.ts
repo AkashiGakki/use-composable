@@ -1,3 +1,4 @@
+import type { StyleValue } from 'vue'
 import type { DockConfig, WidgetConfig } from '@composable/core/src/interfaces'
 
 export type Content = DockConfig | WidgetConfig
@@ -7,20 +8,6 @@ export const useClassJoin = (list?: string[]): string => {
     return
 
   return list.join(' ')
-}
-
-export const useAreaStyle = (comp: Content, rect: Partial<DOMRect>): object => {
-  if (rect.height === 0) {
-    return {
-      display: 'none',
-    }
-  }
-
-  if (!comp.area)
-    return getDefaultAreaStyle(rect)
-
-  const style = getAreaStyle(comp, rect)
-  return style
 }
 
 const getDefaultAreaStyle = (rect: Partial<DOMRect>) => {
@@ -150,4 +137,18 @@ const getAreaStyle = (comp: Content, rect: Partial<DOMRect>) => {
   if (fn === undefined)
     return getDefaultAreaStyle(rect)
   return fn()
+}
+
+export const useAreaStyle = (comp: Content, rect: Partial<DOMRect>): StyleValue => {
+  if (rect.height === 0) {
+    return {
+      display: 'none',
+    }
+  }
+
+  if (!comp.area)
+    return getDefaultAreaStyle(rect)
+
+  const style = getAreaStyle(comp, rect)
+  return style
 }

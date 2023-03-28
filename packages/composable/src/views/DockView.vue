@@ -13,10 +13,6 @@ const props = defineProps<{
 }>()
 const activeTabs = ref([])
 
-onMounted(() => {
-  setActiveTabs(props.docks)
-})
-
 const cssInject = (list: any) => {
   return useClassJoin(list)
 }
@@ -35,6 +31,10 @@ const setActiveTabs = (docks: DockConfig[]) => {
       .filter(Boolean)
   })
 }
+
+onMounted(() => {
+  setActiveTabs(props.docks)
+})
 
 const handleTabClick = (tab: DockTabConfig, tabs: DockTabConfig[]) => {
   const active = tabs.find(tab => tab.active)

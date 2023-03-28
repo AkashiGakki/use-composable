@@ -30,10 +30,10 @@ watch(
 )
 
 onMounted(() => {
-  setTimeout(() => {
-    if ((dataSource.value = {} && phase.value.length === 0))
-      phase.value = defaultPhase
-  }, 500)
+  // setTimeout(() => {
+  //   if (phase.value.length === 0)
+  //     phase.value = defaultPhase
+  // }, 500)
 })
 
 const onPhaseCellChange = (key: string, value) => {
@@ -133,7 +133,7 @@ const showOperator = computed(() => {
         <thead>
           <tr>
             <template v-for="col of cols">
-              <th v-if="showOperator(col.key)">
+              <th v-if="showOperator(col.key)" :key="col.key">
                 {{ col.title }}
               </th>
             </template>
@@ -141,7 +141,7 @@ const showOperator = computed(() => {
         </thead>
 
         <tbody>
-          <template v-for="p of phase">
+          <template v-for="p of phase" :key="p.data.key">
             <tr>
               <td class="table-field" :rowSpan="p.data.length + 1">
                 <EditableCell
@@ -151,7 +151,7 @@ const showOperator = computed(() => {
               </td>
             </tr>
 
-            <template v-for="(row, index) of p.data">
+            <template v-for="row of p.data" :key="row.key">
               <tr>
                 <td class="table-field">
                   <EditableCell
