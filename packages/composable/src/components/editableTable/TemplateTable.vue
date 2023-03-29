@@ -9,8 +9,8 @@ import { cols, defaultPhase, newPhase } from '../../config'
 import EditableCell from './EditableCell.vue'
 
 const props = defineProps<{
-  data: any[]
-  isStudent: boolean
+  data?: any[]
+  isStudent?: boolean
 }>()
 const emit = defineEmits(['submit'])
 
