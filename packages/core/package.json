@@ -28,7 +28,9 @@
     "vue-demi": "latest"
   },
   "devDependencies": {
+    "@types/node": "^18.15.11",
     "dayjs": "^1.11.6",
+    "fast-glob": "^3.2.12",
     "vue": "^3.0.0"
   }
 }
