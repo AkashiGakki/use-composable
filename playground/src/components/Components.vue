@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
-import { RenderTree, SwitchButton } from '@composable/components'
+import { RenderTree, SwitchButton, EditableTable } from '@composable/components'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'
@@ -44,4 +44,6 @@ import UpdateView from './update/UpdateView.vue'
   </SlotView>
 
   <UpdateView v-if="false" />
+
+  <EditableTable />
 </template>
