@@ -45,5 +45,5 @@ import UpdateView from './update/UpdateView.vue'
 
   <UpdateView v-if="false" />
 
-  <EditableTable />
+  <EditableTable v-if="false" />
 </template>
