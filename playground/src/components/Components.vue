@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
-import { RenderTree, SwitchButton, EditableTable } from '@composable/components'
+import { EditableTable, RenderTree, SwitchButton } from '@composable/components'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'
@@ -12,6 +12,7 @@ import ThemeFilter from './use/ThemeFilter.vue'
 import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
 import UpdateView from './update/UpdateView.vue'
+import DropView from './drop/DropView.vue'
 </script>
 
 <template>
@@ -46,4 +47,6 @@ import UpdateView from './update/UpdateView.vue'
   <UpdateView v-if="false" />
 
   <EditableTable v-if="false" />
+
+  <DropView />
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { watch } from 'vue';
+import { watch } from 'vue'
 import { useTest, useTime } from '@composable/core'
 import { useCall, useDate } from '../../hooks'
 
