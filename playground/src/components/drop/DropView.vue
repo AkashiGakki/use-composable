@@ -1,19 +1,48 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+const emit = defineEmits(["upload"]);
+
+const isFileEnter = ref(false);
+
+onMounted(() => {
+  const dom = document.querySelector('body')
+
+  dom?.addEventListener('dragover', (e: Event) => {
+    e.preventDefault()
+  })
+
+  dom?.addEventListener('dragenter', (e: Event) => {
+    e.preventDefault()
+  })
+
+  dom?.addEventListener('dragleave', (e: Event) => {
+    e.preventDefault()
+  })
+})
+
+const showStyle = computed(() => {
+  if (isFileEnter.value) {
+    return {
+      "--drop-index": 1,
+    };
+  }
+
+  return {
+    "--drop-index": -1,
+  };
+});
 
 function fileDragover(e: Event) {
   e.preventDefault()
-  console.log('over')
 }
 
 function fileDragenter(e: Event) {
   e.preventDefault()
-  console.log('enter')
 }
 
 function fileDragleave(e: Event) {
   e.preventDefault()
-  console.log('leave')
 }
 
 function fileDrop(e: DragEvent) {
@@ -22,48 +51,55 @@ function fileDrop(e: DragEvent) {
   if (e.dataTransfer) {
     const file = e.dataTransfer.files[0]
     console.log('file: ', file)
+    emit('upload')
   }
 }
 </script>
 
 <template>
-  <div
-    @dragover="fileDragover"
-    @dragenter="fileDragenter"
-    @dragleave="fileDragleave"
-    @drop="fileDrop"
-    class="main"
-  >
-    <p class="drop-text">
-      拖拽文件到此上传文件
-    </p>
-    <div id="drop" class="drop-box" />
+  <div class="main" :style="showStyle">
+    <div
+      class="drop-text"
+      @dragover="fileDragover"
+      @dragenter="fileDragenter"
+      @dragleave="fileDragleave"
+      @drop="fileDrop"
+    >
+      <p class="drop-span">
+        拖拽文件到此上传文件
+      </p>
+    </div>
   </div>
 </template>
 
-<style scoped>
+<style lang="scss" scoped>
 .main {
-  width: 450px;
-  height: 400px;
-  position: relative;
-  margin: 100px auto;
-  background: #f7f6f6;
-}
-
-.drop-box {
-  width: 450px;
-  height: 400px;
-  border: 1px dashed #a89b9b;
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: gray;
+  opacity: 0.3;
+  z-index: var(--drop-index);
 }
 
 .drop-text {
-  position: absolute;
-  width: 450px;
-  height: 50px;
-  top: 170px;
-  text-align: center;
-  line-height: 50px;
-  opacity: 0.5;
-  color: #347aa5;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drop-span {
+  width: 50%;
+  height: 50%;
+  border: 2px dashed black;
+  font-weight: 600;
+  font-size: 2rem;
+  color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: -1;
 }
 </style>
