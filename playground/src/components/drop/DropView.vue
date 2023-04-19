@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, computed, onMounted } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 
-const emit = defineEmits(["upload"]);
+const emit = defineEmits(['upload'])
 
-const isFileEnter = ref(false);
+const isFileEnter = ref(false)
 
 onMounted(() => {
   const dom = document.querySelector('body')
@@ -24,14 +24,14 @@ onMounted(() => {
 const showStyle = computed(() => {
   if (isFileEnter.value) {
     return {
-      "--drop-index": 1,
-    };
+      '--drop-index': 1,
+    }
   }
 
   return {
-    "--drop-index": -1,
-  };
-});
+    '--drop-index': -1,
+  }
+})
 
 function fileDragover(e: Event) {
   e.preventDefault()

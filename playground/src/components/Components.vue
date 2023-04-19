@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
+import nogi from 'nogi-api'
 import { EditableTable, RenderTree, SwitchButton } from '@composable/components'
 
 import UseTheme from './use/UseTheme.vue'
@@ -13,6 +14,12 @@ import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
 import UpdateView from './update/UpdateView.vue'
 import DropView from './drop/DropView.vue'
+
+const ret = nogi.getAllMember([], 'merge')
+console.log('ret', ret)
+
+const member = nogi.getMember('kubo shiori')
+console.log('m', member)
 </script>
 
 <template>
