@@ -1,0 +1,28 @@
+<script setup lang="ts">
+import { ref, watch } from 'vue'
+
+const props = defineProps<{ data: any }>();
+const emit = defineEmits(['update', 'delete'])
+
+watch(props.data, (val) => {
+  console.log('data', val)
+});
+
+function handleUpdate() {
+  emit('update')
+}
+
+function handleDelete() {
+  emit('delete')
+}
+</script>
+
+<template>
+  <div>
+    <pre>{{ data }}</pre>
+
+    <button @click="handleUpdate">Update</button>
+
+    <button @click="handleDelete">Delete</button>
+  </div>
+</template>

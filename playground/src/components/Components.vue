@@ -14,12 +14,17 @@ import SlotView from './slot/SlotView.vue'
 import UseSlotNode from './slot/UseSlotNode.vue'
 import UpdateView from './update/UpdateView.vue'
 import DropView from './drop/DropView.vue'
+import PropsTest from './props/PropsTest.vue'
 
-const ret = nogi.getAllMember([], 'merge')
-console.log('ret', ret)
+// const ret = nogi.getAllMember(['name', 'age', 'use', 'kana'])
+// const ret = nogi.getAllMember([], 'all')
+// console.log('ret', ret)
 
-const member = nogi.getMember('kubo shiori')
-console.log('m', member)
+// const shi = nogi.getMember('kubo shiori', 'default')
+// console.log('shi', shi)
+
+// const asu = nogi.getMember('asuka')
+// console.log('asu', asu)
 </script>
 
 <template>
@@ -39,7 +44,7 @@ console.log('m', member)
 
   <ValidateView v-if="false" />
 
-  <ThemeFilter />
+  <ThemeFilter v-if="false" />
 
   <SwitchButton />
 
@@ -55,5 +60,7 @@ console.log('m', member)
 
   <EditableTable v-if="false" />
 
-  <DropView />
+  <DropView v-if="false" />
+
+  <PropsTest />
 </template>
