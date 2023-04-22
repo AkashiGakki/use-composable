@@ -11,5 +11,13 @@
     "url": "git+https://github.com/akashigakki/vue-composable.git"
   },
   "bugs": "https://github.com/akashigakki/vue-composable/issues",
-  "keywords": []
+  "keywords": [],
+  "scripts": {
+    "docs:dev": "vitepress dev packages/docs",
+    "docs:build": "vitepress build packages/docs",
+    "docs:preview": "vitepress preview packages/docs"
+  },
+  "devDependencies": {
+    "vitepress": "1.0.0-alpha.73"
+  }
 }
