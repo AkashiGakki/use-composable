@@ -1,1 +1,1 @@
-# vue-composable
+# composable-playground

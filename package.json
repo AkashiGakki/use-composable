@@ -5,12 +5,12 @@
   "author": "Akashi Sai <akashi_sai@163.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/akashigakki",
-  "homepage": "https://github.com/akashigakki/vue-composable#readme",
+  "homepage": "https://github.com/akashigakki/use-composables#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akashigakki/vue-composable.git"
+    "url": "git+https://github.com/akashigakki/use-composables.git"
   },
-  "bugs": "https://github.com/akashigakki/vue-composable/issues",
+  "bugs": "https://github.com/akashigakki/use-composables/issues",
   "keywords": [],
   "scripts": {
     "docs:dev": "vitepress dev packages/docs",

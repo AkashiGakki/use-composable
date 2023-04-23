@@ -4,7 +4,6 @@
     "lib": ["ESNext", "DOM"],
     "target": "es2017",
     "outDir": "dist",
-    "rootDir": "./src",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true
   },
