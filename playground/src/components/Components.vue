@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onMounted, watch } from 'vue'
 import nogi from 'nogi-api'
-import { EditableTable, RenderTree, SwitchButton } from '@composable/components'
+import { EditableTable, RenderTree, SwitchButton } from '@use-composables/components'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'

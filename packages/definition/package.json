@@ -1,5 +1,5 @@
 {
-  "name": "@use-composables/core",
+  "name": "@use-composables/definition",
   "version": "0.0.1",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -14,23 +14,11 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint ."
   },
-  "peerDependencies": {
-    "@vue/composition-api": "^1.0.0-rc.1",
-    "vue": "^2.0.0 || >=3.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@vue/composition-api": {
-      "optional": true
-    }
-  },
   "dependencies": {
-    "typedoc": "^0.23.21",
-    "vue-demi": "latest"
+    "typedoc": "^0.23.21"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "dayjs": "^1.11.6",
-    "fast-glob": "^3.2.12",
-    "vue": "^3.0.0"
+    "fast-glob": "^3.2.12"
   }
 }

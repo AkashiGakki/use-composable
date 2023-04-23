@@ -3,7 +3,7 @@ import type {
   DockConfig,
   DockTab as DockTabBase,
   DockTabConfig,
-} from '../../../core/src/interfaces'
+} from '@use-composables/definition'
 
 export class Dock implements DockBase {
   config: DockConfig

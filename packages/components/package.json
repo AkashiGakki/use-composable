@@ -1,5 +1,5 @@
 {
-  "name": "@composable/components",
+  "name": "@use-composables/components",
   "version": "0.0.1",
   "license": "MIT",
   "_exports": {
@@ -30,11 +30,12 @@
     }
   },
   "dependencies": {
+    "@use-composables/definition": "workspace:^0.0.1",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",
-    "@composable/core": "workspace:*",
+    "@use-composables/core": "workspace:*",
     "@vitejs/plugin-vue": "^4.1.0",
     "bson": "^5.1.0",
     "eslint": "^8.36.0",

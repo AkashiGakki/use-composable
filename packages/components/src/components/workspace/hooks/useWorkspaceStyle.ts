@@ -1,5 +1,5 @@
 import type { StyleValue } from 'vue'
-import type { DockConfig, WidgetConfig } from '@composable/core/src/interfaces'
+import type { DockConfig, WidgetConfig } from '@use-composables/definition'
 
 export type Content = DockConfig | WidgetConfig
 

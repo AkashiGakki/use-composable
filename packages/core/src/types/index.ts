@@ -1,1 +1,1 @@
-export * from './Area'
+export * from './shared-types'

@@ -9,8 +9,8 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: 'src/index.ts',
-      name: '@composable',
-      fileName: 'composable',
+      name: '@use-composables/components',
+      fileName: 'use-composables/components',
     },
   },
   plugins: [

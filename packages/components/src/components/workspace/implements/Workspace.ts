@@ -3,7 +3,7 @@ import type {
   DockTabConfig,
   WidgetConfig,
   Workspace as WorkspaceBase,
-} from '../../../core/src/interfaces'
+} from '@use-composables/definition'
 import { Dock, DockTab, Widget } from '.'
 
 export class Workspace implements WorkspaceBase {

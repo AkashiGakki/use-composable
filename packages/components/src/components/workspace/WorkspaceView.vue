@@ -11,14 +11,12 @@ import {
 import type {
   DockConfig,
   WidgetConfig,
-} from '@composable/core'
-import {
   Workspace,
   WorkspaceConfig,
-} from '@composable/core'
+} from '@use-composables/definition'
 
-import DockView from '../../views/DockView.vue'
-import WidgetView from '../../views/WidgetView.vue'
+import DockView from './views/DockView.vue'
+import WidgetView from './views/WidgetView.vue'
 
 const props = defineProps<{
   params: {
