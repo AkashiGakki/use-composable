@@ -1,74 +1,47 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue-demi'
-// import { computed, ref } from 'vue'
+import { useForceRerender } from '@use-composables/core'
+import { useSizeStyle, useActiveStyle } from './hooks'
 
-type Size = 'default' | 'medium' | 'large'
+import type { Size } from './hooks'
+
+const emit = defineEmits(['change'])
 
 const props = defineProps<{
   defaultContent?: string
   asideContent?: string
-  size?: string
+  size?: Size
 }>()
-const emit = defineEmits(['change'])
 
 const defaultContent = computed(() => props.defaultContent ?? 'default')
 const asideContent = computed(() => props.asideContent ?? 'aside')
 const buttonSize = computed(() => props.size ?? 'default')
 
-const buttonStyle = computed(() => {
-  const use = { width: '100px', height: '30px' }
-  const medium = { width: '150px' }
-  const large = { width: '230px', height: '34px' }
+const sizeStyle = useSizeStyle(buttonSize)
+const { leftStyle, rightStyle, activeChange } = useActiveStyle()
+const { renderKey, forceRerender } = useForceRerender()
 
-  const map = new Map([
-    ['default', use],
-    ['medium', medium],
-    ['large', large],
-  ])
-
-  const ret = map.get(buttonSize.value) ?? map.get('default')
-  return ret
-})
-
-const active = ref(true)
-
-const activeChange = (change) => {
-  active.value = change
+function handleChange(change: boolean) {
+  activeChange(change)
   emit('change', change)
-  console.log('active: ', active)
+  forceRerender()
 }
-
-const defaultStyle = computed(() => {
-  return {
-    'border': '1px solid #d9d9d9',
-    'color': '#5f5f5f',
-    'background-color': '#ffffff',
-  }
-})
-
-const primaryStyle = computed(() => {
-  return {
-    'border': '1px solid #1890ff',
-    'color': '#ffffff',
-    'background-color': '#1890ff',
-  }
-})
 </script>
 
 <template>
-  <div class="switch-button">
+  <div class="switch-button" :key="renderKey">
     <button
       class="left-btn"
-      :style="active ? primaryStyle : defaultStyle"
-      @click="activeChange(true)"
+      :style="leftStyle"
+      @click="handleChange(true)"
     >
       {{ defaultContent }}
     </button>
 
     <button
       class="right-btn"
-      :style="active ? defaultStyle : primaryStyle"
-      @click="activeChange(false)"
+      :style="rightStyle"
+      @click="handleChange(false)"
     >
       {{ asideContent }}
     </button>

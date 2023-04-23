@@ -11,3 +11,5 @@ console.log('shi', shi)
 const asu = nogi.getMember('asuka')
 console.log('asu', asu)
 </script>
+
+<template></template>

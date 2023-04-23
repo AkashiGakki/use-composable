@@ -1,10 +1,10 @@
 import { ref } from 'vue'
 
 export const useForceRerender = () => {
-  const renderKey = ref(0)
+  const renderKey = ref<number | string | symbol>(0)
 
   const forceRerender = () => {
-    renderKey.value += 1
+    (renderKey.value as number) += 1
   }
 
   return {
