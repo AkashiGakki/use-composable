@@ -27,7 +27,7 @@ importers:
     dependencies:
       '@use-composables/definition': link:../definition
       '@vue/composition-api': 1.7.1_vue@3.2.47
-      vue-demi: 0.14.0_vue@3.2.47
+      vue-demi: 0.14.0_nl35ja3bquglpolb4ogn4n6pq4
     devDependencies:
       '@antfu/eslint-config': 0.37.0_j4766f7ecgqbon3u7zlxn5zszu
       '@use-composables/core': link:../core
@@ -83,7 +83,7 @@ importers:
       crypto-js: ^4.1.1
       dayjs: ^1.11.6
       eslint: ^8.29.0
-      nogi-api: 0.0.0-alpha.1
+      nogi-api: 0.0.0-alpha.2
       observer-emit: ^1.0.0
       sass: ^1.56.1
       typescript: ^4.9.3
@@ -104,7 +104,7 @@ importers:
       crypto-js: 4.1.1
       dayjs: 1.11.6
       eslint: 8.29.0
-      nogi-api: 0.0.0-alpha.1
+      nogi-api: 0.0.0-alpha.2
       observer-emit: 1.0.0
       sass: 1.56.1
       typescript: 4.9.3
@@ -6203,8 +6203,8 @@ packages:
     resolution: {integrity: sha512-fLUhIYUwZNhvp4eDmDfTMXCQSthkgIkKFlrRVdKFlEnjBDiEiSkJMHwr9OjWHck7BTwf7T1hxjswAu+baO7ygg==}
     dev: true
 
-  /nogi-api/0.0.0-alpha.1:
-    resolution: {integrity: sha512-LRHqOnnPn8a0LU51p3rNjoxFfOt2yODJc5ko1bLjUTZuywvoaXIHzVJaR7Aax6/KcOlXp+/aPCYLV+kYviYzgA==}
+  /nogi-api/0.0.0-alpha.2:
+    resolution: {integrity: sha512-GEWI+BLnuv1dmCIl4mGwgaNNfEuonIs7gowWAXV1FAxxX+1CBNV8nu9/qtxIHLj9zROd2LiviDFLt254ZE/xbA==}
     dependencies:
       '@use-kit/functions': 0.0.3
       axios: 0.27.2
@@ -8091,6 +8091,22 @@ packages:
       vue: 3.2.41
     dev: false
 
+  /vue-demi/0.14.0_nl35ja3bquglpolb4ogn4n6pq4:
+    resolution: {integrity: sha512-gt58r2ogsNQeVoQ3EhoUAvUsH9xviydl0dWJj7dabBC/2L4uBId7ujtCwDRD0JhkGsV1i0CtfLAeyYKBht9oWg==}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    peerDependencies:
+      '@vue/composition-api': ^1.0.0-rc.1
+      vue: ^3.0.0-0 || ^2.6.0
+    peerDependenciesMeta:
+      '@vue/composition-api':
+        optional: true
+    dependencies:
+      '@vue/composition-api': 1.7.1_vue@3.2.47
+      vue: 3.2.47
+    dev: false
+
   /vue-demi/0.14.0_vue@3.2.45:
     resolution: {integrity: sha512-gt58r2ogsNQeVoQ3EhoUAvUsH9xviydl0dWJj7dabBC/2L4uBId7ujtCwDRD0JhkGsV1i0CtfLAeyYKBht9oWg==}
     engines: {node: '>=12'}
@@ -8119,6 +8135,7 @@ packages:
         optional: true
     dependencies:
       vue: 3.2.47
+    dev: true
 
   /vue-eslint-parser/9.1.0_eslint@8.29.0:
     resolution: {integrity: sha512-NGn/iQy8/Wb7RrRa4aRkokyCZfOUWk19OP5HP6JEozQFX5AoS/t+Z0ZN7FY4LlmWc4FNI922V7cvX28zctN8dQ==}

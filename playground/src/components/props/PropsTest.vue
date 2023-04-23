@@ -22,7 +22,7 @@ function handleDelete() {
   <div class="main">
     <Child :data="arr" @update="handleUpdate" @delete="handleDelete" />
 
-    <Logo />
+    <!-- <Logo /> -->
   </div>
 </template>
 

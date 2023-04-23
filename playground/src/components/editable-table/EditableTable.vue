@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref } from 'vue'
 
-import EditableCell from "./editableCell.vue";
+import EditableCell from './editableCell.vue'
 </script>
 
 <template>

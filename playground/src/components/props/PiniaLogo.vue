@@ -1,3 +1,67 @@
+<script setup lang="ts">
+import { onMounted, onUnmounted, ref } from 'vue'
+// import { useCounter } from '../stores/counter'
+
+const blinking = ref<'open' | 'closed'>('open')
+const talking = ref<'open' | 'closed'>('closed')
+
+// const counter = useCounter()
+
+const blinkTimer = 100
+const talkRate = 120
+
+onMounted(() => {
+  const timerId = setInterval(() => {
+    let blinkState = 0
+    function blinkHandler() {
+      blinkState++
+
+      if (blinkState % 2) {
+        blinking.value = 'closed'
+        // counter.n++
+        // counter.$patch({ n: counter.n + 1 })
+        setTimeout(blinkHandler, blinkTimer * 1.7)
+      }
+      else if (blinkState < 4) {
+        blinking.value = 'open'
+        setTimeout(blinkHandler, blinkTimer)
+      }
+      else {
+        blinking.value = 'open'
+      }
+    }
+    setTimeout(blinkHandler, 0)
+  }, 10000)
+
+  onUnmounted(() => {
+    clearInterval(timerId)
+  })
+
+  const talkingTimer = setInterval(() => {
+    let blinkState = 0
+    function blinkHandler() {
+      blinkState++
+
+      if (blinkState % 2) {
+        talking.value = 'closed'
+        setTimeout(blinkHandler, talkRate)
+      }
+      else if (blinkState < 10) {
+        talking.value = 'open'
+        setTimeout(blinkHandler, talkRate)
+      }
+      else {
+        talking.value = 'closed'
+      }
+    }
+    setTimeout(blinkHandler, 0)
+  }, 5000)
+  onUnmounted(() => {
+    clearInterval(talkingTimer)
+  })
+})
+</script>
+
 <template>
   <svg
     width="408"
@@ -81,8 +145,8 @@
           </g>
         </template>
         <path
-          fill-rule="evenodd"
           v-else
+          fill-rule="evenodd"
           clip-rule="evenodd"
           d="M98.4768 310.811C97.1028 311.737 96.7396 313.602 97.6656 314.976C102.329 321.896 109.474 325.785 118.663 326.835C127.921 327.893 136.204 325.529 143.318 319.748C144.603 318.703 144.799 316.813 143.754 315.527C142.709 314.242 140.819 314.046 139.534 315.091C133.705 319.828 127.041 321.754 119.344 320.874C111.579 319.987 106.157 316.839 102.641 311.623C101.715 310.249 99.8508 309.885 98.4768 310.811Z"
           fill="#755400"
@@ -112,8 +176,8 @@
           </g>
         </template>
         <path
-          fill-rule="evenodd"
           v-else
+          fill-rule="evenodd"
           clip-rule="evenodd"
           d="M231.477 319.811C230.103 320.737 229.74 322.602 230.666 323.976C235.329 330.896 242.474 334.785 251.663 335.835C260.921 336.893 269.204 334.529 276.318 328.748C277.603 327.703 277.799 325.813 276.754 324.527C275.709 323.242 273.819 323.046 272.534 324.091C266.705 328.828 260.041 330.754 252.344 329.874C244.579 328.987 239.157 325.839 235.641 320.623C234.715 319.249 232.851 318.885 231.477 319.811Z"
           fill="#755400"
@@ -133,9 +197,9 @@
         fill="#ECB732"
       />
       <path
+        v-if="!talking || talking === 'closed'"
         fill-rule="evenodd"
         clip-rule="evenodd"
-        v-if="!talking || talking == 'closed'"
         d="M163.323 337.658C161.949 338.584 161.586 340.448 162.512 341.822C167.176 348.743 174.321 352.632 183.51 353.682C192.767 354.74 201.051 352.375 208.164 346.594C209.45 345.549 209.645 343.66 208.6 342.374C207.555 341.088 205.666 340.893 204.38 341.938C198.552 346.675 191.887 348.6 184.191 347.721C176.425 346.834 171.003 343.686 167.488 338.469C166.562 337.095 164.697 336.732 163.323 337.658Z"
         fill="black"
       />
@@ -196,66 +260,6 @@
     </defs>
   </svg>
 </template>
-
-<script setup lang="ts">
-import { onMounted, onUnmounted, ref } from 'vue'
-// import { useCounter } from '../stores/counter'
-
-const blinking = ref<'open' | 'closed'>('open')
-const talking = ref<'open' | 'closed'>('closed')
-
-// const counter = useCounter()
-
-const blinkTimer = 100
-const talkRate = 120
-
-onMounted(() => {
-  let timerId = setInterval(() => {
-    let blinkState = 0
-    function blinkHandler() {
-      blinkState++
-
-      if (blinkState % 2) {
-        blinking.value = 'closed'
-        // counter.n++
-        // counter.$patch({ n: counter.n + 1 })
-        setTimeout(blinkHandler, blinkTimer * 1.7)
-      } else if (blinkState < 4) {
-        blinking.value = 'open'
-        setTimeout(blinkHandler, blinkTimer)
-      } else {
-        blinking.value = 'open'
-      }
-    }
-    setTimeout(blinkHandler, 0)
-  }, 10000)
-
-  onUnmounted(() => {
-    clearInterval(timerId)
-  })
-
-  let talkingTimer = setInterval(() => {
-    let blinkState = 0
-    function blinkHandler() {
-      blinkState++
-
-      if (blinkState % 2) {
-        talking.value = 'closed'
-        setTimeout(blinkHandler, talkRate)
-      } else if (blinkState < 10) {
-        talking.value = 'open'
-        setTimeout(blinkHandler, talkRate)
-      } else {
-        talking.value = 'closed'
-      }
-    }
-    setTimeout(blinkHandler, 0)
-  }, 5000)
-  onUnmounted(() => {
-    clearInterval(talkingTimer)
-  })
-})
-</script>
 
 <style>
 @keyframes leaves-move {
