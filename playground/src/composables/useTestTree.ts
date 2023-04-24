@@ -1,4 +1,4 @@
-import { useTree } from '@use-composables/core'
+import { useTree } from '@use-composable/core'
 
 const { getTree, addTreeNode, updateTreeNode, removeTreeNode } = useTree()
 const tree = getTree()

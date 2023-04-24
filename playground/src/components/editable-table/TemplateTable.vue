@@ -2,7 +2,7 @@
 import { computed, onMounted, ref, watch } from 'vue'
 import { ObjectId } from 'bson'
 import _ from 'lodash'
-import { useForceRerender } from '@use-composables/core'
+import { useForceRerender } from '@use-composable/core'
 
 import { cols, defaultPhase, newPhase } from '../../config'
 

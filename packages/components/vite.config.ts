@@ -9,7 +9,7 @@ export default defineConfig({
     minify: false,
     lib: {
       entry: 'src/index.ts',
-      name: '@use-composables/components',
+      name: '@use-composable/components',
       fileName: 'index',
     },
   },

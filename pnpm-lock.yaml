@@ -17,8 +17,8 @@ importers:
   packages/components:
     specifiers:
       '@antfu/eslint-config': ^0.37.0
-      '@use-composables/core': workspace:*
-      '@use-composables/definition': workspace:^0.0.1
+      '@use-composable/core': workspace:*
+      '@use-composable/definition': workspace:*
       '@vitejs/plugin-vue': ^4.1.0
       '@vue/composition-api': ^1.0.0-rc.1
       bson: ^5.1.0
@@ -31,12 +31,12 @@ importers:
       vue-demi: latest
       vue-tsc: ^1.2.0
     dependencies:
-      '@use-composables/definition': link:../definition
+      '@use-composable/definition': link:../definition
       '@vue/composition-api': 1.7.1_vue@3.2.47
       vue-demi: 0.14.0_nl35ja3bquglpolb4ogn4n6pq4
     devDependencies:
       '@antfu/eslint-config': 0.37.0_j4766f7ecgqbon3u7zlxn5zszu
-      '@use-composables/core': link:../core
+      '@use-composable/core': link:../core
       '@vitejs/plugin-vue': 4.1.0_vite@4.3.1+vue@3.2.47
       bson: 5.1.0
       eslint: 8.36.0
@@ -80,8 +80,8 @@ importers:
   playground:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
-      '@use-composables/components': workspace:*
-      '@use-composables/core': workspace:*
+      '@use-composable/components': workspace:*
+      '@use-composable/core': workspace:*
       '@use-kit/editor-vue': 0.0.3
       '@vitejs/plugin-vue': ^3.2.0
       '@vueuse/core': ^9.6.0
@@ -101,8 +101,8 @@ importers:
       vue: 3.2.45
     devDependencies:
       '@antfu/eslint-config': 0.26.3_s5ps7njkmjlaqajutnox5ntcla
-      '@use-composables/components': link:../packages/components
-      '@use-composables/core': link:../packages/core
+      '@use-composable/components': link:../packages/components
+      '@use-composable/core': link:../packages/core
       '@use-kit/editor-vue': 0.0.3_4focsuckzeocqotdxlryrtksam
       '@vitejs/plugin-vue': 3.2.0_vite@3.2.5+vue@3.2.45
       '@vueuse/core': 9.6.0_vue@3.2.45

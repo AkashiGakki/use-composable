@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, nextTick, onMounted, reactive, ref } from 'vue-demi'
-import type { DockConfig, DockTabConfig } from '@use-composables/definition'
+import type { DockConfig, DockTabConfig } from '@use-composable/definition'
 
 import { useAreaStyle, useClassJoin } from '../hooks'
 

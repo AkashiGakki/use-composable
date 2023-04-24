@@ -2,7 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "Use Composables",
+  title: "Use Composable",
 
   appearance: 'dark',
 
@@ -42,7 +42,7 @@ export default defineConfig({
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/akashigakki/use-composables' }
+      { icon: 'github', link: 'https://github.com/akashigakki/use-composable' }
     ],
 
     footer: {
@@ -64,7 +64,7 @@ export default defineConfig({
     ['link', { rel: 'icon', href: '/favicon.png', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Akashi Sai' }],
 
-    ['meta', { property: 'og:title', content: 'UseComposables' }],
+    ['meta', { property: 'og:title', content: 'UseComposable' }],
     ['meta', { property: 'og:image', content: 'https://vueuse.org/og.png' }],
     ['meta', { property: 'og:description', content: 'Collection of essential Vue Composition Utilities' }],
 

@@ -1,16 +1,16 @@
 {
-  "name": "use-composables",
+  "name": "use-composable",
   "version": "0.0.0",
   "packageManager": "pnpm@7.9.0",
   "author": "Akashi Sai <akashi_sai@163.com>",
   "license": "MIT",
   "funding": "https://github.com/sponsors/akashigakki",
-  "homepage": "https://github.com/akashigakki/use-composables#readme",
+  "homepage": "https://github.com/akashigakki/use-composable#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/akashigakki/use-composables.git"
+    "url": "git+https://github.com/akashigakki/use-composable.git"
   },
-  "bugs": "https://github.com/akashigakki/use-composables/issues",
+  "bugs": "https://github.com/akashigakki/use-composable/issues",
   "keywords": [],
   "scripts": {
     "build": "esno scripts/build.ts",

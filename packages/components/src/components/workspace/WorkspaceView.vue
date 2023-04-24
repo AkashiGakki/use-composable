@@ -13,7 +13,7 @@ import type {
   WidgetConfig,
   Workspace,
   WorkspaceConfig,
-} from '@use-composables/definition'
+} from '@use-composable/definition'
 
 import DockView from './views/DockView.vue'
 import WidgetView from './views/WidgetView.vue'

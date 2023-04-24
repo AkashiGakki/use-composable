@@ -1,5 +1,5 @@
 import type { StyleValue } from 'vue'
-import type { DockConfig, DockTabConfig } from '@use-composables/definition'
+import type { DockConfig, DockTabConfig } from '@use-composable/definition'
 
 export const setIconAreaType = (area: string) => {
   if (area.includes('left'))

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NestTree, RenderTree, SwitchButton } from '@use-composables/components'
+import { NestTree, RenderTree, SwitchButton } from '@use-composable/components'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'

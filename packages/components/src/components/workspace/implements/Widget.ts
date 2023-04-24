@@ -1,4 +1,4 @@
-import type { Widget as WidgetBase, WidgetConfig } from '@use-composables/definition'
+import type { Widget as WidgetBase, WidgetConfig } from '@use-composable/definition'
 
 export class Widget implements WidgetBase {
   config: WidgetConfig

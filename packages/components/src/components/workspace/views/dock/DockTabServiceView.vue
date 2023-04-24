@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue-demi'
-import type { DockConfig, DockTabConfig } from '@use-composables/definition'
+import type { DockConfig, DockTabConfig } from '@use-composable/definition'
 
 import {
   changeTranslateX,

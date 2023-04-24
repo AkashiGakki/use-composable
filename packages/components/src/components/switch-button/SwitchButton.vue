@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue-demi'
-import { useForceRerender } from '@use-composables/core'
+import { useForceRerender } from '@use-composable/core'
 import { useSizeStyle, useActiveStyle } from './hooks'
 
 import type { Size } from './hooks'
