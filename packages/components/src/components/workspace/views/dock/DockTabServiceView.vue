@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue-demi'
+import { reactive, ref, computed } from 'vue-demi'
 import type { DockConfig, DockTabConfig } from '@use-composable/definition'
 
 import {
@@ -51,11 +51,20 @@ const nextTabClick = (el, dock) => {
   content.style.transform = `translate3d(${x}px, 0px, 0px)`
 }
 
+const slotStyle = computed(() => {
+  return (tab: DockTabConfig) => {
+    if (tab.active)
+      return { "--slot-index": 1 };
+
+    return { "--slot-index": -1 };
+  };
+});
+
 const showDevelop = ref(false)
 </script>
 
 <template>
-  <section>
+  <section class="section-container">
     <div class="tab-content">
       <a-icon
         v-show="showDevelop"
@@ -89,7 +98,12 @@ const showDevelop = ref(false)
       />
     </div>
 
-    <div v-for="tab of dock.tabs" :key="tab.id">
+    <div
+      v-for="tab of dock.tabs"
+      :key="tab.id"
+      :style="slotStyle(tab)"
+      class="slot-content"
+    >
       <div
         v-if="dock.collapsible"
         v-show="tab.active"
@@ -115,10 +129,23 @@ const showDevelop = ref(false)
 </template>
 
 <style scoped>
+.section-container {
+  height: 100%;
+  width: 100%;
+}
+
 .tab-content {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.slot-content {
+  position: absolute;
+  height: calc(100% - 36px);
+  width: 100%;
+  z-index: var(--slot-index);
+  padding-bottom: 15px;
 }
 
 .title-wrap {

@@ -1,6 +1,6 @@
 {
   "name": "@use-composable/components",
-  "version": "0.0.1",
+  "version": "0.0.0-alpha.2",
   "license": "MIT",
   "exports": {
     ".": {
@@ -15,6 +15,7 @@
   "files": [
     "dist"
   ],
+  "sideEffects": false,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -31,11 +32,11 @@
   },
   "dependencies": {
     "@use-composable/definition": "workspace:*",
+    "@use-composable/core": "workspace:*",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",
-    "@use-composable/core": "workspace:*",
     "@vitejs/plugin-vue": "^4.1.0",
     "bson": "^5.1.0",
     "eslint": "^8.36.0",
