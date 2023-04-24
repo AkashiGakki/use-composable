@@ -2,16 +2,16 @@
   "name": "@use-composables/components",
   "version": "0.0.1",
   "license": "MIT",
-  "_exports": {
+  "exports": {
     ".": {
-      "require": "./dist/composable.umd.js",
-      "import": "./dist/composable.mjs"
+      "require": "./dist/index.umd.js",
+      "import": "./dist/index.mjs"
     }
   },
-  "_main": "dist/composable.umd.js",
-  "_module": "dist/composable.mjs",
-  "_types": "dist/types/index.d.ts",
-  "main": "./src",
+  "main": "dist/index.umd.js",
+  "_main": "./src",
+  "module": "dist/index.mjs",
+  "types": "dist/types/index.d.ts",
   "files": [
     "dist"
   ],

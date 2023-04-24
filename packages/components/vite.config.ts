@@ -10,7 +10,7 @@ export default defineConfig({
     lib: {
       entry: 'src/index.ts',
       name: '@use-composables/components',
-      fileName: 'use-composables/components',
+      fileName: 'index',
     },
   },
   plugins: [

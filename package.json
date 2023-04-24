@@ -1,5 +1,5 @@
 {
-  "name": "@use-kit/composable",
+  "name": "use-composables",
   "version": "0.0.0",
   "packageManager": "pnpm@7.9.0",
   "author": "Akashi Sai <akashi_sai@163.com>",
@@ -13,11 +13,17 @@
   "bugs": "https://github.com/akashigakki/use-composables/issues",
   "keywords": [],
   "scripts": {
+    "build": "esno scripts/build.ts",
+    "clean": "rimraf dist types packages/*/dist",
     "docs:dev": "vitepress dev packages/docs",
     "docs:build": "vitepress build packages/docs",
-    "docs:preview": "vitepress preview packages/docs"
+    "docs:preview": "vitepress preview packages/docs",
+    "types:fix": "esno scripts/fix-types.ts"
   },
   "devDependencies": {
+    "consola": "^3.1.0",
+    "fast-glob": "^3.2.12",
+    "rimraf": "^5.0.0",
     "vitepress": "1.0.0-alpha.73"
   }
 }
