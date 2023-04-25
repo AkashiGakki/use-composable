@@ -1,8 +1,8 @@
 import { ref } from 'vue'
 
 interface TreeNode {
-  id: string
-  parent: string
+  id?: string
+  parent?: string
   children: TreeNode[]
 }
 
@@ -57,8 +57,8 @@ export const useTree = () => {
     return tree
   }
 
-  const findTreeNode = (id: string) => {
-    return getTreeNode(tree.value, (node: TreeNode) => node.id === id)
+  const findTreeNode = (id: string, field = 'id') => {
+    return getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
   }
 
   const addTreeNode = (parentId: string, data: TreeNode) => {
@@ -71,23 +71,23 @@ export const useTree = () => {
     (node as any).children.push(data)
   }
 
-  const updateTreeNode = (id: string, data: Partial<TreeNode>) => {
-    const node = getTreeNode(tree.value, (node: TreeNode) => node.id === id)
+  const updateTreeNode = (id: string, data: Partial<TreeNode>, field = 'id') => {
+    const node = getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
     if (!node)
       throw new Error(`can't find node with id: ${id}`)
 
     Object.assign(node, data)
   }
 
-  const removeTreeNode = (id: string) => {
+  const removeTreeNode = (id: string, field = 'id') => {
     const parent = getParentTree(
       tree.value,
-      (node: TreeNode) => node.id === id,
+      (node: TreeNode) => node[field] === id,
     )
     if (!parent)
       throw new Error(`can't find node with id: ${id}`)
 
-    const index = (parent as any).findIndex((n: TreeNode) => n.id === id);
+    const index = (parent as any).findIndex((n: TreeNode) => n[field] === id);
     (parent as any).splice(index, 1)
   }
 
