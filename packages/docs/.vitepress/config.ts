@@ -25,18 +25,25 @@ export default defineConfig({
     logo: '/favicon.png',
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'API', link: '/api/', activeMatch: '^/api/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'Guide', link: '/guide' },
+      { text: 'API', link: '/core/useForceRerender' },
       { text: 'Home', link: '/' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Introduction',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Basic example', link: '/guide' },
+        ]
+      },
+      {
+        text: 'Core',
+        items: [
+          { text: 'useForceRerender', link: '/core/useForceRerender' },
+          { text: 'useMouse', link: '/core/useMouse' },
+          { text: 'useTime', link: '/core/useTime' },
+          { text: 'useTree', link: '/core/useTree' }
         ]
       }
     ],
