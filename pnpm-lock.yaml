@@ -17,8 +17,8 @@ importers:
   packages/components:
     specifiers:
       '@antfu/eslint-config': ^0.37.0
-      '@use-composable/core': workspace:*
-      '@use-composable/definition': workspace:*
+      '@use-composable/core': ^0.0.0-alpha.1
+      '@use-composable/definition': ^0.0.0-alpha.1
       '@vitejs/plugin-vue': ^4.1.0
       '@vue/composition-api': ^1.0.0-rc.1
       bson: ^5.1.0
@@ -31,12 +31,12 @@ importers:
       vue-demi: latest
       vue-tsc: ^1.2.0
     dependencies:
+      '@use-composable/core': link:../core
       '@use-composable/definition': link:../definition
       '@vue/composition-api': 1.7.1_vue@3.2.47
       vue-demi: 0.14.0_nl35ja3bquglpolb4ogn4n6pq4
     devDependencies:
       '@antfu/eslint-config': 0.37.0_j4766f7ecgqbon3u7zlxn5zszu
-      '@use-composable/core': link:../core
       '@vitejs/plugin-vue': 4.1.0_vite@4.3.1+vue@3.2.47
       bson: 5.1.0
       eslint: 8.36.0
@@ -58,11 +58,11 @@ importers:
       vue-demi: latest
     dependencies:
       '@vue/composition-api': 1.7.1_vue@3.2.41
+      dayjs: 1.11.6
       typedoc: 0.23.21_typescript@4.9.3
       vue-demi: 0.14.0_dyjqe6a6hnb4vyzxfuk6bzpiny
     devDependencies:
       '@types/node': 18.15.11
-      dayjs: 1.11.6
       fast-glob: 3.2.12
       vue: 3.2.41
 
@@ -80,8 +80,8 @@ importers:
   playground:
     specifiers:
       '@antfu/eslint-config': ^0.26.3
-      '@use-composable/components': workspace:*
-      '@use-composable/core': workspace:*
+      '@use-composable/components': ^0.0.0-alpha.1
+      '@use-composable/core': ^0.0.0-alpha.1
       '@use-kit/editor-vue': 0.0.3
       '@vitejs/plugin-vue': ^3.2.0
       '@vueuse/core': ^9.6.0
@@ -3168,7 +3168,6 @@ packages:
 
   /dayjs/1.11.6:
     resolution: {integrity: sha512-zZbY5giJAinCG+7AGaw0wIhNZ6J8AhWuSXKvuc1KAyMiRsvGQWqh4L+MomvhdAYjN+lqvVCMq1I41e3YHvXkyQ==}
-    dev: true
 
   /de-indent/1.0.2:
     resolution: {integrity: sha512-e/1zu3xH5MQryN2zdVaF0OrdNLUbvWxzMbi+iNA6Bky7l1RoP8a2fIbRocyHclXt/arDrrR6lL3TqFD9pMQTsg==}
@@ -4815,7 +4814,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
+    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
       bindings: 1.5.0

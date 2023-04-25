@@ -1,6 +1,6 @@
 {
   "name": "@use-composable/components",
-  "version": "0.0.0-alpha.2",
+  "version": "0.0.0-alpha.3",
   "license": "MIT",
   "exports": {
     ".": {
@@ -31,8 +31,8 @@
     }
   },
   "dependencies": {
-    "@use-composable/definition": "workspace:*",
-    "@use-composable/core": "workspace:*",
+    "@use-composable/definition": "^0.0.0-alpha.1",
+    "@use-composable/core": "^0.0.0-alpha.1",
     "vue-demi": "latest"
   },
   "devDependencies": {

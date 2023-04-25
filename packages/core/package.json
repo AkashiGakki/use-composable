@@ -1,6 +1,6 @@
 {
   "name": "@use-composable/core",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.0-alpha.3",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -24,12 +24,12 @@
     }
   },
   "dependencies": {
+    "dayjs": "^1.11.6",
     "typedoc": "^0.23.21",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "dayjs": "^1.11.6",
     "fast-glob": "^3.2.12",
     "vue": "^3.0.0"
   }

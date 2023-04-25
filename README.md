@@ -7,7 +7,7 @@
 ## Install
 
 ```shell
-pnpm install use-composable
+pnpm install @use-composable/core
 ```
 
 ## Usage

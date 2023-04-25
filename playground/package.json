@@ -13,8 +13,8 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
-    "@use-composable/components": "workspace:*",
-    "@use-composable/core": "workspace:*",
+    "@use-composable/components": "^0.0.0-alpha.1",
+    "@use-composable/core": "^0.0.0-alpha.1",
     "@use-kit/editor-vue": "0.0.3",
     "@vitejs/plugin-vue": "^3.2.0",
     "@vueuse/core": "^9.6.0",

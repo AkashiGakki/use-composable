@@ -1,6 +1,6 @@
 {
   "name": "@use-composable/definition",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.0-alpha.3",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
