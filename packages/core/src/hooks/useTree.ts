@@ -76,7 +76,7 @@ export const useTree = () => {
       addTreeNode(parentId, d)
     })
     return tree.value
-  };
+  }
 
   const updateTreeNode = (id: string, data: Partial<TreeNode>, field = 'id') => {
     const node = getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
