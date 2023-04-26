@@ -3,7 +3,7 @@ import { ref } from 'vue'
 interface TreeNode {
   id?: string
   parent?: string
-  children: TreeNode[]
+  children?: TreeNode[]
 }
 
 const getTreeNode = (tree: any, callback: Function, ret = undefined) => {
@@ -71,6 +71,13 @@ export const useTree = () => {
     (node as any).children.push(data)
   }
 
+  const addTreeNodes = (parentId: string, data: TreeNode[]) => {
+    data.forEach((d) => {
+      addTreeNode(parentId, d)
+    })
+    return tree.value
+  };
+
   const updateTreeNode = (id: string, data: Partial<TreeNode>, field = 'id') => {
     const node = getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
     if (!node)
@@ -100,6 +107,7 @@ export const useTree = () => {
   return {
     getTree,
     addTreeNode,
+    addTreeNodes,
     updateTreeNode,
     findTreeNode,
     removeTreeNode,

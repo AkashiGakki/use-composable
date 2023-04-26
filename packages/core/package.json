@@ -12,6 +12,7 @@
     "build": "npx rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm -d",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "test": "vitest",
     "lint": "eslint ."
   },
   "peerDependencies": {
@@ -29,7 +30,9 @@
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
+    "@use-kit/functions": "^0.0.4",
     "fast-glob": "^3.2.12",
+    "vitest": "^0.30.1",
     "vue": "^3.0.0"
   }
 }
