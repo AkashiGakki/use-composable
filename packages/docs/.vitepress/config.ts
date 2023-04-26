@@ -25,18 +25,25 @@ export default defineConfig({
     logo: '/favicon.png',
 
     nav: [
-      { text: 'Guide', link: '/guide/' },
-      { text: 'API', link: '/api/', activeMatch: '^/api/' },
-      { text: 'Examples', link: '/markdown-examples' },
+      { text: 'Guide', link: '/guide' },
+      { text: 'API', link: '/core/useForceRerender' },
       { text: 'Home', link: '/' }
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Introduction',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Basic example', link: '/guide' },
+        ]
+      },
+      {
+        text: 'Core',
+        items: [
+          { text: 'useForceRerender', link: '/core/useForceRerender' },
+          { text: 'useMouse', link: '/core/useMouse' },
+          { text: 'useTime', link: '/core/useTime' },
+          { text: 'useTree', link: '/core/useTree' }
         ]
       }
     ],
@@ -60,12 +67,11 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['link', { rel: 'icon', href: '/favicon-32x32.png', type: 'image/png' }],
-    ['link', { rel: 'icon', href: '/favicon.png', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/public/favicon-32x32.png', type: 'image/png' }],
+    ['link', { rel: 'icon', href: '/public/favicon.png', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Akashi Sai' }],
 
     ['meta', { property: 'og:title', content: 'UseComposable' }],
-    ['meta', { property: 'og:image', content: 'https://vueuse.org/og.png' }],
     ['meta', { property: 'og:description', content: 'Collection of essential Vue Composition Utilities' }],
 
     ['link', { rel: 'dns-prefetch', href: 'https://fonts.gstatic.com' }],
