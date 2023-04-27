@@ -1,5 +1,5 @@
 import { onMounted, onUnmounted, ref } from 'vue-demi'
-import dayjs from 'dayjs'
+// import dayjs from 'dayjs'
 
 export function useTime() {
   const now = ref(new Date())
@@ -13,7 +13,7 @@ export function useTime() {
     clearInterval(intervalId.value)
   })
 
-  const format = dayjs(now.value, 'YYYY-MM-DD')
+  // const format = dayjs(now.value, 'YYYY-MM-DD')
   // console.log("format", format)
 
   return now
