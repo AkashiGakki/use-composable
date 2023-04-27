@@ -42,6 +42,7 @@ export default defineConfig({
         items: [
           { text: 'useForceRerender', link: '/core/useForceRerender' },
           { text: 'useMouse', link: '/core/useMouse' },
+          { text: 'useReload', link: '/core/useReload' },
           { text: 'useTime', link: '/core/useTime' },
           { text: 'useTree', link: '/core/useTree' }
         ]

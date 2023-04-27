@@ -2,7 +2,7 @@
 category: '@Core'
 ---
 
-# useMouse
+# useTime
 
 Reactive current time.
 
