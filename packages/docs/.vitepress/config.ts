@@ -22,7 +22,7 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
-    logo: '/favicon.png',
+    logo: '/use.svg',
 
     nav: [
       { text: 'Guide', link: '/guide' },
@@ -68,8 +68,8 @@ export default defineConfig({
 
   head: [
     ['meta', { name: 'theme-color', content: '#ffffff' }],
-    ['link', { rel: 'icon', href: '/public/favicon-32x32.png', type: 'image/png' }],
-    ['link', { rel: 'icon', href: '/public/favicon.png', type: 'image/svg+xml' }],
+    ['link', { rel: 'icon', href: '/use-32x32.svg', type: 'image/png' }],
+    ['link', { rel: 'icon', href: '/use.svg', type: 'image/svg+xml' }],
     ['meta', { name: 'author', content: 'Akashi Sai' }],
 
     ['meta', { property: 'og:title', content: 'UseComposable' }],
