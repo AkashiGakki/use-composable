@@ -61,6 +61,4 @@ export class Workspace implements WorkspaceBase {
     )
     return new Widget(config)
   }
-
-  setCurrentTab(id: string, area: string) {}
 }

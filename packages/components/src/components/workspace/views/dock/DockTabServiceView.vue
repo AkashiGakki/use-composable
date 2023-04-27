@@ -22,6 +22,7 @@ const activeStyle = (tab: DockTabConfig) => {
 
   return {
     color: '#fafafa',
+    'border-bottom': '2px #00F6FF solid',
   }
 }
 
@@ -138,6 +139,7 @@ const showDevelop = ref(false)
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 50px;
 }
 
 .slot-content {
@@ -152,6 +154,7 @@ const showDevelop = ref(false)
   position: relative;
   white-space: nowrap;
   overflow: hidden;
+  line-height: 50px;
 }
 
 .title-content {
@@ -163,6 +166,7 @@ const showDevelop = ref(false)
 .title {
   cursor: pointer;
   margin: 0.5rem;
+  border-bottom: 1.5px white solid;
 }
 
 .title:hover {
