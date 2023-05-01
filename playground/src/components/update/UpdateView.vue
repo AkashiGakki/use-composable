@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import { useUpdate } from '../../hooks/useUpdate'
 import TestView from './TestView.vue'
 import TestView2 from './TestView2.vue'
@@ -19,4 +17,3 @@ console.log('update arr: ', arr)
     <TestView2 />
   </div>
 </template>
-

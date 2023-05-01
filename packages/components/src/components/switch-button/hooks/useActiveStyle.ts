@@ -1,5 +1,4 @@
-import { ref, computed, watch } from 'vue-demi'
-import type { Ref } from 'vue-demi'
+import { computed, ref } from 'vue-demi'
 
 const primary = {
   'type': 'primary',
@@ -15,7 +14,6 @@ const preset = {
   'background-color': '#ffffff',
 }
 
-
 export function useActiveStyle() {
   const active = ref(true)
 
@@ -23,12 +21,12 @@ export function useActiveStyle() {
     active.value = change
   }
 
-  let left = computed(() => active.value ? primary : preset)
-  let right = computed(() => active.value ? preset : primary)
+  const left = computed(() => active.value ? primary : preset)
+  const right = computed(() => active.value ? preset : primary)
 
   return {
     leftStyle: left,
     rightStyle: right,
-    activeChange
+    activeChange,
   }
 }

@@ -3,9 +3,9 @@ import obs from 'observer-emit'
 let user: Promise<any> | string = 'default'
 export async function useCall() {
   obs.on('test', () => {
-    const ret = new Promise(resolve => {
+    const ret = new Promise((resolve) => {
       setTimeout(() => {
-        resolve("admin")
+        resolve('admin')
       }, 400)
     })
     // console.log('test')

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { reactive, ref, computed } from 'vue-demi'
-import type { DockConfig, DockTabConfig } from '@use-composable/definition'
+import { computed, reactive, ref } from 'vue-demi'
+import type { DockTabConfig } from '@use-composable/definition'
 
 import {
   changeTranslateX,
@@ -21,7 +21,7 @@ const activeStyle = (tab: DockTabConfig) => {
     return
 
   return {
-    color: '#fafafa',
+    'color': '#fafafa',
     'border-bottom': '2px #00F6FF solid',
   }
 }
@@ -55,11 +55,11 @@ const nextTabClick = (el, dock) => {
 const slotStyle = computed(() => {
   return (tab: DockTabConfig) => {
     if (tab.active)
-      return { "--slot-index": 1 };
+      return { '--slot-index': 1 }
 
-    return { "--slot-index": -1 };
-  };
-});
+    return { '--slot-index': -1 }
+  }
+})
 
 const showDevelop = ref(false)
 </script>

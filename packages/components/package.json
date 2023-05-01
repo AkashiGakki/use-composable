@@ -2,6 +2,7 @@
   "name": "@use-composable/components",
   "version": "0.0.0-alpha.3",
   "license": "MIT",
+  "sideEffects": false,
   "exports": {
     ".": {
       "require": "./dist/index.umd.js",
@@ -15,7 +16,6 @@
   "files": [
     "dist"
   ],
-  "sideEffects": false,
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -31,8 +31,8 @@
     }
   },
   "dependencies": {
-    "@use-composable/definition": "^0.0.0-alpha.1",
     "@use-composable/core": "^0.0.0-alpha.1",
+    "@use-composable/definition": "^0.0.0-alpha.1",
     "vue-demi": "latest"
   },
   "devDependencies": {

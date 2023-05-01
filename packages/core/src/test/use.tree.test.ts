@@ -25,7 +25,7 @@ describe('useTree', () => {
 
   it('add-tree-node', () => {
     addTreeNode('1', { id: '1-2' })
-    expect(getTreeNode(tree.value, n => n.id === '1')).toMatchInlineSnapshot(`
+    expect(getTreeNode(tree.value, (n: any) => n.id === '1')).toMatchInlineSnapshot(`
       {
         "children": [
           {
@@ -42,7 +42,7 @@ describe('useTree', () => {
 
   it('update-tree-node', () => {
     updateTreeNode('2', { id: '22' })
-    expect(getTreeNode(tree.value, n => n.id === '22')).toMatchInlineSnapshot(`
+    expect(getTreeNode(tree.value, (n: any) => n.id === '22')).toMatchInlineSnapshot(`
       {
         "children": [
           {

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { reactive, ref } from 'vue'
+import { reactive } from 'vue'
 import { useField, useForm } from 'vee-validate'
 
 const formState = reactive({
@@ -7,7 +7,7 @@ const formState = reactive({
   number: 1,
 })
 
-const validateField = (value) => {
+const validateField = (value: string | any[]) => {
   if (!value)
     return '字段不能为空！'
 
@@ -20,7 +20,7 @@ const validateField = (value) => {
 const { value: name, errorMessage } = useField(formState.name, validateField)
 
 const schema = {
-  email(value) {
+  email() {
     //
   },
 }

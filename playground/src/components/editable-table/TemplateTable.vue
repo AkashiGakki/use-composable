@@ -4,7 +4,7 @@ import { ObjectId } from 'bson'
 import _ from 'lodash'
 import { useForceRerender } from '@use-composable/core'
 
-import { cols, defaultPhase, newPhase } from '../../config'
+import { cols, newPhase } from '../../config'
 
 import EditableCell from './EditableCell.vue'
 

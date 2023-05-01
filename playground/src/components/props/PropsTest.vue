@@ -2,7 +2,6 @@
 import { ref } from 'vue'
 
 import Child from './Child.vue'
-import Logo from './PiniaLogo.vue'
 
 const arr = ref([1, 2, 3, 4, 5])
 

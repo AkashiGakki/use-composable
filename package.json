@@ -14,6 +14,7 @@
   "keywords": [],
   "scripts": {
     "build": "tsno run scripts/build.ts",
+    "build:rollup": "rollup -c",
     "clean": "rimraf dist types packages/*/dist",
     "docs:dev": "vitepress dev packages/docs",
     "docs:build": "vitepress build packages/docs",

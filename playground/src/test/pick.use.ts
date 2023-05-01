@@ -1,6 +1,6 @@
 interface User {
-  id: string;
-  name: string;
+  id: string
+  name: string
 }
 
 type Member = Pick<User, 'id'> | Pick<User, 'name'>

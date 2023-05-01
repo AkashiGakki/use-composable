@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue-demi'
+import { computed } from 'vue-demi'
 import { useForceRerender } from '@use-composable/core'
-import { useSizeStyle, useActiveStyle } from './hooks'
+import { useActiveStyle } from './hooks'
 
 import type { Size } from './hooks'
-
-const emit = defineEmits(['change'])
 
 const props = defineProps<{
   defaultContent?: string
@@ -13,11 +11,13 @@ const props = defineProps<{
   size?: Size
 }>()
 
+const emit = defineEmits(['change'])
+
 const defaultContent = computed(() => props.defaultContent ?? 'default')
 const asideContent = computed(() => props.asideContent ?? 'aside')
-const buttonSize = computed(() => props.size ?? 'default')
+// const buttonSize = computed(() => props.size ?? 'default')
 
-const sizeStyle = useSizeStyle(buttonSize)
+// const sizeStyle = useSizeStyle(buttonSize)
 const { leftStyle, rightStyle, activeChange } = useActiveStyle()
 const { renderKey, forceRerender } = useForceRerender()
 
@@ -29,7 +29,7 @@ function handleChange(change: boolean) {
 </script>
 
 <template>
-  <div class="switch-button" :key="renderKey">
+  <div :key="renderKey" class="switch-button">
     <button
       class="left-btn"
       :style="leftStyle"

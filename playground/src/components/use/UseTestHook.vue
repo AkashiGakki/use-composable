@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { watch } from 'vue'
 import { useTest, useTime } from '@use-composable/core'
-import { useCall, useDate } from '../../hooks'
+import { useCall } from '../../hooks'
 
 const ret = await useCall()
 console.log('ret', ret)

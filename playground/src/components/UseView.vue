@@ -1,18 +1,17 @@
 <script setup lang="ts">
-import { NestTree, RenderTree, SwitchButton } from '@use-composable/components'
+import { SwitchButton } from '@use-composable/components'
 
 import UseTheme from './use/UseTheme.vue'
 import UseNow from './use/UseNow.vue'
 
-const renderData = [{
-  title: 'nogi',
-  key: 'nogi',
-  children: [
-    { title: 'asuka', key: '1' },
-    { title: 'shiori', key: '2' },
-  ],
-},
-]
+// const renderData = [{
+//   title: 'nogi',
+//   key: 'nogi',
+//   children: [
+//     { title: 'asuka', key: '1' },
+//     { title: 'shiori', key: '2' },
+//   ],
+// }]
 </script>
 
 <template>

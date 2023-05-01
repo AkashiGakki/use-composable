@@ -1,4 +1,3 @@
-
 function useMap(key: string) {
   const map = new Map([
     ['akashi', () => console.log('akashi')],

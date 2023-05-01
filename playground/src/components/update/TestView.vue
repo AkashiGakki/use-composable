@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import { useUpdate } from '../../hooks/useUpdate'
 
 const { getData, update } = useUpdate()

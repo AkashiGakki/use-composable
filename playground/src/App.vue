@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { defineAsyncComponent } from 'vue'
-
 import Components from './components/Components.vue'
 </script>
 

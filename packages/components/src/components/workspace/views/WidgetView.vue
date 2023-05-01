@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { computed, reactive, ref, watch, watchEffect } from 'vue-demi'
-
 import { useAreaStyle, useClassJoin } from '../hooks'
 
 const props = defineProps<{

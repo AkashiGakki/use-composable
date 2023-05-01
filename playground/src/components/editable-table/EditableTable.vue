@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-
 import EditableCell from './editableCell.vue'
 </script>
 

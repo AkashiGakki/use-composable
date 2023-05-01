@@ -1,8 +1,5 @@
 <script setup lang="ts">
 import {
-  computed,
-  getCurrentInstance,
-  inject,
   nextTick,
   onMounted,
   reactive,
@@ -11,8 +8,6 @@ import {
 import type {
   DockConfig,
   WidgetConfig,
-  Workspace,
-  WorkspaceConfig,
 } from '@use-composable/definition'
 
 import DockView from './views/DockView.vue'
@@ -24,8 +19,9 @@ const props = defineProps<{
     widgets: WidgetConfig[]
   }
 }>()
-const emit = defineEmits(['accept'])
-const instance = getCurrentInstance()
+
+// const emit = defineEmits(['accept'])
+// const instance = getCurrentInstance()
 const el = ref(null)
 const workspaceRef = ref(null)
 const rect = ref<Partial<DOMRect>>({})
@@ -40,7 +36,7 @@ const getContentElement = () => {
 }
 
 const watchWindowResize = () => {
-  const observer = new MutationObserver((record, observer) => {
+  const observer = new MutationObserver(() => {
     const dom = document.querySelector('.workspace-view')
     rect.value = dom.getBoundingClientRect()
   })
