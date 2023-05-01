@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onUnmounted, ref } from 'vue'
+
 // import { useCounter } from '../stores/counter'
 
 const blinking = ref<'open' | 'closed'>('open')

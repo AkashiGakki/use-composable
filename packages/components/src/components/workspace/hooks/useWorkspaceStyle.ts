@@ -1,4 +1,4 @@
-import type { StyleValue } from 'vue'
+import type { StyleValue } from 'vue-demi'
 import type { DockConfig, WidgetConfig } from '@use-composable/definition'
 
 export type Content = DockConfig | WidgetConfig

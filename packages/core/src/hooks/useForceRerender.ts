@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref } from 'vue-demi'
 
 export const useForceRerender = () => {
   const renderKey = ref<number | string | symbol>(0)

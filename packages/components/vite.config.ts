@@ -1,8 +1,7 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
-import libCss from 'vite-plugin-libcss'
-// import topLevelAwait from 'vite-plugin-top-level-await'
+// import libCss from 'vite-plugin-libcss'
 
 export default defineConfig({
   build: {
@@ -18,12 +17,6 @@ export default defineConfig({
     dts({
       outputDir: 'dist/types',
     }),
-    libCss(),
-    // topLevelAwait({
-    //   // The export name of top-level await promise for each chunk module
-    //   promiseExportName: '__tla',
-    //   // The function to generate import names of top-level await promise in each chunk module
-    //   promiseImportName: i => `__tla_${i}`,
-    // }),
+    // libCss(),
   ],
 })

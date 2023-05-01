@@ -1,4 +1,5 @@
 import obs from 'observer-emit'
+
 console.log('obs', obs)
 
 obs.on('test', () => {

@@ -4,6 +4,7 @@
     "@typescript-eslint/no-var-requires": 0,
     "@typescript-eslint/no-unused-vars": "off",
     "vue/custom-event-name-casing": "off",
-    "no-console": "off"
+    "no-console": "off",
+    "antfu/top-level-function": "off"
   }
 }

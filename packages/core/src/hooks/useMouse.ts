@@ -1,4 +1,4 @@
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from 'vue-demi'
 
 export const useMouse = () => {
   const x = ref(0)
