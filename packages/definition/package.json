@@ -14,9 +14,6 @@
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
     "lint": "eslint ."
   },
-  "dependencies": {
-    "typedoc": "^0.23.21"
-  },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "fast-glob": "^3.2.12"

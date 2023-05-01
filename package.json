@@ -13,17 +13,24 @@
   "bugs": "https://github.com/akashigakki/use-composable/issues",
   "keywords": [],
   "scripts": {
-    "build": "esno scripts/build.ts",
+    "build": "tsno run scripts/build.ts",
     "clean": "rimraf dist types packages/*/dist",
     "docs:dev": "vitepress dev packages/docs",
     "docs:build": "vitepress build packages/docs",
     "docs:preview": "vitepress preview packages/docs",
-    "types:fix": "esno scripts/fix-types.ts"
+    "lint": "eslint --cache .",
+    "lint:fix": "nr lint --fix",
+    "test": "vitest",
+    "typecheck": "tsc --noEmit",
+    "types:fix": "tsno run scripts/fix-types.ts"
   },
   "devDependencies": {
     "consola": "^3.1.0",
     "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.1",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.0",
+    "tsno": "^2.0.0",
     "vitepress": "1.0.0-alpha.73"
   }
 }
