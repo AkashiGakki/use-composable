@@ -26,6 +26,7 @@
     "types:fix": "tsno run scripts/fix-types.ts"
   },
   "devDependencies": {
+    "@use-kit/functions": "^0.0.4",
     "consola": "^3.1.0",
     "fast-glob": "^3.2.12",
     "fs-extra": "^11.1.1",
