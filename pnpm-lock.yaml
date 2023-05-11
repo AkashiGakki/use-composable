@@ -5,8 +5,8 @@ importers:
   .:
     devDependencies:
       '@use-kit/functions':
-        specifier: ^0.0.4
-        version: 0.0.4
+        specifier: ^0.0.8
+        version: 0.0.8
       consola:
         specifier: ^3.1.0
         version: 3.1.0
@@ -1759,12 +1759,6 @@ packages:
 
   /@use-kit/functions@0.0.3:
     resolution: {integrity: sha512-inSNMg1WPS5pKAKZ1pqib2TzeCADfL4sOpeu/u54Jf9Q6g8xyML/qqRXcl47tofwDj7fe493YtXy2o1IQMgR/w==}
-    dependencies:
-      dayjs: 1.11.7
-    dev: true
-
-  /@use-kit/functions@0.0.4:
-    resolution: {integrity: sha512-QM4GCV36t0QBMMXEGn1ZQqyH3dE1P3Usy8HQeBdYRKefxsEsVPZdSqhZjEizE/sb/eLchkII4QQ2hhQWOKI32w==}
     dependencies:
       dayjs: 1.11.7
     dev: true
