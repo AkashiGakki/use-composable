@@ -1,4 +1,5 @@
 import { defineConfig } from 'vitepress'
+import { getFunctionsSideBar } from './utils'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -37,16 +38,7 @@ export default defineConfig({
           { text: 'Basic example', link: '/guide' },
         ]
       },
-      {
-        text: 'Core',
-        items: [
-          { text: 'useForceRerender', link: '/core/useForceRerender' },
-          { text: 'useMouse', link: '/core/useMouse' },
-          { text: 'useReload', link: '/core/useReload' },
-          { text: 'useTime', link: '/core/useTime' },
-          { text: 'useTree', link: '/core/useTree' }
-        ]
-      }
+      ...getFunctionsSideBar(),
     ],
 
     socialLinks: [
