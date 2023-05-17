@@ -1,7 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
-// import libCss from 'vite-plugin-libcss'
+import libCss from 'vite-plugin-libcss'
+import unoCSS from 'unocss/vite'
 
 export default defineConfig({
   build: {
@@ -17,6 +18,7 @@ export default defineConfig({
     dts({
       outputDir: 'dist/types',
     }),
-    // libCss(),
+    libCss(),
+    unoCSS(),
   ],
 })

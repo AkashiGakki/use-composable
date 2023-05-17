@@ -29,10 +29,15 @@ function handleChange(change: boolean) {
 </script>
 
 <template>
-  <div :key="renderKey" class="switch-button">
+  <div
+    :key="renderKey"
+    class="switch-button"
+    flex flex-justify-items-center flex-content-center
+  >
     <button
       class="left-btn"
       :style="leftStyle"
+      b-rd-l-4 w-40 h-8
       @click="handleChange(true)"
     >
       {{ defaultContent }}
@@ -41,6 +46,7 @@ function handleChange(change: boolean) {
     <button
       class="right-btn"
       :style="rightStyle"
+      b-rd-r-4 w-40 h-8
       @click="handleChange(false)"
     >
       {{ asideContent }}
@@ -48,7 +54,7 @@ function handleChange(change: boolean) {
   </div>
 </template>
 
-<style scoped>
+<!-- <style>
 .switch-button {
   display: flex;
   justify-content: center;
@@ -67,4 +73,4 @@ button {
 .right-btn {
   border-radius: 0 15px 15px 0;
 }
-</style>
+</style> -->

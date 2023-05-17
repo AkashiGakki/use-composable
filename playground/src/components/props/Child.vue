@@ -21,7 +21,7 @@ function handleDelete() {
   <div>
     <pre>{{ data }}</pre>
 
-    <button @click="handleUpdate">
+    <button c-yellow-600 @click="handleUpdate">
       Update
     </button>
 
