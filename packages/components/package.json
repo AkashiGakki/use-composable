@@ -1,6 +1,6 @@
 {
   "name": "@use-composable/components",
-  "version": "0.0.0-alpha.3",
+  "version": "0.0.0-alpha.4",
   "license": "MIT",
   "sideEffects": false,
   "exports": {
@@ -9,7 +9,7 @@
       "import": "./dist/index.mjs"
     }
   },
-  "main": "dist/index.umd.js",
+  "main": "dist/index.mjs",
   "_main": "./src",
   "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
@@ -37,10 +37,13 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",
+    "@unocss/eslint-config": "^0.51.13",
+    "@unocss/reset": "^0.51.13",
     "@vitejs/plugin-vue": "^4.1.0",
     "bson": "^5.1.0",
     "eslint": "^8.36.0",
     "typescript": "^5.0.2",
+    "unocss": "^0.51.13",
     "vite": "^4.2.1",
     "vite-plugin-dts": "^2.1.0",
     "vite-plugin-libcss": "^1.0.6",

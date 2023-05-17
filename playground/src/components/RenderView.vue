@@ -1,6 +1,5 @@
 <script setup lang="ts">
 /* eslint-disable vue/no-constant-condition */
-import SetupView from './setup/SetupView.vue'
 import AnimateFrame from './animations/AnimationFrame.vue'
 import MouseDown from './use/MouseDown.vue'
 import ValidateView from './use/ValidateView.vue'
@@ -15,10 +14,6 @@ import PropsTest from './props/PropsTest.vue'
 
 <template>
   <div class="render-view">
-    <Suspense v-if="false">
-      <SetupView />
-    </Suspense>
-
     <AnimateFrame v-if="false" />
 
     <MouseDown v-if="false" />
