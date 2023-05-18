@@ -16,6 +16,7 @@
     "build": "tsno run scripts/build.ts",
     "build:rollup": "rollup -c",
     "clean": "rimraf dist types packages/*/dist",
+    "cleanup": "rimraf 'packages/**/node_modules' 'playground/node_modules' 'node_modules'",
     "docs:dev": "vitepress dev packages/docs",
     "docs:build": "vitepress build packages/docs",
     "docs:preview": "vitepress preview packages/docs",
