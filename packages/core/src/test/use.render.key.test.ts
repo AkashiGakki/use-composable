@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest'
+import { unref } from 'vue-demi'
 import { useForceRerender } from '../hooks'
 
 describe('render key', () => {
-  const { renderKey, genRenderKey, forceRerender } = useForceRerender()
+  const { renderKey, generateRenderKey, forceRerender } = useForceRerender()
 
   it('render', () => {
     forceRerender()
@@ -10,10 +11,13 @@ describe('render key', () => {
   })
 
   it('generate', () => {
-    const key1 = genRenderKey()
-    const key2 = genRenderKey()
+    const key1 = generateRenderKey()
+    const key2 = generateRenderKey()
+    const temp = unref(key1)
+
     forceRerender()
 
-    expect(key1 === key2).toBeFalsy()
+    expect(key1.value === key2.value).toBeFalsy()
+    expect(temp === key1.value).toBeFalsy()
   })
 })

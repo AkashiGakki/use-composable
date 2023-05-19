@@ -14,7 +14,7 @@ import { useForceRerender } from '@use-composable/core'
 const {
   renderKey,
   forceRerender,
-  genRenderKey
+  generateRenderKey
 } = useForceRerender()
 
 forceRerender() // somewhere you want to re-render
@@ -24,5 +24,5 @@ forceRerender() // somewhere you want to re-render
 <some-dom :key="renderKey" />
 
 <!-- or -->
-<some-dom :key="genRenderKey()" />
+<some-dom :key="generateRenderKey()" />
 ```
