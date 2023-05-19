@@ -16,5 +16,5 @@ const { domRef, domRect } = useElementRect()
 ```
 
 ```html
-<some-dom ref="domRef" /> d
+<some-dom ref="domRef" />
 ```

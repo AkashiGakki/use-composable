@@ -12,6 +12,8 @@ describe('render key', () => {
   it('generate', () => {
     const key1 = genRenderKey()
     const key2 = genRenderKey()
+
+    const temp = key1
     forceRerender()
 
     expect(key1 === key2).toBeFalsy()
