@@ -2,14 +2,13 @@ import { nextTick, onMounted, ref } from 'vue-demi'
 
 type Options = MutationObserverInit
 
-const defaultRect = new DOMRect(0, 0, 0, 0)
-
 export const useElementRect = (options: Options = {
   attributes: true,
   childList: true,
   subtree: false,
 }) => {
-  const domRef = ref<HTMLElement>(null)
+  const defaultRect = new DOMRect(0, 0, 0, 0)
+  const domRef = ref<HTMLElement | null>(null)
   const rect = ref<DOMRect>(defaultRect)
 
   onMounted(() => {

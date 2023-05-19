@@ -1,11 +1,16 @@
 {
   "compilerOptions": {
+    "target": "es2018",
     "module": "ESNext",
     "lib": ["ESNext", "DOM"],
-    "target": "es2017",
     "outDir": "dist",
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true
+    "esModuleInterop": true,
+    "strict": true,
+    "strictNullChecks": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true
   },
   "exclude": [
     "node_modules",
