@@ -27,7 +27,7 @@ export default defineConfig({
 
     nav: [
       { text: 'Guide', link: '/guide' },
-      { text: 'API', link: '/core/useForceRerender' },
+      { text: 'API', link: '/core/useElementRect' },
       { text: 'Home', link: '/' }
     ],
 
