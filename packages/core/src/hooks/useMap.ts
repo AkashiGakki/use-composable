@@ -15,7 +15,7 @@ export const useMap = (uniqueKey = 'key') => {
   const remove = (key: string | number) => map.delete(key)
 
   const getMap = (m?: Map<unknown, unknown>) => {
-    if (isMap(m)) {
+    if (isMap(m) && m) {
       m.forEach((v, k) => map.set(k, v))
       return map
     }

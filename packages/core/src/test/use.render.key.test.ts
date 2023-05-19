@@ -17,7 +17,7 @@ describe('render key', () => {
 
     forceRerender()
 
-    expect(key1.value === key2.value).toBeFalsy()
-    expect(temp === key1.value).toBeFalsy()
+    expect(key1?.value === key2?.value).toBeFalsy()
+    expect(temp === key1?.value).toBeFalsy()
   })
 })

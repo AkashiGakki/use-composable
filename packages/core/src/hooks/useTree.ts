@@ -6,6 +6,7 @@ interface TreeNode {
   children?: TreeNode[]
 }
 
+// TODO: fix `node[field]` with TreeNode type
 const getTreeNode = (tree: any, callback: Function, ret = undefined) => {
   tree.forEach((node: any) => {
     if (callback(node))
@@ -58,7 +59,7 @@ export const useTree = () => {
   }
 
   const findTreeNode = (id: string, field = 'id') => {
-    return getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
+    return getTreeNode(tree.value, (node: any) => node[field] === id)
   }
 
   const addTreeNode = (parentId: string, data: TreeNode) => {
@@ -79,7 +80,7 @@ export const useTree = () => {
   }
 
   const updateTreeNode = (id: string, data: Partial<TreeNode>, field = 'id') => {
-    const node = getTreeNode(tree.value, (node: TreeNode) => node[field] === id)
+    const node = getTreeNode(tree.value, (node: any) => node[field] === id)
     if (!node)
       throw new Error(`can't find node with id: ${id}`)
 
@@ -89,12 +90,12 @@ export const useTree = () => {
   const removeTreeNode = (id: string, field = 'id') => {
     const parent = getParentTree(
       tree.value,
-      (node: TreeNode) => node[field] === id,
+      (node: any) => node[field] === id,
     )
     if (!parent)
       throw new Error(`can't find node with id: ${id}`)
 
-    const index = (parent as any).findIndex((n: TreeNode) => n[field] === id);
+    const index = (parent as any).findIndex((n: any) => n[field] === id);
     (parent as any).splice(index, 1)
   }
 
