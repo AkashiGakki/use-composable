@@ -1,4 +1,5 @@
-export enum Area {
+export enum WorkspaceArea {
+  CENTER = 'center',
   TOP = 'top',
   RIGHT = 'right',
   BOTTOM = 'bottom',
@@ -7,6 +8,4 @@ export enum Area {
   TOP_LEFT = 'top-left',
   BOTTOM_RIGHT = 'bottom-right',
   BOTTOM_LEFT = 'bottom-left',
-  RIGHT_FULL = 'right-full',
-  LEFT_FULL = 'left-full',
 }

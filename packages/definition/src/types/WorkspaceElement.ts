@@ -1,0 +1,16 @@
+export enum WorkspaceElement {
+  Workspace = 'workspace',
+  TitleBar = 'title-bar',
+  ShortcutBar = 'shortcut-bar',
+  StatusBar = 'status-bar',
+  MenuBar = 'menu-bar',
+  ToolBar = 'tool-bar',
+  PlayerBar = 'player-bar',
+  QuickAccessBar = 'quick-access-bar',
+  LeftDock = 'left-dock',
+  RightDock = 'right-dock',
+  TopDock = 'top-dock',
+  BottomDock = 'bottom-dock',
+  Widget = 'widget',
+  GridWidget = 'grid-widget',
+}
