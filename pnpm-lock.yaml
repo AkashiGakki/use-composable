@@ -8,7 +8,7 @@ importers:
     dependencies:
       '@use-composable/core':
         specifier: ^0.0.0-alpha.1
-        version: 0.0.0-alpha.1(@vue/composition-api@1.0.0-rc.1)(typescript@5.0.4)(vue@3.2.47)
+        version: 0.0.0-alpha.1(typescript@5.0.4)(vue@3.2.47)
       '@use-composable/definition':
         specifier: ^0.0.0-alpha.1
         version: link:../definition
@@ -17,7 +17,7 @@ importers:
         version: 1.0.0-rc.1(vue@3.2.47)
       vue-demi:
         specifier: latest
-        version: 0.14.4(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
+        version: 0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.37.0
@@ -37,6 +37,9 @@ importers:
       eslint:
         specifier: ^8.36.0
         version: 8.39.0
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
       typescript:
         specifier: ^5.0.2
         version: 5.0.4
@@ -119,6 +122,9 @@ importers:
       fast-glob:
         specifier: ^3.2.12
         version: 3.2.12
+      rxjs:
+        specifier: ^7.8.1
+        version: 7.8.1
       typescript:
         specifier: ^5.0.4
         version: 5.0.4
@@ -2028,7 +2034,7 @@ packages:
       - rollup
     dev: true
 
-  /@use-composable/core@0.0.0-alpha.1(@vue/composition-api@1.0.0-rc.1)(typescript@5.0.4)(vue@3.2.47):
+  /@use-composable/core@0.0.0-alpha.1(typescript@5.0.4)(vue@3.2.47):
     resolution: {integrity: sha512-XlMUuGoB47flUtGeGlp3hILKRKQzY2yVqqA2UOcxDSHLUASlsDTh3P2CUfn3EHQ49aGmPuDSWr4F+FOX83QOdg==}
     peerDependencies:
       '@vue/composition-api': ^1.0.0-rc.1
@@ -2037,7 +2043,6 @@ packages:
       '@vue/composition-api':
         optional: true
     dependencies:
-      '@vue/composition-api': 1.0.0-rc.1(vue@3.2.47)
       typedoc: 0.23.28(typescript@5.0.4)
       vue: 3.2.47
       vue-demi: 0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
@@ -5659,6 +5664,12 @@ packages:
       queue-microtask: 1.2.3
     dev: true
 
+  /rxjs@7.8.1:
+    resolution: {integrity: sha512-AA3TVj+0A2iuIoQkWEK/tqFjBq2j+6PO6Y0zJcvzLAFhEFIO3HL0vls9hWLncZbAAbK0mar7oZ4V079I/qPMxg==}
+    dependencies:
+      tslib: 2.5.0
+    dev: true
+
   /safe-regex-test@1.0.0:
     resolution: {integrity: sha512-JBUUzyOgEwXQY1NuPtvcj/qcBDbDmEvWufhlnXZIm75DEHp+afM1r1ujJpJsV/gSM4t59tpDyPi1sd6ZaPFfsA==}
     dependencies:
@@ -6490,22 +6501,6 @@ packages:
     dependencies:
       '@vue/composition-api': 1.0.0-rc.1(vue@3.2.47)
       vue: 3.2.47
-
-  /vue-demi@0.14.4(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
-    resolution: {integrity: sha512-YR9bCmtIYgsqNVRG3MLLWlhbZ9tTNMuWHPd7yx0pHS3NDX17MeVNHgKTOClYE8pBjsfNe4CMaReP7zQtHDIbiA==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      '@vue/composition-api': 1.0.0-rc.1(vue@3.2.47)
-      vue: 3.2.47
-    dev: false
 
   /vue-demi@0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}

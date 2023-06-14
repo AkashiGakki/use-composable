@@ -1,7 +1,4 @@
-export * from './Dock'
-export * from './Widget'
 export * from './Window'
-export * from './Workspace'
 export * from './MenuBar'
 export * from './ShortcutBar'
 export * from './StatusBar'

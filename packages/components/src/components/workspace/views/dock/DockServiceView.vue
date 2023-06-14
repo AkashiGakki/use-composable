@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue-demi'
 
-import { setDockCollapsed, setIconAreaType, setIconStyle } from '../../utils'
+import { setDockCollapsed, setIconAreaType, setIconStyle } from '../../lib'
 
 const props = defineProps<{
   dock: any

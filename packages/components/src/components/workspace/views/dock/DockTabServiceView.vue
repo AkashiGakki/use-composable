@@ -7,7 +7,7 @@ import {
   setDockCollapsed,
   setIconAreaType,
   setIconStyle,
-} from '../../utils'
+} from '../../lib'
 
 const props = defineProps<{
   dock: any
