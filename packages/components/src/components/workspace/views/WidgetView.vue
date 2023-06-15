@@ -1,47 +1,61 @@
 <script setup lang="ts">
-import { useAreaStyle, useClassJoin } from '../hooks'
+import type { WidgetConfig, Workspace } from '@use-composable/definition'
+import { inject, ref } from 'vue'
+import { useElementRect } from '@use-composable/core'
+
+import { useWidgetArea } from '../hooks'
+import { classInject, withDefaultParams, withDefaultRender } from '../lib'
 
 const props = defineProps<{
-  widgets: any[]
-  rect: any
+  widget: WidgetConfig
+  rect: DOMRect
+  workspace: Workspace
 }>()
 
-const cssInject = (list) => {
-  return useClassJoin(list)
-}
+const $workspace = inject<Workspace>('$workspace')
+const { cssInject } = useWidgetArea($workspace)
+const { domRef, domRect } = useElementRect()
 
-const styleInject = (widget, rect) => {
-  return useAreaStyle(widget, rect)
-}
+const visible = ref(props.widget.visible ?? true)
+const widget = ref(withDefaultRender(props.widget))
+const params = ref(
+  withDefaultParams({
+    ...props.widget.params,
+    ...props.widget,
+  }),
+)
+const render = ref(widget.value.render)
 </script>
 
 <template>
-  <div class="widget">
+  <div class="widget-view">
     <div
-      v-for="widget of props.widgets"
-      :key="widget.id"
-      :class="cssInject(widget.cssClass)"
+      v-show="visible"
+      ref="domRef"
       class="widget-content"
-      :style="styleInject(widget, rect)"
+      :style="cssInject(widget, props.rect, domRect)"
     >
-      <component
-        :is="widget.component"
-        :service="widget.service"
-        :operation="widget.operation"
-        :params="widget.params"
-        :visible="widget.visible"
+      <ServiceView
+        :service="render.service"
+        :operation="render.operation"
+        :params="{ ...params, domRect }"
+        :visible="widget?.visible"
+        options="null"
+        class="widget-service"
+        :class="classInject(widget?.cssClass)"
+        :style="widget?.cssInject"
       />
     </div>
   </div>
 </template>
 
-<style scoped>
-.widget {
+<style lang="less" scoped>
+.widget-view {
   position: absolute;
 }
 
 .widget-content {
-  /* border: 1px solid yellow; */
+  // border: 2px solid yellow;
   position: absolute;
 }
 </style>

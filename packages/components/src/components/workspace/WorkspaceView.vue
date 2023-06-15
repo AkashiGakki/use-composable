@@ -39,9 +39,9 @@ const widgets = reactive(props.params.widgets)
   >
     <slot />
 
-    <!-- <div v-for="widget of widgets" :key="widget.id" class="widget-wrapper">
+    <div v-for="widget of widgets" :key="widget.id" class="widget-wrapper">
       <WidgetView :widget="widget" :rect="rect" :workspace="workspace" />
-    </div> -->
+    </div>
 
     <!-- <div v-for="dock of docks" :key="dock.id" class="dock-wrapper">
       <DockView :dock="dock" :rect="rect" :workspace="workspace" />
