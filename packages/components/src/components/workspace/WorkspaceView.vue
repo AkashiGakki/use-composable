@@ -43,9 +43,9 @@ const widgets = reactive(props.params.widgets)
       <WidgetView :widget="widget" :rect="rect" :workspace="workspace" />
     </div>
 
-    <!-- <div v-for="dock of docks" :key="dock.id" class="dock-wrapper">
+    <div v-for="dock of docks" :key="dock.id" class="dock-wrapper">
       <DockView :dock="dock" :rect="rect" :workspace="workspace" />
-    </div> -->
+    </div>
   </div>
 </template>
 
