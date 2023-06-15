@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 
-// import { WorkspaceArea } from '@use-composable/definition'
-import { WorkspaceView } from '@use-composable/components'
-
-// import { SwitchButton } from '@use-composable/components'
+import { WorkspaceArea } from '@use-composable/definition'
+import { SwitchButton, WorkspaceView } from '@use-composable/components'
 
 // import UseTheme from './use/UseTheme.vue'
 // import UseNow from './use/UseNow.vue'
@@ -19,17 +17,16 @@ import { WorkspaceView } from '@use-composable/components'
 // }]
 
 const docks = reactive([])
-const widgets = reactive([])
-// const widgets = reactive([
-//   {
-//     id: 'w-1',
-//     title: 'w1',
-//     area: WorkspaceArea.TOP,
-//     offset: { x: 0, y: '50%' },
-//     size: { width: '100%', height: 60 },
-//     visible: true,
-//   },
-// ])
+const widgets = reactive([
+  {
+    id: 'w-1',
+    title: 'w1',
+    area: WorkspaceArea.TOP,
+    offset: { x: 0, y: '50%' },
+    size: { width: '100%', height: 60 },
+    visible: true,
+  },
+])
 </script>
 
 <template>
@@ -38,7 +35,7 @@ const widgets = reactive([])
 
     <!-- <UseNow /> -->
 
-    <!-- <SwitchButton /> -->
+    <SwitchButton />
 
     <!-- <RenderTree :tree-data="renderData" /> -->
 

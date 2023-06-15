@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import type { DockConfig } from '@use-composable/definition'
 
-import { ServiceRender } from '../../../service-render'
+import { ServiceRender } from '@ui/index'
 import TabsView from './tab/TabsView.vue'
 
 const props = defineProps<{
@@ -33,14 +33,14 @@ const handleActiveTab = (id: string) => {
   </section>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .tab-dock-view {
   width: 100%;
   height: 100%;
   overflow: hidden;
+}
 
-  .dock-content {
-    height: calc(100% - 50px);
-  }
+.dock-content {
+  height: calc(100% - 50px);
 }
 </style>

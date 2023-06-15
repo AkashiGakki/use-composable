@@ -6,7 +6,7 @@ import {
   offsetTransform,
   parentOffsetTransform,
   sizeTransform,
-} from '../lib'
+} from '~/components/workspace/lib'
 
 let component: WidgetConfig
 let domRect: Partial<DOMRect>

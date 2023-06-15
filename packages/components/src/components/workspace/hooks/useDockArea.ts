@@ -2,7 +2,7 @@ import { computed, reactive, ref } from 'vue-demi'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 import { withDefaultObject } from '@use-kit/functions'
 
-import { offsetTransform, sizeTransform } from '../lib'
+import { offsetTransform, sizeTransform } from '~/components/workspace/lib'
 
 let component: DockConfig
 let domRect: Partial<DOMRect>

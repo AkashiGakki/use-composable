@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { DockConfig } from '@use-composable/definition'
 
-import { ServiceRender } from '../../../service-render'
+import { ServiceRender } from '@ui/index'
 
 defineProps<{
   dock: DockConfig
@@ -22,7 +22,7 @@ defineProps<{
   </section>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .dock-view {
   width: 100%;
   height: 100%;

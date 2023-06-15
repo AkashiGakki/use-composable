@@ -6,7 +6,7 @@ import type {
 
 } from '@use-composable/definition'
 
-import { changeTranslateX } from '../../../lib'
+import { changeTranslateX } from '~/components/workspace/lib'
 
 const props = defineProps<{
   dock: DockConfig
@@ -103,7 +103,7 @@ const slotStyle = computed(() => {
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .tab-content {
   display: flex;
   justify-content: flex-start;
@@ -122,14 +122,14 @@ const slotStyle = computed(() => {
   display: flex;
   transform: translate3d(0px, 0px, 0px);
   transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
 
-  .title {
-    cursor: pointer;
-    margin: 0.5rem;
-  }
+.title-content .title {
+  cursor: pointer;
+  margin: 0.5rem;
+}
 
-  .title:hover {
-    color: white;
-  }
+.title-content .title:hover {
+  color: white;
 }
 </style>

@@ -3,15 +3,14 @@ import { inject, ref } from 'vue'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 import { useElementRect } from '@use-composable/core'
 
+import { ServiceRender } from '@ui/index'
 import {
   setIconAreaType,
   setIconClass,
   setIconStyle,
   withDefaultRender,
-} from '../lib'
-import { useDockArea } from '../hooks'
-
-import { ServiceRender } from '../../service-render'
+} from '~/components/workspace/lib'
+import { useDockArea } from '~/components/workspace/hooks'
 
 const props = defineProps<{
   dock: DockConfig
@@ -58,14 +57,14 @@ const render = ref(dock.value.render)
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .dock {
   position: absolute;
   transition: 0.5s;
 }
 
 .dock-render-content {
-  // border: 2px solid orange;
+  /* border: 2px solid orange; */
   position: absolute;
 }
 
@@ -76,14 +75,12 @@ const render = ref(dock.value.render)
   color: white;
 }
 
-.icon-content:hover {
-  .icon-left {
-    visibility: visible;
-  }
+.icon-content:hover .icon-left {
+  visibility: visible;
+}
 
-  .icon-right {
-    visibility: visible;
-  }
+.icon-content:hover .icon-right {
+  visibility: visible;
 }
 
 .icon-left {

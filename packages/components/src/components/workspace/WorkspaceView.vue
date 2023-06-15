@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import {
+  onMounted,
   reactive,
   ref,
 } from 'vue-demi'
@@ -9,6 +10,9 @@ import type {
   Workspace,
 } from '@use-composable/definition'
 import { useElementRect, useResizeObserver } from '@use-composable/core'
+
+import WidgetView from './views/WidgetView.vue'
+import DockView from './views/DockView.vue'
 
 const props = defineProps<{
   params: {
@@ -30,6 +34,10 @@ useResizeObserver(workspaceRef as any, () => {
 
 const docks = reactive(props.params.docks)
 const widgets = reactive(props.params.widgets)
+
+onMounted(() => {
+  // provide('$workspace', workspace)
+})
 </script>
 
 <template>
@@ -40,11 +48,11 @@ const widgets = reactive(props.params.widgets)
     <slot />
 
     <div v-for="widget of widgets" :key="widget.id" class="widget-wrapper">
-      <WidgetView :widget="widget" :rect="rect" :workspace="workspace" />
+      <WidgetView :widget="widget" :rect="rect.value" :workspace="workspace" />
     </div>
 
     <div v-for="dock of docks" :key="dock.id" class="dock-wrapper">
-      <DockView :dock="dock" :rect="rect" :workspace="workspace" />
+      <DockView :dock="dock" :rect="rect.value" :workspace="workspace" />
     </div>
   </div>
 </template>

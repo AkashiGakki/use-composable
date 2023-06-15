@@ -3,10 +3,9 @@ import type { WidgetConfig, Workspace } from '@use-composable/definition'
 import { inject, ref } from 'vue'
 import { useElementRect } from '@use-composable/core'
 
-import { useWidgetArea } from '../hooks'
-import { classInject, withDefaultParams, withDefaultRender } from '../lib'
-
-import { ServiceRender } from '../../service-render'
+import { ServiceRender } from '@ui/index'
+import { useWidgetArea } from '~/components/workspace/hooks'
+import { classInject, withDefaultParams, withDefaultRender } from '~/components/workspace/lib'
 
 const props = defineProps<{
   widget: WidgetConfig
@@ -51,13 +50,13 @@ const render = ref(widget.value.render)
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped>
 .widget-view {
   position: absolute;
 }
 
 .widget-content {
-  // border: 2px solid yellow;
+  /* border: 2px solid yellow; */
   position: absolute;
 }
 </style>
