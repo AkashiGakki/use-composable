@@ -6,6 +6,8 @@ import { useElementRect } from '@use-composable/core'
 import { useWidgetArea } from '../hooks'
 import { classInject, withDefaultParams, withDefaultRender } from '../lib'
 
+import { ServiceRender } from '../../service-render'
+
 const props = defineProps<{
   widget: WidgetConfig
   rect: DOMRect
@@ -35,7 +37,7 @@ const render = ref(widget.value.render)
       class="widget-content"
       :style="cssInject(widget, props.rect, domRect)"
     >
-      <ServiceView
+      <ServiceRender
         :service="render.service"
         :operation="render.operation"
         :params="{ ...params, domRect }"

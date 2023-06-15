@@ -1,8 +1,13 @@
 <script setup lang="ts">
-import { SwitchButton } from '@use-composable/components'
+import { reactive } from 'vue'
 
-import UseTheme from './use/UseTheme.vue'
-import UseNow from './use/UseNow.vue'
+// import { WorkspaceArea } from '@use-composable/definition'
+import { WorkspaceView } from '@use-composable/components'
+
+// import { SwitchButton } from '@use-composable/components'
+
+// import UseTheme from './use/UseTheme.vue'
+// import UseNow from './use/UseNow.vue'
 
 // const renderData = [{
 //   title: 'nogi',
@@ -12,15 +17,28 @@ import UseNow from './use/UseNow.vue'
 //     { title: 'shiori', key: '2' },
 //   ],
 // }]
+
+const docks = reactive([])
+const widgets = reactive([])
+// const widgets = reactive([
+//   {
+//     id: 'w-1',
+//     title: 'w1',
+//     area: WorkspaceArea.TOP,
+//     offset: { x: 0, y: '50%' },
+//     size: { width: '100%', height: 60 },
+//     visible: true,
+//   },
+// ])
 </script>
 
 <template>
   <div class="use-view">
-    <UseTheme />
+    <!-- <UseTheme /> -->
 
-    <UseNow />
+    <!-- <UseNow /> -->
 
-    <SwitchButton />
+    <!-- <SwitchButton /> -->
 
     <!-- <RenderTree :tree-data="renderData" /> -->
 
@@ -28,10 +46,7 @@ import UseNow from './use/UseNow.vue'
 
     <div class="workspace-content">
       <WorkspaceView
-        :params="{
-          docks: [],
-          widgets: [],
-        }"
+        :params="{ docks, widgets }"
       >
         <div class="central" use-map>
           create workspace
@@ -43,8 +58,9 @@ import UseNow from './use/UseNow.vue'
 
 <style>
 .workspace-content {
-  width: 600px;
-  height: 50vh;
+  width: 100%;
+  /* width: 800px; */
+  height: 90vh;
 }
 
 .central {

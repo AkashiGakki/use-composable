@@ -151,8 +151,11 @@ importers:
         specifier: workspace:*
         version: link:../packages/components
       '@use-composable/core':
-        specifier: ^0.0.4
-        version: 0.0.4(vue@3.2.47)
+        specifier: workspace:*
+        version: link:../packages/core
+      '@use-composable/definition':
+        specifier: workspace:*
+        version: link:../packages/definition
       '@use-kit/editor-vue':
         specifier: 0.0.3
         version: 0.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3)
@@ -2035,20 +2038,6 @@ packages:
       vite: 4.3.3(sass@1.62.1)
     transitivePeerDependencies:
       - rollup
-    dev: true
-
-  /@use-composable/core@0.0.4(vue@3.2.47):
-    resolution: {integrity: sha512-3gU7ka2dR8R2fPkNpjtFvpu35CstDCvrnJX4/QRQAQluivc5Z1SdHXf6RNBgCyn2qjJNyqGtjDjJcc6hJJiXWg==}
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^2.0.0 || >=3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      dayjs: 1.11.7
-      vue: 3.2.47
-      vue-demi: 0.13.7(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
     dev: true
 
   /@use-kit/editor-vue@0.0.3(@tiptap/core@2.0.3)(@tiptap/pm@2.0.3):
@@ -6465,6 +6454,7 @@ packages:
     dependencies:
       '@vue/composition-api': 1.0.0-rc.1(vue@3.2.47)
       vue: 3.2.47
+    dev: false
 
   /vue-demi@0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
     resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
