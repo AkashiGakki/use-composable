@@ -1,4 +1,4 @@
-import { computed, reactive, ref } from 'vue'
+import { computed, reactive, ref } from 'vue-demi'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 import { withDefaultObject } from '@use-kit/functions'
 

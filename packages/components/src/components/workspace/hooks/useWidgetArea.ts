@@ -1,4 +1,4 @@
-import { computed } from 'vue'
+import { computed } from 'vue-demi'
 import type { WidgetConfig, Workspace } from '@use-composable/definition'
 import { withDefaultObject } from '@use-kit/functions'
 

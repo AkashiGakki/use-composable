@@ -1,4 +1,4 @@
-import type { Component } from 'vue'
+import type { Component } from 'vue-demi'
 import type { ServiceInvokeConfig } from '@use-composable/definition'
 
 const register = new Map<string, unknown>()

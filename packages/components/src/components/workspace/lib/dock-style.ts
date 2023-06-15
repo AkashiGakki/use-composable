@@ -1,4 +1,4 @@
-import type { StyleValue } from 'vue'
+import type { StyleValue } from 'vue-demi'
 import type { DockConfig } from '@use-composable/definition'
 
 export const setIconClass = (area: string) => {
