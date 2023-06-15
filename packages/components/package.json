@@ -31,14 +31,15 @@
     }
   },
   "dependencies": {
-    "@use-composable/core": "^0.0.0-alpha.1",
-    "@use-composable/definition": "^0.0.0-alpha.1",
+    "@use-composable/core": "workspace:*",
+    "@use-composable/definition": "workspace:*",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",
     "@unocss/eslint-config": "^0.51.13",
     "@unocss/reset": "^0.51.13",
+    "@use-kit/functions": "^0.0.8",
     "@vitejs/plugin-vue": "^4.1.0",
     "bson": "^5.1.0",
     "eslint": "^8.36.0",

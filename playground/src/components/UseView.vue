@@ -25,5 +25,33 @@ import UseNow from './use/UseNow.vue'
     <!-- <RenderTree :tree-data="renderData" /> -->
 
     <!-- <NestTree :node-data="renderData" /> -->
+
+    <div class="workspace-content">
+      <WorkspaceView
+        :params="{
+          docks: [],
+          widgets: [],
+        }"
+      >
+        <div class="central" use-map>
+          create workspace
+        </div>
+      </WorkspaceView>
+    </div>
   </div>
 </template>
+
+<style>
+.workspace-content {
+  width: 600px;
+  height: 50vh;
+}
+
+.central {
+  background: #a5f1e9;
+  border: 1px solid orange;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+</style>
