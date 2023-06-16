@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 
 import { WorkspaceArea } from '@use-composable/definition'
-import { SwitchButton, WorkspaceView } from '@use-composable/components'
+import { WorkspaceView } from '@use-composable/components'
 
 // import UseTheme from './use/UseTheme.vue'
 // import UseNow from './use/UseNow.vue'
@@ -35,7 +35,7 @@ const widgets = reactive([
 
     <!-- <UseNow /> -->
 
-    <SwitchButton />
+    <!-- <SwitchButton /> -->
 
     <!-- <RenderTree :tree-data="renderData" /> -->
 
