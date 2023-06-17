@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref } from 'vue-demi'
 import type { ServiceInvokeConfig, WorkspaceAction } from '@use-composable/definition'
 
 import { serviceRequest } from '~/components/service-render/register'

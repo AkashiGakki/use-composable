@@ -2,7 +2,7 @@ import fg from 'fast-glob'
 import fs from 'fs-extra'
 
 export async function fixTypes() {
-  const files = await fg(['src/**/*.ts', 'src/*/dist/*.d.ts'], {
+  const files = await fg(['src/**/*.ts', 'src/**/dist/*.d.ts', 'src/**/*.vue'], {
     onlyFiles: true,
   })
 

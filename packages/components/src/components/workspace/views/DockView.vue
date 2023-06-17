@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
+import { inject, ref } from 'vue-demi'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 import { useElementRect } from '@use-composable/core'
 

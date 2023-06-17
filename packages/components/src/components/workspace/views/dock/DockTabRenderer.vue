@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue-demi'
 import type { DockConfig } from '@use-composable/definition'
 
 import { ServiceRender } from '@ui/index'

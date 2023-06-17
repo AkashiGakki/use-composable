@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { WorkspaceAction } from '@use-composable/definition'
-import { computed } from 'vue'
+import { computed } from 'vue-demi'
 
 const props = defineProps<{
   params: any

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { WidgetConfig, Workspace } from '@use-composable/definition'
-import { inject, ref } from 'vue'
+import { inject, ref } from 'vue-demi'
 import { useElementRect } from '@use-composable/core'
 
 import { ServiceRender } from '@ui/index'

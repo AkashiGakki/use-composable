@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, reactive, ref } from 'vue'
+import { computed, inject, reactive, ref } from 'vue-demi'
 import { isArray } from '@use-kit/functions'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 
