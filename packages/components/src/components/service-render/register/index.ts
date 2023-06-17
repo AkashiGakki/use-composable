@@ -14,6 +14,11 @@ export function serviceGet(invoker: ServiceInvokeConfig) {
   return register.get(`${invoker.service}+${invoker.operation}`)
 }
 
+export function serviceRequest(invoker: ServiceInvokeConfig) {
+  // TODO: return invoker service
+  return invoker
+}
+
 serviceRegister({
   service: 'service.workspace.view',
   operation: 'workspaceRender',
