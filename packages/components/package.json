@@ -10,7 +10,6 @@
     }
   },
   "main": "dist/index.mjs",
-  "_main": "./src",
   "module": "dist/index.mjs",
   "types": "dist/types/index.d.ts",
   "files": [
@@ -19,7 +18,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "types:fix": "esno scripts/fix-types.ts"
   },
   "peerDependencies": {
     "@vue/composition-api": "^1.0.0-rc.1",
@@ -31,23 +31,27 @@
     }
   },
   "dependencies": {
-    "@use-composable/core": "^0.0.0-alpha.1",
-    "@use-composable/definition": "^0.0.0-alpha.1",
+    "@use-composable/core": "workspace:*",
+    "@use-composable/definition": "workspace:*",
     "vue-demi": "latest"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.37.0",
     "@unocss/eslint-config": "^0.51.13",
     "@unocss/reset": "^0.51.13",
-    "@vitejs/plugin-vue": "^4.1.0",
-    "bson": "^5.1.0",
-    "eslint": "^8.36.0",
-    "typescript": "^5.0.2",
+    "@use-kit/functions": "^0.1.3",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "bson": "^5.3.0",
+    "eslint": "^8.42.0",
+    "fast-glob": "^3.2.12",
+    "fs-extra": "^11.1.1",
+    "rxjs": "^7.8.1",
+    "typescript": "^5.1.3",
     "unocss": "^0.51.13",
-    "vite": "^4.2.1",
-    "vite-plugin-dts": "^2.1.0",
-    "vite-plugin-libcss": "^1.0.6",
-    "vue": "^3.2.47",
-    "vue-tsc": "^1.2.0"
+    "vite": "^4.2.3",
+    "vite-plugin-dts": "^2.3.0",
+    "vite-plugin-libcss": "^1.1.0",
+    "vue": "^3.3.4",
+    "vue-tsc": "^1.6.5"
   }
 }

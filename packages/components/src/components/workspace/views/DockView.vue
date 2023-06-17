@@ -1,69 +1,58 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue-demi'
-import type { DockConfig, DockTabConfig } from '@use-composable/definition'
+import { inject, ref } from 'vue-demi'
+import type { DockConfig, Workspace } from '@use-composable/definition'
+import { useElementRect } from '@use-composable/core'
 
-import { useAreaStyle, useClassJoin } from '../hooks'
-
-import DockServiceView from './dock/DockServiceView.vue'
-import DockTabServiceView from './dock/DockTabServiceView.vue'
+import { ServiceRender } from '@ui/index'
+import {
+  setIconAreaType,
+  setIconClass,
+  setIconStyle,
+  withDefaultRender,
+} from '~/components/workspace/lib'
+import { useDockArea } from '~/components/workspace/hooks'
 
 const props = defineProps<{
-  docks: any[]
-  rect: any
+  dock: DockConfig
+  rect: DOMRect
+  workspace: Workspace
 }>()
-const activeTabs = ref([])
+const $workspace = inject<Workspace>('$workspace')
+const { cssInject, setDockCollapsed } = useDockArea($workspace)
+const { domRef, domRect } = useElementRect()
 
-const cssInject = (list: any) => {
-  return useClassJoin(list)
-}
-
-const styleInject = (dock: DockConfig, rect: any) => {
-  return useAreaStyle(dock, rect)
-}
-
-const setActiveTabs = (docks: DockConfig[]) => {
-  activeTabs.value = docks.flatMap((dock) => {
-    if (!dock.tabs)
-      return []
-
-    return dock.tabs
-      .map((tab: DockTabConfig) => (tab.active ? tab : undefined))
-      .filter(Boolean)
-  })
-}
-
-onMounted(() => {
-  setActiveTabs(props.docks)
-})
-
-const handleTabClick = (tab: DockTabConfig, tabs: DockTabConfig[]) => {
-  const active = tabs.find(tab => tab.active)
-  const isExist = tab.id === active.id
-  if (isExist)
-    return
-
-  const index = activeTabs.value.findIndex(t => t.id === active.id)
-  active.active = !active.active
-  tab.active = !tab.active
-  activeTabs.value.splice(index, 1, tab)
-}
+const visible = ref(props.dock.visible ?? true)
+const dock = ref(withDefaultRender(props.dock))
+const render = ref(dock.value.render)
 </script>
 
 <template>
   <div class="dock">
     <div
-      v-for="dock of props.docks"
-      :id="dock.id"
-      :key="dock.id"
-      :class="cssInject(dock.cssClass)"
-      class="dock-content"
-      :style="styleInject(dock, rect)"
+      ref="domRef"
+      class="dock-render-content"
+      :style="cssInject(dock, props.rect, domRect)"
     >
-      <!-- 直接挂载服务 -->
-      <DockServiceView v-if="dock.service && dock.operation" :dock="dock" />
+      <!-- TODO: collapsible -->
+      <div
+        show="dock.collapsible"
+        class="icon-content"
+        :style="setIconStyle(dock)"
+      >
+        <a-icon
+          :type="setIconAreaType(dock)"
+          :class="setIconClass(dock.area)"
+          @click="setDockCollapsed(dock.id)"
+        />
+      </div>
 
-      <!-- tags 下挂载服务 -->
-      <DockTabServiceView v-else :dock="dock" @active-tab="handleTabClick" />
+      <ServiceRender
+        :service="render.service"
+        :operation="render.operation"
+        :params="{ ...props.dock.params, dock, domRect }"
+        :visible="visible"
+        options="null"
+      />
     </div>
   </div>
 </template>
@@ -74,9 +63,43 @@ const handleTabClick = (tab: DockTabConfig, tabs: DockTabConfig[]) => {
   transition: 0.5s;
 }
 
-.dock-content {
-  width: 25rem;
-  height: 10rem;
+.dock-render-content {
+  /* border: 2px solid orange; */
   position: absolute;
+}
+
+.icon-content {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  color: white;
+}
+
+.icon-content:hover .icon-left {
+  visibility: visible;
+}
+
+.icon-content:hover .icon-right {
+  visibility: visible;
+}
+
+.icon-left {
+  height: 50px;
+  width: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transform: perspective(0.2em) rotateY(3deg);
+  visibility: hidden;
+}
+
+.icon-right {
+  height: 50px;
+  width: 15px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transform: perspective(0.2em) rotateY(-3deg);
+  visibility: hidden;
 }
 </style>

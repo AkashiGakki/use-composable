@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const handleMouseDown = ({ button }) => {
+const handleMouseDown = ({ button }: any) => {
   console.log('button: ', button)
 }
 </script>

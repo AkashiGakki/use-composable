@@ -21,7 +21,7 @@ export const useElementRect = (options: Options = {
 
     window.requestAnimationFrame(() => {
       rect.value = dom?.getBoundingClientRect() ?? defaultRect
-      observer.observe(dom as Node, options)
+      dom && observer.observe(dom as Node, options)
     })
   })
 

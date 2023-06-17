@@ -12,6 +12,7 @@
     "build": "npx rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm -d",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "unbuild": "unbuild",
     "tag": "bumpp",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
@@ -27,12 +28,12 @@
     }
   },
   "dependencies": {
+    "@use-kit/functions": "^0.1.3",
     "dayjs": "^1.11.6",
     "vue-demi": "0.13.7"
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
-    "@use-kit/functions": "^0.0.8",
     "bumpp": "^9.1.0",
     "consola": "^3.1.0",
     "fast-glob": "^3.2.12",
@@ -41,6 +42,7 @@
     "rimraf": "^5.0.0",
     "tsno": "^2.0.0",
     "typescript": "^5.0.4",
+    "unbuild": "^1.2.1",
     "vitepress": "1.0.0-alpha.73",
     "vitest": "^0.30.1",
     "vue": "^3.0.0"

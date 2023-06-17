@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useNow } from '@vueuse/core'
-import { useDate } from '../../hooks'
+import { useDate } from '../../composables'
 
 const now = useDate(useNow() as any)
 </script>

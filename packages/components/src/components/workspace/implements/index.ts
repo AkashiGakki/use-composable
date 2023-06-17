@@ -1,3 +1,3 @@
-export * from './Dock'
-export * from './Widget'
-export * from './Workspace'
+export * from './DockImpl'
+export * from './WidgetImpl'
+export * from './WorkspaceImpl'

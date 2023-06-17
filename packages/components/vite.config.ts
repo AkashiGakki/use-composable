@@ -1,3 +1,4 @@
+import { resolve } from 'node:path'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import dts from 'vite-plugin-dts'
@@ -12,6 +13,14 @@ export default defineConfig({
       name: '@use-composable/components',
       fileName: 'index',
     },
+    rollupOptions: {
+      external: ['vue'],
+      output: {
+        globals: {
+          vue: 'Vue',
+        },
+      },
+    },
   },
   plugins: [
     vue(),
@@ -21,4 +30,14 @@ export default defineConfig({
     libCss(),
     unoCSS(),
   ],
+  resolve: {
+    alias: {
+      '~': resolve(__dirname, 'src'),
+      '@ui': resolve(__dirname, 'src/components'),
+    },
+    dedupe: [
+      'vue',
+      'vue-demi',
+    ],
+  },
 })
