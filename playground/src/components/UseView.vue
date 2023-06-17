@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 
+import type { DockConfig, WidgetConfig } from '@use-composable/definition'
 import { WorkspaceArea } from '@use-composable/definition'
-import { WorkspaceView } from '@use-composable/components'
+import { ServiceRender } from '@use-composable/components'
 
 // import UseTheme from './use/UseTheme.vue'
 // import UseNow from './use/UseNow.vue'
@@ -16,8 +17,8 @@ import { WorkspaceView } from '@use-composable/components'
 //   ],
 // }]
 
-const docks = reactive([])
-const widgets = reactive([
+const docks = reactive<DockConfig[]>([])
+const widgets = reactive<WidgetConfig[]>([
   {
     id: 'w-1',
     title: 'w1',
@@ -25,6 +26,10 @@ const widgets = reactive([
     offset: { x: 0, y: '50%' },
     size: { width: '100%', height: 60 },
     visible: true,
+    render: {
+      service: 'service.test.render',
+      operation: 'defaultRender',
+    },
   },
 ])
 </script>
@@ -42,13 +47,15 @@ const widgets = reactive([
     <!-- <NestTree :node-data="renderData" /> -->
 
     <div class="workspace-content">
-      <WorkspaceView
+      <ServiceRender
+        service="service.workspace.view"
+        operation="workspaceRender"
         :params="{ docks, widgets }"
       >
         <div class="central" use-map>
           create workspace
         </div>
-      </WorkspaceView>
+      </ServiceRender>
     </div>
   </div>
 </template>

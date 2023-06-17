@@ -45,6 +45,7 @@ provide('$workspace', workspace.value)
 
 <template>
   <div
+    ref="workspaceRef"
     class="workspace-view"
     style="width: 100%; height: 100%; position: relative"
   >

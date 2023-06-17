@@ -12,12 +12,14 @@
     "build": "npx rimraf dist && npm run build:esm && npm run build:cjs",
     "build:esm": "tsc --module es2015 --outDir dist/esm -d",
     "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "unbuild": "unbuild",
     "lint": "eslint ."
   },
   "devDependencies": {
     "@types/node": "^18.15.11",
     "fast-glob": "^3.2.12",
     "rxjs": "^7.8.1",
-    "typescript": "^5.0.4"
+    "typescript": "^5.0.4",
+    "unbuild": "^1.2.1"
   }
 }

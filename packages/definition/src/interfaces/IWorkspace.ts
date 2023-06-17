@@ -1,4 +1,4 @@
-import type * as rxjs from 'rxjs'
+import type { Observable } from 'rxjs'
 
 import type { WorkspaceArea } from '../types/WorkspaceArea'
 import type { WindowConfig } from '../types/Window'
@@ -42,7 +42,7 @@ export interface WorkspaceConfig {
 export interface Workspace {
   rect(): DOMRect
 
-  onRectChange(): rxjs.Observable<DOMRect>
+  onRectChange(): Observable<DOMRect>
 
   addDock(config: DockConfig): Dock
 
@@ -63,5 +63,5 @@ export interface Workspace {
     area: Extract<WorkspaceArea, 'right' | 'left' | 'top' | 'bottom'>
   }
 
-  onCollapseChange(): rxjs.Observable<{ id: string; status: boolean }>
+  onCollapseChange(): Observable<{ id: string; status: boolean }>
 }
