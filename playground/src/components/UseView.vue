@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 
 import type { DockConfig, WidgetConfig } from '@use-composable/definition'
 import { WorkspaceArea } from '@use-composable/definition'
-import { ServiceRender } from '@use-composable/components'
+import { ServiceRender, serviceRequest } from '@use-composable/components'
 
 // import UseTheme from './use/UseTheme.vue'
 // import UseNow from './use/UseNow.vue'
@@ -32,6 +32,12 @@ const widgets = reactive<WidgetConfig[]>([
     },
   },
 ])
+
+const service = serviceRequest({
+  service: 'service.test.render',
+  operation: 'defaultRender',
+})
+console.log('service', service)
 </script>
 
 <template>
@@ -57,6 +63,8 @@ const widgets = reactive<WidgetConfig[]>([
         </div>
       </ServiceRender>
     </div>
+
+    <component :is="service" />
   </div>
 </template>
 
