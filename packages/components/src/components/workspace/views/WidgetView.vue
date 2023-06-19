@@ -56,7 +56,7 @@ const render = ref(widget.value.render)
 }
 
 .widget-content {
-  /* border: 2px solid yellow; */
+  border: 2px solid yellow;
   position: absolute;
 }
 </style>
