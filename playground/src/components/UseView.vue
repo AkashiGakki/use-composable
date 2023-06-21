@@ -34,7 +34,7 @@ const widgets = reactive<WidgetConfig[]>([
   {
     id: 'w-2',
     title: 'w2',
-    // parent: 'w-1',
+    parent: 'w-1',
     area: WorkspaceArea.RIGHT,
     size: { width: '10%', height: '60' },
     offset: { x: '15%', y: '0' },

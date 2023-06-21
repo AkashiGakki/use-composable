@@ -1,11 +1,9 @@
-import type { ComputedRef } from 'vue-demi'
 import type {
   DockConfig,
   WidgetConfig,
-  Workspace,
 } from '@use-composable/definition'
 
-import { isNumber, isString, withPercentCalculate } from '@use-kit/functions'
+import { isNumber, isString } from '@use-kit/functions'
 
 type Content = WidgetConfig | DockConfig
 
@@ -79,123 +77,102 @@ export const offsetTransform = (
   }
 }
 
-const areaMap = new Map()
-
-export const parentOffsetTransform = (
-  offset: TransFormOffset,
-  pid: string,
+export const transformWithParent = (
   comp: Content,
-  workspace: ComputedRef<Workspace>,
   domRect: Partial<DOMRect>,
+  offset: { x: number; y: number },
+  size: TransFormSize,
+  zIndex: number,
 ) => {
-  const parent = workspace.value.getComponent(pid)
-  const parentSize = parent.config.size
-  const parentOffset = parent.config.offset
-
-  const halfWidth = (Number(parentSize.width) + Number(domRect.width)) / 2
-  const halfHeight = (Number(parentSize.height) + Number(domRect.height)) / 2
-
-  if (!areaMap.get(comp.id))
-    areaMap.set(comp.id, comp.area)
-
-  const getRealParentOffset = () => {
-    const x = String(parentOffset.x).includes('%')
-      ? withPercentCalculate(parentSize.width, parentOffset.x)
-      : Number(parentOffset.x)
-    const y = String(parentOffset.y).includes('%')
-      ? withPercentCalculate(parentSize.height, parentOffset.y)
-      : Number(parentOffset.y)
-
-    return { x, y }
+  const defaultPosition = {
+    top: `${domRect.top + offset.y}px`,
+    width: `${size.width}px`,
+    height: `${size.height}px`,
+    zIndex,
   }
 
-  const mergeOffset = (target, source): { x: number; y: number } => {
+  function centerTransform() {
     return {
-      x: Number(target.x) + Number(source.x),
-      y: Number(target.y) + Number(source.y),
+      ...defaultPosition,
+      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, 0)',
     }
   }
 
-  const compOffset = offsetTransform(offset, comp, domRect)
-  const mOffset = mergeOffset(compOffset, getRealParentOffset())
-
-  const centerOffsetArea = () => {
+  function leftTransform() {
     return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y,
+      ...defaultPosition,
+      left: `${domRect.left + offset.x}px`,
+      transform: 'translate(-100%, 0)',
     }
   }
 
-  const topOffsetArea = () => {
+  function rightTransform() {
     return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y - halfHeight,
+      ...defaultPosition,
+      left: `${domRect.right + offset.x}px`,
     }
   }
 
-  const bottomOffsetArea = () => {
+  function topTransform() {
     return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y + halfHeight,
+      ...defaultPosition,
+      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, -100%)',
     }
   }
 
-  const leftOffsetArea = () => {
+  function bottomTransform() {
     return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y,
+      ...defaultPosition,
+      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, 100%)',
     }
   }
 
-  const rightOffsetArea = () => {
+  function topLeftTransform() {
     return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y,
+      ...defaultPosition,
+      left: `${domRect.left + offset.x}px`,
+      transform: 'translate(-100%, -100%)',
     }
   }
 
-  const topLeftOffsetArea = () => {
+  function topRightTransform() {
     return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y - halfHeight,
+      ...defaultPosition,
+      left: `${domRect.right + offset.x}px`,
+      transform: 'translate(0, -100%)',
     }
   }
 
-  const topRightOffsetArea = () => {
+  function bottomLeftTransform() {
     return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y - halfHeight,
+      ...defaultPosition,
+      left: `${domRect.left + offset.x}px`,
+      transform: 'translate(-100%, 100%)',
     }
   }
 
-  const bottomLeftOffsetArea = () => {
+  function bottomRightTransform() {
     return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y + halfHeight,
+      ...defaultPosition,
+      left: `${domRect.right + offset.x}px`,
+      transform: 'translate(0, 100%)',
     }
   }
 
-  const bottomRightOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y + halfHeight,
-    }
-  }
-
-  const offsetAreaMap = new Map([
-    ['center', centerOffsetArea],
-    ['top', topOffsetArea],
-    ['bottom', bottomOffsetArea],
-    ['right', rightOffsetArea],
-    ['left', leftOffsetArea],
-    ['top-right', topRightOffsetArea],
-    ['top-left', topLeftOffsetArea],
-    ['bottom-right', bottomRightOffsetArea],
-    ['bottom-left', bottomLeftOffsetArea],
+  const map = new Map([
+    ['center', centerTransform],
+    ['left', leftTransform],
+    ['right', rightTransform],
+    ['top', topTransform],
+    ['bottom', bottomTransform],
+    ['top-left', topLeftTransform],
+    ['top-right', topRightTransform],
+    ['bottom-left', bottomLeftTransform],
+    ['bottom-right', bottomRightTransform],
   ])
 
-  const fn = offsetAreaMap.get(areaMap.get(comp.id))
-  const style: { x: number; y: number } = fn()
-
-  return style
+  return map.get(comp.area)()
 }
