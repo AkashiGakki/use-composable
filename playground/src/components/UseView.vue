@@ -24,7 +24,20 @@ const widgets = reactive<WidgetConfig[]>([
     title: 'w1',
     area: WorkspaceArea.TOP,
     offset: { x: 0, y: '50%' },
-    size: { width: '100%', height: 60 },
+    size: { width: '70%', height: 60 },
+    visible: true,
+    render: {
+      service: 'service.test.render',
+      operation: 'defaultRender',
+    },
+  },
+  {
+    id: 'w-2',
+    title: 'w2',
+    parent: 'w-1',
+    area: WorkspaceArea.RIGHT,
+    size: { width: '10%', height: '60' },
+    offset: { x: '15%', y: '0' },
     visible: true,
     render: {
       service: 'service.test.render',

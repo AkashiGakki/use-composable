@@ -25,9 +25,7 @@ const actions = computed<WorkspaceAction[]>(() => props.params.actions)
 <style scoped>
 .default-tool-render {
   height: 100%;
-  background-color: #123f7b;
   border-radius: 4px;
-  color: #ffffff;
 }
 
 .default-tool-render .action-content {
@@ -42,7 +40,7 @@ const actions = computed<WorkspaceAction[]>(() => props.params.actions)
 }
 
 .default-tool-render .action-content:hover {
-  background-color: #1c497e;
+  background-color: #888;
   border-radius: 10px;
 }
 </style>

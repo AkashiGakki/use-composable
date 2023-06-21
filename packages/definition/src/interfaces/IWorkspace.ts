@@ -40,9 +40,9 @@ export interface WorkspaceConfig {
 }
 
 export interface Workspace {
-  rect(): DOMRect
+  workspaceRect(): DOMRect
 
-  onRectChange(): Observable<DOMRect>
+  // onRectChange(): Observable<DOMRect>
 
   addDock(config: DockConfig): Dock
 
@@ -57,6 +57,8 @@ export interface Workspace {
   getAllWidget(): Widget[]
 
   getComponent(id: string): Widget | Dock | undefined
+
+  getChildren(id: string): any
 
   setDockCollapsed(id: string): {
     collapsed: boolean
