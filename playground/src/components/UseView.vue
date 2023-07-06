@@ -3,7 +3,7 @@ import { reactive } from 'vue'
 
 import type { DockConfig, WidgetConfig } from '@use-composable/definition'
 import { WorkspaceArea } from '@use-composable/definition'
-import { ServiceRender, serviceRequest } from '@use-composable/components'
+import { Dialog, ServiceRender, serviceRequest } from '@use-composable/components'
 
 // import UseTheme from './use/UseTheme.vue'
 // import UseNow from './use/UseNow.vue'
@@ -78,6 +78,8 @@ console.log('service', service)
     </div>
 
     <component :is="service" />
+
+    <Dialog>Dialog</Dialog>
   </div>
 </template>
 
