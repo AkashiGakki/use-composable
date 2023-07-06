@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue-demi'
 import type { DockConfig, Workspace } from '@use-composable/definition'
+import { getCurrentInstance, inject, ref } from 'vue-demi'
 import { useElementRect } from '@use-composable/core'
 
 import { ServiceRender } from '@ui/index'
@@ -24,6 +24,11 @@ const { domRef, domRect } = useElementRect()
 const visible = ref(props.dock.visible ?? true)
 const dock = ref(withDefaultRender(props.dock))
 const render = ref(dock.value.render)
+
+const instance = getCurrentInstance()
+const dockInstance = ref(instance.proxy)
+
+defineExpose({ dockInstance })
 </script>
 
 <template>

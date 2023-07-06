@@ -3,18 +3,19 @@ import type { Widget, WidgetConfig } from '@use-composable/definition'
 export class WidgetImpl implements Widget {
   config: WidgetConfig
 
-  private workspaceView: any
+  private widgetView: any
 
-  constructor(workspaceView: any, config: WidgetConfig) {
-    this.workspaceView = workspaceView
-    this.config = config
+  constructor(widgetView: any) {
+    this.widgetView = widgetView
+    // this.config = config
   }
 
   getVisible(): boolean {
-    return this.config.visible
+    return true
+    // return this.config.visible
   }
 
   setVisible(visible: boolean) {
-    this.config.visible = visible
+    // this.config.visible = visible
   }
 }

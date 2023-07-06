@@ -18,6 +18,7 @@ export class WorkspaceImpl implements Workspace {
     this.workspaceView = workspaceView
     this.docks = workspaceView.docks
     this.widgets = workspaceView.widgets
+    console.log('this', this)
   }
 
   workspaceRect(): DOMRect {
