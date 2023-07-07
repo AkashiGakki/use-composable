@@ -30,7 +30,7 @@ let defaultPosition: {
 function centerStyle() {
   return {
     top: `${(domRect.bottom - domRect.y) / 2 + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
   }
@@ -48,7 +48,7 @@ function leftStyle() {
 function rightStyle() {
   return {
     top: `${domRect.height / 2 + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-50%, -50%)`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
@@ -58,7 +58,7 @@ function rightStyle() {
 function topStyle() {
   return {
     top: `${0 + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     // transform: `translate(-50%, 0)`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
@@ -68,7 +68,7 @@ function topStyle() {
 function bottomStyle() {
   return {
     top: `${domRect.bottom - domRect.y + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     // transform: `translate(-50%, -100%)`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
@@ -87,7 +87,7 @@ function topLeftStyle() {
 function topRightStyle() {
   return {
     top: `${0 + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-100%, 0)`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
@@ -107,7 +107,7 @@ function bottomLeftStyle() {
 function bottomRightStyle() {
   return {
     top: `${domRect.bottom - domRect.y + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-100%, -100%)`,
     transform: 'translate(-50%, -50%)',
     ...defaultPosition,
@@ -148,12 +148,14 @@ export const useWidgetArea = (wp: Workspace) => {
     if (parent) {
       // git parent widget & dock
       const parentComponent = workspace.value.getChildren(parent)
+      const mapRect = (workspace.value as any).workspaceView.rect
+
       const boundRect = parentComponent?.widgetRect
         ? parentComponent.widgetRect
         : parentComponent.dockRect
 
       offset = offsetTransform(offset, component, widgetRect)
-      return transformWithParent(component, boundRect, offset, size, zIndex)
+      return transformWithParent(component, boundRect, offset, size, zIndex, mapRect)
     }
 
     else {

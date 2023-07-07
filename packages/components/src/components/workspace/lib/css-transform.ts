@@ -83,9 +83,10 @@ export const transformWithParent = (
   offset: { x: number; y: number },
   size: TransFormSize,
   zIndex: number,
+  mapRect: Partial<DOMRect>,
 ) => {
   const defaultPosition = {
-    top: `${domRect.top + offset.y}px`,
+    top: `${domRect.top - mapRect.y + offset.y}px`,
     width: `${size.width}px`,
     height: `${size.height}px`,
     zIndex,
@@ -94,7 +95,7 @@ export const transformWithParent = (
   function centerTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
       transform: 'translate(-50%, 0)',
     }
   }
@@ -102,7 +103,7 @@ export const transformWithParent = (
   function leftTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.left + offset.x}px`,
+      left: `${0 + offset.x}px`,
       transform: 'translate(-100%, 0)',
     }
   }
@@ -110,14 +111,14 @@ export const transformWithParent = (
   function rightTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right + offset.x}px`,
+      left: `${domRect.width + offset.x}px`,
     }
   }
 
   function topTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
       transform: 'translate(-50%, -100%)',
     }
   }
@@ -125,7 +126,7 @@ export const transformWithParent = (
   function bottomTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right - domRect.width / 2 + offset.x}px`,
+      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
       transform: 'translate(-50%, 100%)',
     }
   }
@@ -133,7 +134,7 @@ export const transformWithParent = (
   function topLeftTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.left + offset.x}px`,
+      left: `${domRect.left - mapRect.x + offset.x}px`,
       transform: 'translate(-100%, -100%)',
     }
   }
@@ -141,7 +142,7 @@ export const transformWithParent = (
   function topRightTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right + offset.x}px`,
+      left: `${domRect.width + offset.x}px`,
       transform: 'translate(0, -100%)',
     }
   }
@@ -149,7 +150,7 @@ export const transformWithParent = (
   function bottomLeftTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.left + offset.x}px`,
+      left: `${domRect.left - mapRect.x + offset.x}px`,
       transform: 'translate(-100%, 100%)',
     }
   }
@@ -157,7 +158,7 @@ export const transformWithParent = (
   function bottomRightTransform() {
     return {
       ...defaultPosition,
-      left: `${domRect.right + offset.x}px`,
+      left: `${domRect.width + offset.x}px`,
       transform: 'translate(0, 100%)',
     }
   }
