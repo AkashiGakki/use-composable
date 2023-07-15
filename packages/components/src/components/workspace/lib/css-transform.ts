@@ -1,179 +1,182 @@
-import type {
-  DockConfig,
-  WidgetConfig,
-} from '@use-composable/definition'
+import type { DockConfig, WidgetConfig } from '@use-composable/definition'
+import { withDefaultObject } from '@use-kit/functions'
 
-import { isNumber, isString } from '@use-kit/functions'
+// import { offsetTransform, sizeTransform } from '.'
 
-type Content = WidgetConfig | DockConfig
-
-interface TransFormOffset {
-  x: string | number
-  y: string | number
+type Node = WidgetConfig & {
+  children: Node[]
+  css: any
 }
 
-interface TransFormSize {
-  width: string | number
-  height: string | number
+export function workspaceTransform(
+  components: (DockConfig | WidgetConfig)[],
+  rect: DOMRect,
+) {
+  const tree = buildTree(components as Node[])
+  traverseTree(tree, rect)
+  return flattenTree(tree)
 }
 
-export const classInject = (list?: string[]): string => {
-  if (!list || !list.length)
-    return
+function buildTree(objects: Node[]): Node[] {
+  const nodesMap = new Map<number | string, Node>(
+    objects.map(node => [node.id, node]),
+  )
 
-  return list.join(' ')
+  const virtualRoot = {} as Partial<Node>
+
+  objects.forEach((node) => {
+    const parent = nodesMap.get(node.parent) ?? virtualRoot;
+    (parent.children ??= []).push(node)
+  })
+
+  return virtualRoot.children ?? []
 }
 
-const isPercent = (target: string) => {
-  return target.includes('%')
-}
-
-export const sizeTransform = (
-  size: TransFormSize = { width: 200, height: 200 },
-  domRect: Partial<DOMRect>,
-) => {
-  const getRealRect = (percent: string, pos: 'width' | 'height' = 'width') => {
-    const pixel = Number(percent.split('%')[0]) / 100
-    return domRect[pos] * pixel
+function setRect(node: Node, domRect: DOMRect): void {
+  let size: { width: number | string; height: number | string } = {
+    width: '',
+    height: '',
   }
+  let offset: { x: number; y: number } = { x: 0, y: 0 }
 
-  if (isString(size.width) || isString(size.height)) {
-    const x = isNaN(Number(size.width))
-      ? getRealRect(size.width as string, 'width')
-      : Number(size.width)
-    const y = isNaN(Number(size.height))
-      ? getRealRect(size.height as string, 'height')
-      : Number(size.height)
+  const zIndex = node?.zIndex ?? 0
+  size = sizeTransform(node?.size as any, domRect)
+  offset = offsetTransform(
+    withDefaultObject(node.offset, { x: 0, y: 0 }) as any,
+    node,
+    domRect,
+  )
 
-    return { width: x, height: y }
-  }
-
-  return { width: Number(size.width), height: Number(size.height) }
-}
-
-export const offsetTransform = (
-  offset: TransFormOffset,
-  comp: Content,
-  domRect: Partial<DOMRect>,
-) => {
-  const toOffset = (
-    target: number | string,
-    pos: 'width' | 'height' = 'width',
-  ): number => {
-    if (isNumber(target))
-      return target as number
-
-    if (isPercent(target as string)) {
-      const percent = Number((target as string).split('%')[0]) / 100
-      return percent * domRect[pos]
+  if (domRect.height === 0 || domRect.y === 0) {
+    node.css = {
+      display: 'none',
     }
-
-    return Number(target)
   }
 
-  return {
-    x: toOffset(offset.x, 'width'),
-    y: toOffset(offset.y, 'height'),
-  }
-}
-
-export const transformWithParent = (
-  comp: Content,
-  domRect: Partial<DOMRect>,
-  offset: { x: number; y: number },
-  size: TransFormSize,
-  zIndex: number,
-  mapRect: Partial<DOMRect>,
-) => {
   const defaultPosition = {
-    top: `${domRect.top - mapRect.y + offset.y}px`,
     width: `${size.width}px`,
     height: `${size.height}px`,
     zIndex,
   }
 
-  function centerTransform() {
+  function centerStyle() {
     return {
+      top: `${(domRect.bottom - domRect.y) / 2 + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, -50%)',
       ...defaultPosition,
-      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
-      transform: 'translate(-50%, 0)',
     }
   }
 
-  function leftTransform() {
+  function leftStyle() {
     return {
-      ...defaultPosition,
+      top: `${domRect.height / 2 + offset.y}px`,
       left: `${0 + offset.x}px`,
-      transform: 'translate(-100%, 0)',
+      transform: 'translate(0, -50%)',
+      ...defaultPosition,
     }
   }
 
-  function rightTransform() {
+  function rightStyle() {
     return {
-      ...defaultPosition,
+      top: `${domRect.height / 2 + offset.y}px`,
       left: `${domRect.width + offset.x}px`,
+      transform: 'translate(-100%, -50%)',
+      ...defaultPosition,
     }
   }
 
-  function topTransform() {
+  function topStyle() {
     return {
+      top: `${0 + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, 0)',
       ...defaultPosition,
-      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
-      transform: 'translate(-50%, -100%)',
     }
   }
 
-  function bottomTransform() {
+  function bottomStyle() {
     return {
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
       ...defaultPosition,
-      left: `${domRect.width - domRect.width / 2 + offset.x}px`,
-      transform: 'translate(-50%, 100%)',
     }
   }
 
-  function topLeftTransform() {
+  function topLeftStyle() {
     return {
+      top: `${0 + offset.y}px`,
+      left: `${0 + offset.x}px`,
       ...defaultPosition,
-      left: `${domRect.left - mapRect.x + offset.x}px`,
-      transform: 'translate(-100%, -100%)',
     }
   }
 
-  function topRightTransform() {
+  function topRightStyle() {
     return {
-      ...defaultPosition,
+      top: `${0 + offset.y}px`,
       left: `${domRect.width + offset.x}px`,
-      transform: 'translate(0, -100%)',
+      ...defaultPosition,
     }
   }
 
-  function bottomLeftTransform() {
+  function bottomLeftStyle() {
     return {
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
+      left: `${0 + offset.x}px`,
       ...defaultPosition,
-      left: `${domRect.left - mapRect.x + offset.x}px`,
-      transform: 'translate(-100%, 100%)',
     }
   }
 
-  function bottomRightTransform() {
+  function bottomRightStyle() {
     return {
-      ...defaultPosition,
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
       left: `${domRect.width + offset.x}px`,
-      transform: 'translate(0, 100%)',
+      ...defaultPosition,
     }
   }
 
-  const map = new Map([
-    ['center', centerTransform],
-    ['left', leftTransform],
-    ['right', rightTransform],
-    ['top', topTransform],
-    ['bottom', bottomTransform],
-    ['top-left', topLeftTransform],
-    ['top-right', topRightTransform],
-    ['bottom-left', bottomLeftTransform],
-    ['bottom-right', bottomRightTransform],
-  ])
+  const map = new Map<
+    string,
+    () => {
+      top: string
+      left: string
+      height?: string
+      width?: string
+      transform?: string
+    }
+      >([
+        ['center', centerStyle],
+        ['left', leftStyle],
+        ['right', rightStyle],
+        ['top', topStyle],
+        ['bottom', bottomStyle],
+        ['top-left', topLeftStyle],
+        ['top-right', topRightStyle],
+        ['bottom-left', bottomLeftStyle],
+        ['bottom-right', bottomRightStyle],
+      ])
 
-  return map.get(comp.area)()
+  const fn = map.get(node.area)
+  fn !== undefined && (node.css = fn())
+}
+
+function traverseTree(tree: Node[], rect: DOMRect): void {
+  tree.forEach((node) => {
+    setRect(node, rect)
+    if (node.children && node.children.length > 0)
+      traverseTree(node.children, rect)
+  })
+}
+
+function flattenTree(tree: Node[]): Node[] {
+  const flattenedTree: Node[] = []
+
+  function flattenNode(node: Node): void {
+    flattenedTree.push(node)
+    node.children && node.children.forEach(child => flattenNode(child))
+  }
+
+  tree.forEach(node => flattenNode(node))
+
+  return flattenedTree
 }

@@ -1,182 +1,289 @@
-import type { DockConfig, WidgetConfig } from '@use-composable/definition'
-import { withDefaultObject } from '@use-kit/functions'
+import _ from 'lodash'
 
 import { offsetTransform, sizeTransform } from '.'
 
-type Node = WidgetConfig & {
-  children: Node[]
-  css: any
+export interface ElementConfig<PropsType = any> {
+  id: string
+  parent?: string
+  offset: { x: number; y: number }
+  area: string
+  padding: [number, number, number, number]
+  size: { width: number; height: number }
+  zIndex: number
+  props?: PropsType
 }
 
-export function workspaceTransform(
-  components: (DockConfig | WidgetConfig)[],
-  rect: DOMRect,
-) {
-  const tree = buildTree(components as Node[])
-  traverseTree(tree, rect)
-  return flattenTree(tree)
+export interface ElementPosition<PropsType = any> {
+  id: string
+  x: number
+  y: number
+  width: number
+  height: number
+  zIndex: number
+  padding: [number, number, number, number]
+  props?: PropsType
 }
 
-function buildTree(objects: Node[]): Node[] {
-  const nodesMap = new Map<number | string, Node>(
-    objects.map(node => [node.id, node]),
-  )
-
-  const virtualRoot = {} as Partial<Node>
-
-  objects.forEach((node) => {
-    const parent = nodesMap.get(node.parent) ?? virtualRoot;
-    (parent.children ??= []).push(node)
+export function calculatePosition<PropsType>(
+  element: ElementConfig<PropsType>,
+  parent: ElementPosition<PropsType>,
+): ElementPosition {
+  const size = sizeTransform(element.size, {
+    width: parent.width,
+    height: parent.height,
+  })
+  const offset = offsetTransform(element.offset, {
+    width: parent.width,
+    height: parent.height,
   })
 
-  return virtualRoot.children ?? []
+  const leftX = parent.x + parent.padding[0] + parent.padding[3] + offset.x
+
+  const topY
+    = parent.y + (parent.padding[0] + parent.padding[2]) / 2 + offset.y
+
+  const rightX
+    = parent.x
+    + parent.width
+    - size.width
+    - parent.padding[1]
+    - parent.padding[3]
+    + offset.x
+
+  const bottomY
+    = parent.y
+    + parent.height
+    - size.height
+    + (parent.padding[0] + parent.padding[2]) / 2
+    + offset.y
+
+  const centerX
+    = parent.x
+    + (parent.width - size.width - parent.padding[1] - parent.padding[3]) / 2
+    + offset.x
+
+  const centerY
+    = parent.y
+    + (parent.height - size.height - parent.padding[0] - parent.padding[2]) / 2
+    + offset.y
+
+  switch (element.area) {
+    case 'left': {
+      const x = leftX
+      const y = centerY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'right': {
+      const x = rightX
+      const y = centerY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'top': {
+      const x = centerX
+      const y = topY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'bottom': {
+      const x = centerX
+      const y = bottomY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'center': {
+      const x = centerX
+      const y = centerY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'top-left': {
+      const x = leftX
+      const y = topY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'top-right': {
+      const x = rightX
+      const y = topY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'bottom-left': {
+      const x = leftX
+      const y = bottomY
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+    case 'bottom-right': {
+      const x = rightX
+      const y = bottomY
+
+      const width = size.width
+      const height = size.height
+      return {
+        id: element.id,
+        x,
+        y,
+        width,
+        height,
+        zIndex: parent.zIndex + element.zIndex,
+        padding: element.padding,
+        props: element.props,
+      }
+    }
+  }
+
+  // eslint-disable-next-line no-throw-literal
+  throw '无法处理区域类型'
 }
 
-function setRect(node: Node, domRect: DOMRect): void {
-  let size: { width: number | string; height: number | string } = {
-    width: '',
-    height: '',
+export function calculateLayout<PropsType>(
+  elements: ElementConfig<PropsType>[],
+  container: {
+    padding: [number, number, number, number]
+    size: { width: number; height: number }
+  },
+): ElementPosition<PropsType>[] {
+  const result: { [id: string]: ElementPosition<PropsType> } = {}
+  const elements_ = [...elements]
+
+  const containerElementConfig: ElementPosition<PropsType> = {
+    id: 'workspace',
+    x: 0,
+    y: 0,
+    width: container.size.width,
+    height: container.size.height,
+    zIndex: 0,
+    padding: container.padding,
   }
-  let offset: { x: number; y: number } = { x: 0, y: 0 }
 
-  const zIndex = node?.zIndex ?? 0
-  size = sizeTransform(node?.size as any, domRect)
-  offset = offsetTransform(
-    withDefaultObject(node.offset, { x: 0, y: 0 }) as any,
-    node,
-    domRect,
-  )
-
-  if (domRect.height === 0 || domRect.y === 0) {
-    node.css = {
-      display: 'none',
+  for (const element of elements_) {
+    if (!element.parent) {
+      result[element.id] = calculatePosition<PropsType>(
+        element,
+        containerElementConfig,
+      )
     }
   }
 
-  const defaultPosition = {
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
-  }
+  for (const key in result)
+    _.remove(elements_, element => element.id === key)
 
-  function centerStyle() {
-    return {
-      top: `${(domRect.bottom - domRect.y) / 2 + offset.y}px`,
-      left: `${domRect.width / 2 + offset.x}px`,
-      transform: 'translate(-50%, -50%)',
-      ...defaultPosition,
+  if (_.isEmpty(result))
+    // eslint-disable-next-line no-throw-literal
+    throw '参数错误，无根元素'
+
+  const maxDeep = 100
+  let currentDeep = 0
+
+  while (elements_.length > 0) {
+    if (currentDeep > maxDeep)
+      // eslint-disable-next-line no-throw-literal
+      throw `递归层级超出${maxDeep}`
+
+    const handledElements: string[] = []
+    for (const element of elements_) {
+      const parentPosition = result[element.parent!]
+      if (parentPosition) {
+        result[element.id] = calculatePosition<PropsType>(
+          element,
+          parentPosition,
+        )
+        handledElements.push(element.id)
+      }
+      else {
+        if (!_.find(elements_, el => el.id === element.parent!))
+          // eslint-disable-next-line no-throw-literal
+          throw `节点${element.id}的父节点${element.parent}无效`
+      }
     }
+    for (const key of handledElements)
+      _.remove(elements_, element => element.id === key)
+
+    currentDeep++
   }
 
-  function leftStyle() {
-    return {
-      top: `${domRect.height / 2 + offset.y}px`,
-      left: `${0 + offset.x}px`,
-      transform: 'translate(0, -50%)',
-      ...defaultPosition,
-    }
-  }
-
-  function rightStyle() {
-    return {
-      top: `${domRect.height / 2 + offset.y}px`,
-      left: `${domRect.width + offset.x}px`,
-      transform: 'translate(-100%, -50%)',
-      ...defaultPosition,
-    }
-  }
-
-  function topStyle() {
-    return {
-      top: `${0 + offset.y}px`,
-      left: `${domRect.width / 2 + offset.x}px`,
-      transform: 'translate(-50%, 0)',
-      ...defaultPosition,
-    }
-  }
-
-  function bottomStyle() {
-    return {
-      top: `${domRect.bottom - domRect.y + offset.y}px`,
-      left: `${domRect.width / 2 + offset.x}px`,
-      ...defaultPosition,
-    }
-  }
-
-  function topLeftStyle() {
-    return {
-      top: `${0 + offset.y}px`,
-      left: `${0 + offset.x}px`,
-      ...defaultPosition,
-    }
-  }
-
-  function topRightStyle() {
-    return {
-      top: `${0 + offset.y}px`,
-      left: `${domRect.width + offset.x}px`,
-      ...defaultPosition,
-    }
-  }
-
-  function bottomLeftStyle() {
-    return {
-      top: `${domRect.bottom - domRect.y + offset.y}px`,
-      left: `${0 + offset.x}px`,
-      ...defaultPosition,
-    }
-  }
-
-  function bottomRightStyle() {
-    return {
-      top: `${domRect.bottom - domRect.y + offset.y}px`,
-      left: `${domRect.width + offset.x}px`,
-      ...defaultPosition,
-    }
-  }
-
-  const map = new Map<
-    string,
-    () => {
-      top: string
-      left: string
-      height?: string
-      width?: string
-      transform?: string
-    }
-      >([
-        ['center', centerStyle],
-        ['left', leftStyle],
-        ['right', rightStyle],
-        ['top', topStyle],
-        ['bottom', bottomStyle],
-        ['top-left', topLeftStyle],
-        ['top-right', topRightStyle],
-        ['bottom-left', bottomLeftStyle],
-        ['bottom-right', bottomRightStyle],
-      ])
-
-  const fn = map.get(node.area)
-  fn !== undefined && (node.css = fn())
-}
-
-function traverseTree(tree: Node[], rect: DOMRect): void {
-  tree.forEach((node) => {
-    setRect(node, rect)
-    if (node.children && node.children.length > 0)
-      traverseTree(node.children, rect)
-  })
-}
-
-function flattenTree(tree: Node[]): Node[] {
-  const flattenedTree: Node[] = []
-
-  function flattenNode(node: Node): void {
-    flattenedTree.push(node)
-    node.children && node.children.forEach(child => flattenNode(child))
-  }
-
-  tree.forEach(node => flattenNode(node))
-
-  return flattenedTree
+  return _.values(result)
 }
