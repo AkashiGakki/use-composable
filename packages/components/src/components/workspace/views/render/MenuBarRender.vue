@@ -58,8 +58,6 @@ function handleClickPopMenu() {
 <style scoped>
 .default-menu-render {
   height: 100%;
-  background-color: #123f7b;
-  color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -81,7 +79,7 @@ function handleClickPopMenu() {
 }
 
 .default-menu-render .action-content:hover {
-  background-color: #1c497e;
+  background-color: #888;
   border-radius: 5px;
 }
 </style>

@@ -35,7 +35,7 @@ function leftStyle() {
 function rightStyle() {
   return {
     top: `${domRect.height / 2 + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     width: collapseMap.right ? '0' : `${size.width}px`,
     height: `${size.height}px`,
     transform: 'translate(-50%, -50%)',
@@ -46,7 +46,7 @@ function rightStyle() {
 function topStyle() {
   return {
     top: `${0 + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     transform: 'translate(-50%, 0)',
     zIndex,
   }
@@ -55,7 +55,7 @@ function topStyle() {
 function bottomStyle() {
   return {
     top: `${domRect.bottom - domRect.y + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     transform: 'translate(-50%, -100%)',
     zIndex,
   }

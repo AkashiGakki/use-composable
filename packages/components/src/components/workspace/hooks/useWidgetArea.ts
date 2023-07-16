@@ -4,8 +4,8 @@ import { withDefaultObject } from '@use-kit/functions'
 
 import {
   offsetTransform,
-  parentOffsetTransform,
   sizeTransform,
+  transformWithParent,
 } from '~/components/workspace/lib'
 
 let component: WidgetConfig
@@ -20,14 +20,19 @@ let size: { width: number | string; height: number | string } = {
 }
 let offset: { x: number; y: number } = { x: 0, y: 0 }
 
+let defaultPosition: {
+  width: string
+  height: string
+  zIndex: number
+  transform?: string
+}
+
 function centerStyle() {
   return {
     top: `${(domRect.bottom - domRect.y) / 2 + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
@@ -36,45 +41,37 @@ function leftStyle() {
     top: `${domRect.height / 2 + offset.y}px`,
     left: `${0 + offset.x}px`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
 function rightStyle() {
   return {
     top: `${domRect.height / 2 + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-50%, -50%)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
 function topStyle() {
   return {
     top: `${0 + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     // transform: `translate(-50%, 0)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
 function bottomStyle() {
   return {
     top: `${domRect.bottom - domRect.y + offset.y}px`,
-    left: `${domRect.right / 2 + offset.x}px`,
+    left: `${domRect.width / 2 + offset.x}px`,
     // transform: `translate(-50%, -100%)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
@@ -83,21 +80,17 @@ function topLeftStyle() {
     top: `${0 + offset.y}px`,
     left: `${0 + offset.x}px`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
 function topRightStyle() {
   return {
     top: `${0 + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-100%, 0)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
@@ -107,21 +100,17 @@ function bottomLeftStyle() {
     left: `${0 + offset.x}px`,
     // transform: `translate(0, -100%)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
 function bottomRightStyle() {
   return {
     top: `${domRect.bottom - domRect.y + offset.y}px`,
-    left: `${domRect.right + offset.x}px`,
+    left: `${domRect.width + offset.x}px`,
     // transform: `translate(-100%, -100%)`,
     transform: 'translate(-50%, -50%)',
-    width: `${size.width}px`,
-    height: `${size.height}px`,
-    zIndex,
+    ...defaultPosition,
   }
 }
 
@@ -144,26 +133,33 @@ export const useWidgetArea = (wp: Workspace) => {
     size = sizeTransform(comp?.size as any, domRect)
     offset = withDefaultObject(comp.offset, { x: 0, y: 0 }) as any
 
-    if (parent) {
-      offset = parentOffsetTransform(
-        offset,
-        parent,
-        component,
-        workspace,
-        widgetRect,
-      )
-
-      const parentComp = workspace.value.getComponent(parent)
-      comp.area = parentComp.config.area
-    }
-    else {
-      offset = offsetTransform(offset, component, widgetRect)
-    }
-
     if (rect.height === 0) {
       return {
         display: 'none',
       }
+    }
+
+    defaultPosition = {
+      width: `${size.width}px`,
+      height: `${size.height}px`,
+      zIndex,
+    }
+
+    if (parent) {
+      // git parent widget & dock
+      const parentComponent = workspace.value.getChildren(parent)
+      const mapRect = (workspace.value as any).workspaceView.rect
+
+      const boundRect = parentComponent?.widgetRect
+        ? parentComponent.widgetRect
+        : parentComponent.dockRect
+
+      offset = offsetTransform(offset, component, widgetRect)
+      return transformWithParent(component, boundRect, offset, size, zIndex, mapRect)
+    }
+
+    else {
+      offset = offsetTransform(offset, component, widgetRect)
     }
 
     const map = new Map<

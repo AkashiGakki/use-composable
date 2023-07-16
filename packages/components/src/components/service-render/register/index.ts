@@ -1,3 +1,4 @@
+import { h } from 'vue-demi'
 import type { Component } from 'vue-demi'
 import type { ServiceInvokeConfig } from '@use-composable/definition'
 
@@ -11,12 +12,15 @@ export function serviceRegister(invoker: ServiceInvokeConfig, component: Compone
 }
 
 export function serviceGet(invoker: ServiceInvokeConfig) {
-  return register.get(`${invoker.service}+${invoker.operation}`)
+  return register.get(`${invoker.service}+${invoker.operation}`) as Component
 }
 
 export function serviceRequest(invoker: ServiceInvokeConfig) {
-  // TODO: return invoker service
-  return invoker
+  // TODO: support return service class/function
+  const service = serviceGet(invoker)
+  return h(service, {
+    params: invoker?.params,
+  })
 }
 
 serviceRegister({

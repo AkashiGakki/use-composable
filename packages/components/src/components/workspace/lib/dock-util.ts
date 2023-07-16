@@ -1,40 +1,16 @@
-import type { StyleValue } from 'vue-demi'
-import type { DockConfig } from '@use-composable/definition'
+export function getContentPadding(params: any): [x: number, y: number] {
+  if (!Reflect.has(params, 'content'))
+    return [0, 0]
 
-export const setIconAreaType = (area: string) => {
-  if (area.includes('left'))
-    return 'double-left'
-  else if (area.includes('right'))
-    return 'double-right'
-  return null
+  if (Reflect.has(params?.content ?? {}, 'padding'))
+    return params.content.padding
+
+  return [0, 0]
 }
 
-export const setIconStyle = (dock: DockConfig): StyleValue => {
-  const type = setIconAreaType(dock.area)
-  if (!type)
+export function classInject(list?: string[]): string {
+  if (!list || !list.length)
     return
 
-  const position = type.includes('left') ? 'right' : 'left'
-
-  return {
-    position: 'absolute',
-    textAlign: position,
-    [position]: '-15px',
-    top: 0,
-  }
-}
-
-export const setDockCollapsed = (dock: DockConfig) => {
-  const dom: HTMLElement = document.querySelector(`#${dock.id}`)
-  if (dock.collapsed === undefined)
-    dock.collapsed = false
-
-  dock.collapsed = !dock.collapsed
-  if (dock.tabs === undefined)
-    dock.visible = !dock.visible
-  else
-    dock.tabs.forEach(t => t.active && (t.visible = !t.visible))
-
-  const width = dock.collapsed ? '0' : '320px'
-  dom.style.width = width
+  return list.join(' ')
 }

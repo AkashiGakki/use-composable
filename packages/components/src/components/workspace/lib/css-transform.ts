@@ -1,201 +1,182 @@
-import type { ComputedRef } from 'vue-demi'
-import type {
-  DockConfig,
-  WidgetConfig,
-  Workspace,
-} from '@use-composable/definition'
+import type { DockConfig, WidgetConfig } from '@use-composable/definition'
+import { withDefaultObject } from '@use-kit/functions'
 
-import { isNumber, isString, withPercentCalculate } from '@use-kit/functions'
+// import { offsetTransform, sizeTransform } from '.'
 
-type Content = WidgetConfig | DockConfig
-
-interface TransFormOffset {
-  x: string | number
-  y: string | number
+type Node = WidgetConfig & {
+  children: Node[]
+  css: any
 }
 
-interface TransFormSize {
-  width: string | number
-  height: string | number
+export function workspaceTransform(
+  components: (DockConfig | WidgetConfig)[],
+  rect: DOMRect,
+) {
+  const tree = buildTree(components as Node[])
+  traverseTree(tree, rect)
+  return flattenTree(tree)
 }
 
-export const classInject = (list?: string[]): string => {
-  if (!list || !list.length)
-    return
+function buildTree(objects: Node[]): Node[] {
+  const nodesMap = new Map<number | string, Node>(
+    objects.map(node => [node.id, node]),
+  )
 
-  return list.join(' ')
+  const virtualRoot = {} as Partial<Node>
+
+  objects.forEach((node) => {
+    const parent = nodesMap.get(node.parent) ?? virtualRoot;
+    (parent.children ??= []).push(node)
+  })
+
+  return virtualRoot.children ?? []
 }
 
-const isPercent = (target: string) => {
-  return target.includes('%')
+function setRect(node: Node, domRect: DOMRect): void {
+  let size: { width: number | string; height: number | string } = {
+    width: '',
+    height: '',
+  }
+  let offset: { x: number; y: number } = { x: 0, y: 0 }
+
+  const zIndex = node?.zIndex ?? 0
+  size = sizeTransform(node?.size as any, domRect)
+  offset = offsetTransform(
+    withDefaultObject(node.offset, { x: 0, y: 0 }) as any,
+    node,
+    domRect,
+  )
+
+  if (domRect.height === 0 || domRect.y === 0) {
+    node.css = {
+      display: 'none',
+    }
+  }
+
+  const defaultPosition = {
+    width: `${size.width}px`,
+    height: `${size.height}px`,
+    zIndex,
+  }
+
+  function centerStyle() {
+    return {
+      top: `${(domRect.bottom - domRect.y) / 2 + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, -50%)',
+      ...defaultPosition,
+    }
+  }
+
+  function leftStyle() {
+    return {
+      top: `${domRect.height / 2 + offset.y}px`,
+      left: `${0 + offset.x}px`,
+      transform: 'translate(0, -50%)',
+      ...defaultPosition,
+    }
+  }
+
+  function rightStyle() {
+    return {
+      top: `${domRect.height / 2 + offset.y}px`,
+      left: `${domRect.width + offset.x}px`,
+      transform: 'translate(-100%, -50%)',
+      ...defaultPosition,
+    }
+  }
+
+  function topStyle() {
+    return {
+      top: `${0 + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
+      transform: 'translate(-50%, 0)',
+      ...defaultPosition,
+    }
+  }
+
+  function bottomStyle() {
+    return {
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
+      left: `${domRect.width / 2 + offset.x}px`,
+      ...defaultPosition,
+    }
+  }
+
+  function topLeftStyle() {
+    return {
+      top: `${0 + offset.y}px`,
+      left: `${0 + offset.x}px`,
+      ...defaultPosition,
+    }
+  }
+
+  function topRightStyle() {
+    return {
+      top: `${0 + offset.y}px`,
+      left: `${domRect.width + offset.x}px`,
+      ...defaultPosition,
+    }
+  }
+
+  function bottomLeftStyle() {
+    return {
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
+      left: `${0 + offset.x}px`,
+      ...defaultPosition,
+    }
+  }
+
+  function bottomRightStyle() {
+    return {
+      top: `${domRect.bottom - domRect.y + offset.y}px`,
+      left: `${domRect.width + offset.x}px`,
+      ...defaultPosition,
+    }
+  }
+
+  const map = new Map<
+    string,
+    () => {
+      top: string
+      left: string
+      height?: string
+      width?: string
+      transform?: string
+    }
+      >([
+        ['center', centerStyle],
+        ['left', leftStyle],
+        ['right', rightStyle],
+        ['top', topStyle],
+        ['bottom', bottomStyle],
+        ['top-left', topLeftStyle],
+        ['top-right', topRightStyle],
+        ['bottom-left', bottomLeftStyle],
+        ['bottom-right', bottomRightStyle],
+      ])
+
+  const fn = map.get(node.area)
+  fn !== undefined && (node.css = fn())
 }
 
-export const sizeTransform = (
-  size: TransFormSize = { width: 200, height: 200 },
-  domRect: Partial<DOMRect>,
-) => {
-  const getRealRect = (percent: string, pos: 'width' | 'height' = 'width') => {
-    const pixel = Number(percent.split('%')[0]) / 100
-    return domRect[pos] * pixel
-  }
-
-  if (isString(size.width) || isString(size.height)) {
-    const x = isNaN(Number(size.width))
-      ? getRealRect(size.width as string, 'width')
-      : Number(size.width)
-    const y = isNaN(Number(size.height))
-      ? getRealRect(size.height as string, 'height')
-      : Number(size.height)
-
-    return { width: x, height: y }
-  }
-
-  return { width: Number(size.width), height: Number(size.height) }
+function traverseTree(tree: Node[], rect: DOMRect): void {
+  tree.forEach((node) => {
+    setRect(node, rect)
+    if (node.children && node.children.length > 0)
+      traverseTree(node.children, rect)
+  })
 }
 
-export const offsetTransform = (
-  offset: TransFormOffset,
-  comp: Content,
-  domRect: Partial<DOMRect>,
-) => {
-  const toOffset = (
-    target: number | string,
-    pos: 'width' | 'height' = 'width',
-  ): number => {
-    if (isNumber(target))
-      return target as number
+function flattenTree(tree: Node[]): Node[] {
+  const flattenedTree: Node[] = []
 
-    if (isPercent(target as string)) {
-      const percent = Number((target as string).split('%')[0]) / 100
-      return percent * domRect[pos]
-    }
-
-    return Number(target)
+  function flattenNode(node: Node): void {
+    flattenedTree.push(node)
+    node.children && node.children.forEach(child => flattenNode(child))
   }
 
-  return {
-    x: toOffset(offset.x, 'width'),
-    y: toOffset(offset.y, 'height'),
-  }
-}
+  tree.forEach(node => flattenNode(node))
 
-const areaMap = new Map()
-
-export const parentOffsetTransform = (
-  offset: TransFormOffset,
-  pid: string,
-  comp: Content,
-  workspace: ComputedRef<Workspace>,
-  domRect: Partial<DOMRect>,
-) => {
-  const parent = workspace.value.getComponent(pid)
-  const parentSize = parent.config.size
-  const parentOffset = parent.config.offset
-
-  const halfWidth = (Number(parentSize.width) + Number(domRect.width)) / 2
-  const halfHeight = (Number(parentSize.height) + Number(domRect.height)) / 2
-
-  if (!areaMap.get(comp.id))
-    areaMap.set(comp.id, comp.area)
-
-  const getRealParentOffset = () => {
-    const x = String(parentOffset.x).includes('%')
-      ? withPercentCalculate(parentSize.width, parentOffset.x)
-      : Number(parentOffset.x)
-    const y = String(parentOffset.y).includes('%')
-      ? withPercentCalculate(parentSize.height, parentOffset.y)
-      : Number(parentOffset.y)
-
-    return { x, y }
-  }
-
-  const mergeOffset = (target, source): { x: number; y: number } => {
-    return {
-      x: Number(target.x) + Number(source.x),
-      y: Number(target.y) + Number(source.y),
-    }
-  }
-
-  const compOffset = offsetTransform(offset, comp, domRect)
-  const mOffset = mergeOffset(compOffset, getRealParentOffset())
-
-  const centerOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y,
-    }
-  }
-
-  const topOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y - halfHeight,
-    }
-  }
-
-  const bottomOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x,
-      y: 0 + mOffset.y + halfHeight,
-    }
-  }
-
-  const leftOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y,
-    }
-  }
-
-  const rightOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y,
-    }
-  }
-
-  const topLeftOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y - halfHeight,
-    }
-  }
-
-  const topRightOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y - halfHeight,
-    }
-  }
-
-  const bottomLeftOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x - halfWidth,
-      y: 0 + mOffset.y + halfHeight,
-    }
-  }
-
-  const bottomRightOffsetArea = () => {
-    return {
-      x: 0 + mOffset.x + halfWidth,
-      y: 0 + mOffset.y + halfHeight,
-    }
-  }
-
-  const offsetAreaMap = new Map([
-    ['center', centerOffsetArea],
-    ['top', topOffsetArea],
-    ['bottom', bottomOffsetArea],
-    ['right', rightOffsetArea],
-    ['left', leftOffsetArea],
-    ['top-right', topRightOffsetArea],
-    ['top-left', topLeftOffsetArea],
-    ['bottom-right', bottomRightOffsetArea],
-    ['bottom-left', bottomLeftOffsetArea],
-  ])
-
-  const fn = offsetAreaMap.get(areaMap.get(comp.id))
-  const style: { x: number; y: number } = fn()
-
-  return style
+  return flattenedTree
 }

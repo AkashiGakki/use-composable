@@ -11,7 +11,5 @@
 <style scoped>
 .default-render {
   height: 100%;
-  background-color: #123f7b;
-  color: #ffffff;
 }
 </style>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import type { WidgetConfig, Workspace } from '@use-composable/definition'
-import { inject, ref } from 'vue-demi'
+import { getCurrentInstance, inject, ref } from 'vue-demi'
 import { useElementRect } from '@use-composable/core'
 
 import { ServiceRender } from '@ui/index'
+import { WidgetImpl } from '~/components/workspace/implements'
 import { useWidgetArea } from '~/components/workspace/hooks'
 import { classInject, withDefaultParams, withDefaultRender } from '~/components/workspace/lib'
 
@@ -26,6 +27,12 @@ const params = ref(
   }),
 )
 const render = ref(widget.value.render)
+
+const instance = getCurrentInstance()
+const widgetInstance = ref(new WidgetImpl(instance.proxy))
+
+defineExpose({ widgetInstance })
+// console.log('widget instance', widgetInstance)
 </script>
 
 <template>
@@ -56,7 +63,7 @@ const render = ref(widget.value.render)
 }
 
 .widget-content {
-  /* border: 2px solid yellow; */
+  border: 2px solid yellow;
   position: absolute;
 }
 </style>

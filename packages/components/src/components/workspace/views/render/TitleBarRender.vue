@@ -15,8 +15,6 @@ defineProps<{
 <style scoped>
 .default-title-render {
   height: 100%;
-  background-color: #123f7b;
-  color: #ffffff;
 }
 
 .title {

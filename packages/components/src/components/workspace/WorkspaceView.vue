@@ -41,6 +41,13 @@ const widgets = reactive(props.params.widgets)
 
 workspace.value = new WorkspaceImpl(instance.proxy)
 provide('$workspace', workspace.value)
+
+defineExpose({
+  workspaceInstance: workspace,
+  workspaceRect: rect,
+  docks,
+  widgets,
+})
 </script>
 
 <template>

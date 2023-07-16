@@ -11,20 +11,22 @@ import type {
 
 export class WorkspaceImpl implements Workspace {
   private workspaceView: any
+  private docks: DockConfig[]
+  private widgets: WidgetConfig[]
 
   constructor(workspaceView: any) {
     this.workspaceView = workspaceView
+    this.docks = workspaceView.docks
+    this.widgets = workspaceView.widgets
+    console.log('this', this)
   }
 
-  rect(): DOMRect {
-    return this.workspaceView.rect
-  }
-
-  onRectChange(): rxjs.Observable<DOMRect> {
-    return this.workspaceView.onRectChange()
+  workspaceRect(): DOMRect {
+    return this.workspaceView.workspaceRect
   }
 
   addDock(config: DockConfig): Dock {
+    const dock = this.docks.find((dock: DockConfig) => dock.id === config.id)
     return this.workspaceView.addDock(config)
   }
 
@@ -50,6 +52,13 @@ export class WorkspaceImpl implements Workspace {
 
   getComponent(id: string): Widget | Dock | undefined {
     return this.workspaceView.getComponent(id)
+  }
+
+  getChildren(id: string): any {
+    const children: any[] = this.workspaceView.$children.filter(
+      c => c.widget || c.dock,
+    )
+    return children.find(c => c?.widget?.id === id || c?.dock?.id === id)
   }
 
   setDockCollapsed(id: string): {

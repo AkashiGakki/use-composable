@@ -40,8 +40,6 @@ async function handleClick(menu: WorkspaceAction) {
 <style scoped>
 .default-shortcat-render {
   height: 100%;
-  background-color: #123f7b;
-  color: #ffffff;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;

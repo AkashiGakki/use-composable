@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue-demi'
+import { computed, ref } from 'vue-demi'
 import type { DockConfig } from '@use-composable/definition'
 
 import { ServiceRender } from '@ui/index'
@@ -9,12 +9,31 @@ const props = defineProps<{
   dock: DockConfig
 }>()
 
-const tab = ref(props.dock.tabs[0])
+const tabs = ref(props.dock.tabs)
+const currentTab = ref(props.dock.tabs[0])
 
 const handleActiveTab = (id: string) => {
   const t = props.dock.tabs.find(tab => tab.id === id)
-  tab.value = t
+  currentTab.value = t
 }
+
+const serviceStyle = computed(() => {
+  return (id: string) => {
+    if (id === currentTab.value.id) {
+      return {
+        'z-index': 1,
+        'display': 'unset',
+      }
+    }
+
+    else {
+      return {
+        'z-index': -1,
+        'display': 'none',
+      }
+    }
+  }
+})
 </script>
 
 <template>
@@ -22,13 +41,17 @@ const handleActiveTab = (id: string) => {
     <div v-show="dock?.visible" class="dock-content">
       <TabsView :dock="dock" @active-tab="handleActiveTab" />
 
-      <ServiceRender
-        :service="tab.render.service"
-        :operation="tab.render.operation"
-        :params="tab.params"
-        options="null"
-        :visible="tab.visible"
-      />
+      <div v-for="tab of tabs" :key="tab.id" class="service-wrapper">
+        <ServiceRender
+          class="render-content"
+          :style="serviceStyle(tab.id)"
+          :service="tab.render.service"
+          :operation="tab.render.operation"
+          :params="tab.params"
+          options="null"
+          :visible="tab.visible"
+        />
+      </div>
     </div>
   </section>
 </template>
@@ -42,5 +65,15 @@ const handleActiveTab = (id: string) => {
 
 .dock-content {
   height: calc(100% - 50px);
+}
+
+.service-wrapper {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.render-content {
+  position: absolute;
 }
 </style>
