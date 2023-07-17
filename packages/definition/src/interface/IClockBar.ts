@@ -1,3 +1,3 @@
-import type { ILayout } from './ILayout'
+import type { ILayoutConfig } from './ILayout'
 
-export type IClockBarConfig = ILayout
+export type IClockBarConfig = ILayoutConfig

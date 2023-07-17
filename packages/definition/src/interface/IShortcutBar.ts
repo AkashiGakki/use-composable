@@ -1,8 +1,8 @@
 import type { ServiceInvokeConfig } from '../interface'
 import type { WorkspaceAction } from '../types/WorkspaceAction'
-import type { ILayout } from './ILayout'
+import type { ILayoutConfig } from './ILayout'
 
-export interface IShortcutBarConfig extends ILayout {
+export interface IShortcutBarConfig extends Omit<ILayoutConfig, 'actions'> {
   actions?: ShortcutBarAction[]
 }
 

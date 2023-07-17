@@ -1,5 +1,15 @@
+import type { ServiceInvokeConfig } from '../interface'
 import type { WorkspaceArea } from '../types/WorkspaceArea'
-import type { Action } from './IWindow'
+
+export interface Action {
+  id: string
+
+  title: string
+
+  icon: string
+
+  request: ServiceInvokeConfig | (() => void)
+}
 
 export interface ILayout {
   config: ILayoutConfig

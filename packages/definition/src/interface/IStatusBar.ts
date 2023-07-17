@@ -1,3 +1,3 @@
-import type { ILayout } from './ILayout'
+import type { ILayoutConfig } from './ILayout'
 
-export type IStatusBarConfig = ILayout
+export type IStatusBarConfig = ILayoutConfig

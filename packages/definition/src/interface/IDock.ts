@@ -14,7 +14,7 @@ export interface IDock extends ILayout {
   getAllTab(): IDockTab[]
 }
 
-export interface IDockTab extends ILayout {
+export interface IDockTab {
   config: IDockTabConfig
 
   getVisible(): boolean
@@ -27,17 +27,26 @@ export interface IDockConfig extends ILayoutConfig {
 
   tabs?: IDockTabConfig[]
 
-  // dock是否可折叠
   collapsible?: boolean
 
-  // dock是否折叠
   collapsed?: boolean
 
-  // dock是否可移动
   movable?: boolean
 }
 
-export interface IDockTabConfig extends IDockConfig {
+export interface IDockTabConfig {
+  id: string
+
+  title: string
+
+  render: {
+    service: string
+
+    operation: string
+  }
+
+  params?: { [key: string]: any }
+
   active?: boolean
 
   visible?: boolean

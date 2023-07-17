@@ -1,5 +1,5 @@
-import type { ILayout } from './ILayout'
+import type { ILayoutConfig } from './ILayout'
 
-export interface ITitleBarConfig extends ILayout {
+export interface ITitleBarConfig extends ILayoutConfig {
   title: string
 }
