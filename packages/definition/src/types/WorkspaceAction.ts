@@ -1,4 +1,4 @@
-import type { ServiceInvokeConfig } from './Service'
+import type { ServiceInvokeConfig } from '../interface/IService'
 
 export interface WorkspaceAction {
   id: string
@@ -7,5 +7,5 @@ export interface WorkspaceAction {
 
   icon: string
 
-  request: ServiceInvokeConfig | (() => void)
+  request: ServiceInvokeConfig | ((config?: Record<string, any>) => void)
 }
