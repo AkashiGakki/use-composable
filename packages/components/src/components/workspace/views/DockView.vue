@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { DockConfig, Workspace } from '@use-composable/definition'
+import type { IDockConfig, Workspace } from '@use-composable/definition'
 import { getCurrentInstance, inject, ref } from 'vue-demi'
 import { useElementRect } from '@use-composable/core'
 
@@ -13,7 +13,7 @@ import {
 import { useDockArea } from '~/components/workspace/hooks'
 
 const props = defineProps<{
-  dock: DockConfig
+  dock: IDockConfig
   rect: DOMRect
   workspace: Workspace
 }>()

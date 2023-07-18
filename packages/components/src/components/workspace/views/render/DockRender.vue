@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, inject, reactive, ref } from 'vue-demi'
+import { computed, inject, reactive } from 'vue-demi'
 import { isArray } from '@use-kit/functions'
 import type { DockConfig, Workspace } from '@use-composable/definition'
 
@@ -14,18 +14,10 @@ const $workspace = inject<Workspace>('$workspace')
 
 const dock: DockConfig = reactive(props.params.dock ?? {})
 const isRenderTabs = computed(() => dock?.tabs && isArray(dock?.tabs))
-
-const isShowDock = ref(true)
-$workspace
-  .onCollapseChange()
-  .subscribe((ev: { id: string; status: boolean }) => {
-    if (ev.id === dock.id)
-      isShowDock.value = !ev.status
-  })
 </script>
 
 <template>
-  <div v-show="isShowDock" class="default-dock-render">
+  <div class="default-dock-render">
     <!-- tags 下挂载服务 -->
     <DockTabRenderer v-if="isRenderTabs" :dock="dock" />
 

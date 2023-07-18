@@ -6,8 +6,8 @@ import {
   ref,
 } from 'vue-demi'
 import type {
-  DockConfig,
-  WidgetConfig,
+  IDockConfig,
+  IWidgetConfig,
   Workspace,
 } from '@use-composable/definition'
 import { useElementRect, useResizeObserver } from '@use-composable/core'
@@ -19,8 +19,8 @@ import DockView from './views/DockView.vue'
 
 const props = defineProps<{
   params: {
-    docks: DockConfig[]
-    widgets: WidgetConfig[]
+    docks: IDockConfig[]
+    widgets: IWidgetConfig[]
   }
 }>()
 

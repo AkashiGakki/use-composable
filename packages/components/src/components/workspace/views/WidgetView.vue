@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { WidgetConfig, Workspace } from '@use-composable/definition'
+import type { IWidgetConfig, Workspace } from '@use-composable/definition'
 import { getCurrentInstance, inject, ref } from 'vue-demi'
 import { useElementRect } from '@use-composable/core'
 
@@ -9,7 +9,7 @@ import { useWidgetArea } from '~/components/workspace/hooks'
 import { classInject, withDefaultParams, withDefaultRender } from '~/components/workspace/lib'
 
 const props = defineProps<{
-  widget: WidgetConfig
+  widget: IWidgetConfig
   rect: DOMRect
   workspace: Workspace
 }>()

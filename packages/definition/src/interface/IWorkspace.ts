@@ -1,4 +1,3 @@
-import type { Observable } from 'rxjs'
 import type { IDock, IDockConfig } from '../interface/IDock'
 import type { IWidget, IWidgetConfig } from '../interface/IWidget'
 import type { IWindowConfig } from '../interface/IWindow'
@@ -66,6 +65,4 @@ export interface Workspace {
     collapsed: boolean
     area: Extract<WorkspaceArea, 'right' | 'left' | 'top' | 'bottom'>
   }
-
-  onCollapseChange(): Observable<{ id: string; status: boolean }>
 }

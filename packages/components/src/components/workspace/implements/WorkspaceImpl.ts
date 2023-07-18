@@ -1,18 +1,16 @@
-import type * as rxjs from 'rxjs'
-
 import type {
-  Dock,
-  DockConfig,
-  Widget,
-  WidgetConfig,
+  IDock,
+  IDockConfig,
+  IWidget,
+  IWidgetConfig,
   Workspace,
   WorkspaceArea,
 } from '@use-composable/definition'
 
 export class WorkspaceImpl implements Workspace {
   private workspaceView: any
-  private docks: DockConfig[]
-  private widgets: WidgetConfig[]
+  private docks: IDockConfig[]
+  private widgets: IWidgetConfig[]
 
   constructor(workspaceView: any) {
     this.workspaceView = workspaceView
@@ -25,32 +23,32 @@ export class WorkspaceImpl implements Workspace {
     return this.workspaceView.workspaceRect
   }
 
-  addDock(config: DockConfig): Dock {
-    const dock = this.docks.find((dock: DockConfig) => dock.id === config.id)
+  addDock(config: IDockConfig): IDock {
+    const dock = this.docks.find((dock: IDockConfig) => dock.id === config.id)
     return this.workspaceView.addDock(config)
   }
 
-  getDock(id: string): Dock {
+  getDock(id: string): IDock {
     return this.workspaceView.getDock(id)
   }
 
-  getAllDock(): Dock[] {
+  getAllDock(): IDock[] {
     return this.workspaceView.getAllDock()
   }
 
-  addWidget(config: WidgetConfig): Widget {
+  addWidget(config: IWidgetConfig): IWidget {
     return this.workspaceView.addWidget(config)
   }
 
-  getWidget(id: string): Widget {
+  getWidget(id: string): IWidget {
     return this.workspaceView.getWidget(id)
   }
 
-  getAllWidget(): Widget[] {
+  getAllWidget(): IWidget[] {
     return this.workspaceView.getAllWidget()
   }
 
-  getComponent(id: string): Widget | Dock | undefined {
+  getComponent(id: string): IWidget | IDock | undefined {
     return this.workspaceView.getComponent(id)
   }
 
@@ -66,9 +64,5 @@ export class WorkspaceImpl implements Workspace {
     area: Extract<WorkspaceArea, 'right' | 'left' | 'top' | 'bottom'>
   } {
     return this.workspaceView.setDockCollapsed(id)
-  }
-
-  onCollapseChange(): rxjs.Observable<{ id: string; status: boolean }> {
-    return this.workspaceView.onCollapseChange()
   }
 }
