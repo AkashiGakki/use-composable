@@ -1,7 +1,7 @@
 import type {
-  DockConfig,
-  WidgetConfig,
-  WindowConfig,
+  IDockConfig,
+  IWidgetConfig,
+  IWindowConfig,
 } from '@use-composable/definition'
 import { withDefaultObject } from '@use-kit/functions'
 
@@ -59,7 +59,7 @@ function rangeHitId(id: string) {
 }
 
 export function withDefaultRender<
-  T extends WidgetConfig | DockConfig | WindowConfig,
+  T extends IWidgetConfig | IDockConfig | IWindowConfig,
 >(comp: T): T {
   const map = {
     'workspace': defaultRender,
@@ -83,7 +83,7 @@ export function withDefaultRender<
 }
 
 export function withDefaultParams<
-  T extends WidgetConfig | DockConfig | WindowConfig,
+  T extends IWidgetConfig | IDockConfig | IWindowConfig,
 >(comp: T): T {
   const map = {
     'workspace': {},

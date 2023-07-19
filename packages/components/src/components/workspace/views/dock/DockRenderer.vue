@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { DockConfig } from '@use-composable/definition'
+import type { IDockConfig } from '@use-composable/definition'
 
 import { ServiceRender } from '@ui/index'
 
 defineProps<{
-  dock: DockConfig
+  dock: IDockConfig
 }>()
 </script>
 

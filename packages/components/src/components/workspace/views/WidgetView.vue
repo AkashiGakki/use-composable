@@ -1,22 +1,18 @@
 <script setup lang="ts">
 import type { IWidgetConfig, Workspace } from '@use-composable/definition'
 import { getCurrentInstance, inject, ref } from 'vue-demi'
-import { useElementRect } from '@use-composable/core'
 
 import { ServiceRender } from '@ui/index'
 import { WidgetImpl } from '~/components/workspace/implements'
-import { useWidgetArea } from '~/components/workspace/hooks'
+
 import { classInject, withDefaultParams, withDefaultRender } from '~/components/workspace/lib'
 
 const props = defineProps<{
   widget: IWidgetConfig
-  rect: DOMRect
-  workspace: Workspace
 }>()
 
+const widgetRef = ref(null)
 const $workspace = inject<Workspace>('$workspace')
-const { cssInject } = useWidgetArea($workspace)
-const { domRef, domRect } = useElementRect()
 
 const visible = ref(props.widget.visible ?? true)
 const widget = ref(withDefaultRender(props.widget))
@@ -39,14 +35,13 @@ defineExpose({ widgetInstance })
   <div class="widget-view">
     <div
       v-show="visible"
-      ref="domRef"
+      ref="widgetRef"
       class="widget-content"
-      :style="cssInject(widget, props.rect, domRect)"
     >
       <ServiceRender
         :service="render.service"
         :operation="render.operation"
-        :params="{ ...params, domRect }"
+        :params="{ ...params }"
         :visible="widget?.visible"
         options="null"
         class="widget-service"
@@ -60,10 +55,14 @@ defineExpose({ widgetInstance })
 <style scoped>
 .widget-view {
   position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .widget-content {
   border: 2px solid yellow;
   position: absolute;
+  width: 100%;
+  height: 100%;
 }
 </style>

@@ -1,16 +1,16 @@
 import type {
-  Dock,
-  DockConfig,
-  DockTab,
-  DockTabConfig,
+  IDock,
+  IDockConfig,
+  IDockTab,
+  IDockTabConfig,
 } from '@use-composable/definition'
 
-export class DockTabImpl implements DockTab {
-  config: DockTabConfig
+export class DockTabImpl implements IDockTab {
+  config: IDockTabConfig
 
   private workspaceView: any
 
-  constructor(workspaceView: any, config: DockTabConfig) {
+  constructor(workspaceView: any, config: IDockTabConfig) {
     this.workspaceView = workspaceView
     this.config = config
   }
@@ -24,12 +24,12 @@ export class DockTabImpl implements DockTab {
   }
 }
 
-export class DockImpl implements Dock {
-  config: DockConfig
+export class DockImpl implements IDock {
+  config: IDockConfig
 
   private workspaceView: any
 
-  constructor(workspaceView: any, config: DockConfig) {
+  constructor(workspaceView: any, config: IDockConfig) {
     this.workspaceView = workspaceView
     this.config = config
   }
@@ -42,15 +42,15 @@ export class DockImpl implements Dock {
     this.config.visible = visible
   }
 
-  addTab(config: DockTabConfig): DockTab {
+  addTab(config: IDockTabConfig): IDockTab {
     return this.workspaceView.addTab(this.config.id, config)
   }
 
-  getTab(tabId: string): DockTab | undefined {
+  getTab(tabId: string): IDockTab | undefined {
     return this.workspaceView.getTab(this.config.id)
   }
 
-  getAllTab(): DockTab[] {
+  getAllTab(): IDockTab[] {
     return this.workspaceView.getAllTab()
   }
 

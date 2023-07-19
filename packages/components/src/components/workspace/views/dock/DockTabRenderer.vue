@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue-demi'
-import type { DockConfig } from '@use-composable/definition'
+import type { IDockConfig } from '@use-composable/definition'
 
 import { ServiceRender } from '@ui/index'
 import TabsView from './tab/TabsView.vue'
 
 const props = defineProps<{
-  dock: DockConfig
+  dock: IDockConfig
 }>()
 
 const tabs = ref(props.dock.tabs)
