@@ -1,73 +1,22 @@
 <script setup lang="ts">
+import { defaultTreeData } from './defaultConfigTreeData'
+import RenderTree from './RenderTree.vue'
+
+interface Props {
+  nodeData: Record<string, any>[]
+}
+
+withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
 </script>
 
 <template>
   <div class="tree">
-    <details>
-      <summary>
-        <span class="tree-item">项目1</span>
-      </summary>
-      <details>
-        <summary>
-          <span class="tree-item">文件夹0</span>
-        </summary>
-      </details>
-      <details>
-        <summary>
-          <span class="tree-item">文件夹1-1</span>
-        </summary>
-        <details>
-          <summary>
-            <span class="tree-item">文件夹1-1-2</span>
-          </summary>
-        </details>
-        <details>
-          <summary>
-            <span class="tree-item">文件夹1-1-3</span>
-          </summary>
-          <details>
-            <summary>
-              <span class="tree-item">文件夹1-1-3-1</span>
-            </summary>
-          </details>
-          <details>
-            <summary>
-              <span class="tree-item">文件夹1-1-3-2</span>
-            </summary>
-          </details>
-        </details>
-        <details>
-          <summary>
-            <span class="tree-item">文件夹1-1-4</span>
-          </summary>
-        </details>
-      </details>
-      <details>
-        <summary>
-          <span class="tree-item">文件夹1-2</span>
-        </summary>
-        <details>
-          <summary>
-            <span class="tree-item">文件夹1-2-1</span>
-          </summary>
-        </details>
-      </details>
-      <details>
-        <summary>
-          <span class="tree-item">文件夹1-3</span>
-        </summary>
-      </details>
-      <details>
-        <summary>
-          <span class="tree-item">文件夹1-4</span>
-        </summary>
-      </details>
-    </details>
+    <RenderTree :tree-data="nodeData" />
   </div>
 </template>
 
 <style scoped>
-details{
+.tree details{
   padding-left: 10px
 }
 
