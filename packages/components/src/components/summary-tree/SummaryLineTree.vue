@@ -1,127 +1,17 @@
-<script></script>
+<script setup lang="ts">
+import { defaultTreeData } from './defaultConfigTreeData'
+import RenderTree from './RenderTree.vue'
+
+interface Props {
+  nodeData: Record<string, any>[]
+}
+
+withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
+</script>
 
 <template>
   <div id="tree" class="tree">
-    <details>
-      <summary class="tree-item">
-        项目1
-      </summary>
-      <details>
-        <summary class="tree-item">
-          文件夹
-        </summary>
-        <details>
-          <summary class="tree-item">
-            sdd
-          </summary>
-        </details>
-      </details>
-      <details>
-        <summary class="tree-item">
-          chrome test
-        </summary>
-      </details>
-    </details>
-    <details>
-      <summary class="tree-item">
-        项目2
-      </summary>
-      <details>
-        <summary class="tree-item">
-          文件夹2-1
-        </summary>
-        <details>
-          <summary class="tree-item">
-            文件夹2-1-1
-          </summary>
-          <details>
-            <summary class="tree-item">
-              文件夹2-1-1-1
-            </summary>
-            <details>
-              <summary class="tree-item">
-                文件夹2-1-1-1-1
-              </summary>
-              <details>
-                <summary class="tree-item">
-                  文件夹2-1-1-1-1-1
-                </summary>
-              </details>
-            </details>
-          </details>
-        </details>
-      </details>
-    </details>
-    <details>
-      <summary class="tree-item">
-        文件夹1
-      </summary>
-      <details>
-        <summary class="tree-item">
-          文件夹
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          文件夹2
-        </summary>
-      </details>
-    </details>
-    <details>
-      <summary class="tree-item">
-        项目3
-      </summary>
-      <details>
-        <summary class="tree-item">
-          文件夹1
-        </summary>
-        <details>
-          <summary class="tree-item">
-            1
-          </summary>
-          <details>
-            <summary class="tree-item">
-              文件夹2
-            </summary>
-          </details>
-        </details>
-      </details>
-      <details>
-        <summary class="tree-item">
-          文件夹
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          文件夹
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          文件夹
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          文件夹的副本
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          点点点
-        </summary>
-      </details>
-      <details>
-        <summary class="tree-item">
-          hewei
-        </summary>
-        <details>
-          <summary class="tree-item">
-            hewei02
-          </summary>
-        </details>
-      </details>
-    </details>
+    <RenderTree :tree-data="nodeData" />
   </div>
 </template>
 
@@ -132,7 +22,7 @@
   padding: 4px 0;
   position: relative;
 }
-.tree summary {
+.tree :deep(summary) {
   outline: 0;
   padding-left: 30px;
   list-style: none;
@@ -140,26 +30,26 @@
     0px 50%/20px 1px no-repeat;
   /* background: linear-gradient(#999,#999) 0px 50%/20px 1px no-repeat; */
 }
-.tree details:last-child {
+.tree :deep(details:last-child) {
   background-size: 1px 23px;
 }
-.tree > details:not(:last-child) > details:last-child {
+.tree > :deep(details:not(:last-child) > details:last-child) {
   background-size: 1px 100%;
 }
-.tree details {
+.tree :deep(details) {
   padding-left: 40px;
   background: repeating-linear-gradient(#999 0 1px, transparent 0px 2px) 40px
     0px/1px 100% no-repeat;
   /* background: linear-gradient(#999, #999) 40px 0px/1px 100% no-repeat; */
 }
-.tree > details {
+.tree > :deep(details) {
   background: none;
   padding-left: 0;
 }
-.tree > details > summary {
+.tree > :deep(details > summary) {
   background: none;
 }
-.tree summary {
+.tree :deep(summary) {
   display: flex;
   align-items: center;
   height: 46px;
@@ -168,7 +58,7 @@
   color: rgba(0, 0, 0, 0.85);
   cursor: default;
 }
-.tree summary::after {
+.tree :deep(summary::after) {
   content: "";
   position: absolute;
   left: 10px;
@@ -180,10 +70,10 @@
   opacity: 0;
   transition: 0.2s;
 }
-.tree summary:hover::after {
+.tree :deep(summary:hover::after) {
   opacity: 1;
 }
-.tree summary:not(:only-child)::before {
+.tree :deep(summary:not(:only-child)::before) {
   content: "";
   width: 14px;
   height: 14px;
@@ -193,7 +83,7 @@
   background: linear-gradient(#999, #999) 50%/1px 10px no-repeat,
     linear-gradient(#999, #999) 50%/10px 1px no-repeat;
 }
-.tree details[open] > summary::before {
+.tree :deep(details[open] > summary::before) {
   background: linear-gradient(#999, #999) 50%/10px 1px no-repeat;
 }
 </style>
