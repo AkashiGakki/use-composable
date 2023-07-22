@@ -22,33 +22,38 @@ withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
   padding: 4px 0;
   position: relative;
 }
+
 .tree :deep(summary) {
   outline: 0;
   padding-left: 30px;
   list-style: none;
-  background: repeating-linear-gradient(90deg, #999 0 1px, transparent 0px 2px)
-    0px 50%/20px 1px no-repeat;
+  background: repeating-linear-gradient(90deg, #999 0 1px, transparent 0px 2px) 0px 50%/20px 1px no-repeat;
   /* background: linear-gradient(#999,#999) 0px 50%/20px 1px no-repeat; */
 }
+
 .tree :deep(details:last-child) {
   background-size: 1px 23px;
 }
+
 .tree > :deep(details:not(:last-child) > details:last-child) {
   background-size: 1px 100%;
 }
+
 .tree :deep(details) {
   padding-left: 40px;
-  background: repeating-linear-gradient(#999 0 1px, transparent 0px 2px) 40px
-    0px/1px 100% no-repeat;
+  background: repeating-linear-gradient(#999 0 1px, transparent 0px 2px) 40px 0px/1px 100% no-repeat;
   /* background: linear-gradient(#999, #999) 40px 0px/1px 100% no-repeat; */
 }
+
 .tree > :deep(details) {
   background: none;
   padding-left: 0;
 }
+
 .tree > :deep(details > summary) {
   background: none;
 }
+
 .tree :deep(summary) {
   display: flex;
   align-items: center;
@@ -58,6 +63,7 @@ withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
   color: rgba(0, 0, 0, 0.85);
   cursor: default;
 }
+
 .tree :deep(summary::after) {
   content: "";
   position: absolute;
@@ -70,9 +76,11 @@ withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
   opacity: 0;
   transition: 0.2s;
 }
+
 .tree :deep(summary:hover::after) {
   opacity: 1;
 }
+
 .tree :deep(summary:not(:only-child)::before) {
   content: "";
   width: 14px;
@@ -83,6 +91,7 @@ withDefaults(defineProps<Props>(), { nodeData: () => defaultTreeData })
   background: linear-gradient(#999, #999) 50%/1px 10px no-repeat,
     linear-gradient(#999, #999) 50%/10px 1px no-repeat;
 }
+
 .tree :deep(details[open] > summary::before) {
   background: linear-gradient(#999, #999) 50%/10px 1px no-repeat;
 }
