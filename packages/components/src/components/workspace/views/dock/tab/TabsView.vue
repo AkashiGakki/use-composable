@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import { computed } from 'vue-demi'
 import type {
-  DockConfig,
-  DockTabConfig,
+  IDockConfig,
+  IDockTabConfig,
 
 } from '@use-composable/definition'
 
 import { changeTranslateX } from '~/components/workspace/lib'
 
 const props = defineProps<{
-  dock: DockConfig
+  dock: IDockConfig
 }>()
 const emit = defineEmits(['active-tab'])
 
-const activeStyle = (tab: DockTabConfig) => {
+const activeStyle = (tab: IDockTabConfig) => {
   if (!tab.active)
     return
 
@@ -23,7 +23,7 @@ const activeStyle = (tab: DockTabConfig) => {
   }
 }
 
-const activeTabChange = (tab: DockTabConfig) => {
+const activeTabChange = (tab: IDockTabConfig) => {
   const active = props.dock.tabs.find(t => t.active)
 
   const isExist = tab.id === active.id
@@ -35,7 +35,7 @@ const activeTabChange = (tab: DockTabConfig) => {
   emit('active-tab', tab.id)
 }
 
-const prevTabClick = (el, dock: DockConfig) => {
+const prevTabClick = (el, dock: IDockConfig) => {
   const dom: HTMLElement = document.querySelector(`#${dock.id}`)
   const content: HTMLElement = dom.querySelector('.title-content')
 
@@ -46,7 +46,7 @@ const prevTabClick = (el, dock: DockConfig) => {
   content.style.transform = `translate3d(${x}px, 0px, 0px)`
 }
 
-const nextTabClick = (el, dock: DockConfig) => {
+const nextTabClick = (el, dock: IDockConfig) => {
   const dom: HTMLElement = document.querySelector(`#${dock.id}`)
   const content: HTMLElement = dom.querySelector('.title-content')
 
@@ -58,7 +58,7 @@ const nextTabClick = (el, dock: DockConfig) => {
 }
 
 const slotStyle = computed(() => {
-  return (tab: DockTabConfig) => {
+  return (tab: IDockTabConfig) => {
     if (tab.active)
       return { '--slot-index': 1 }
 

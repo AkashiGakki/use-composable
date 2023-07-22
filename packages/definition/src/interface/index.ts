@@ -1,0 +1,13 @@
+export * from './IDock'
+export * from './IWidget'
+export * from './IWindow'
+export * from './ILayout'
+export * from './IService'
+export * from './IWorkspace'
+
+export * from './IClockBar'
+export * from './IMenuBar'
+export * from './IShortcutBar'
+export * from './IStatusBar'
+export * from './ITitleBar'
+export * from './IToolBar'

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { reactive } from 'vue'
 
-import type { DockConfig, WidgetConfig } from '@use-composable/definition'
+import type { IDockConfig, IWidgetConfig } from '@use-composable/definition'
 import { WorkspaceArea } from '@use-composable/definition'
 import { Dialog, ServiceRender, serviceRequest } from '@use-composable/components'
 
@@ -17,8 +17,8 @@ import { Dialog, ServiceRender, serviceRequest } from '@use-composable/component
 //   ],
 // }]
 
-const docks = reactive<DockConfig[]>([])
-const widgets = reactive<WidgetConfig[]>([
+const docks = reactive<IDockConfig[]>([])
+const widgets = reactive<IWidgetConfig[]>([
   {
     id: 'w-1',
     title: 'w1',

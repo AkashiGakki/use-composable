@@ -1,15 +1,15 @@
-import type { DockConfig, WidgetConfig } from '@use-composable/definition'
-import { withDefaultObject } from '@use-kit/functions'
+import type { IDockConfig, IWidgetConfig } from '@use-composable/definition'
+import { isNumber, isPercent, withDefaultObject } from '@use-kit/functions'
 
-// import { offsetTransform, sizeTransform } from '.'
+import { sizeTransform } from '.'
 
-type Node = WidgetConfig & {
+type Node = IWidgetConfig & {
   children: Node[]
   css: any
 }
 
 export function workspaceTransform(
-  components: (DockConfig | WidgetConfig)[],
+  components: (IDockConfig | IWidgetConfig)[],
   rect: DOMRect,
 ) {
   const tree = buildTree(components as Node[])
@@ -32,6 +32,32 @@ function buildTree(objects: Node[]): Node[] {
   return virtualRoot.children ?? []
 }
 
+export const offsetTransform = (
+  offset: { x: string | number
+    y: string | number },
+  domRect: Partial<DOMRect>,
+) => {
+  const toOffset = (
+    target: number | string,
+    pos: 'width' | 'height' = 'width',
+  ): number => {
+    if (isNumber(target))
+      return target as number
+
+    if (isPercent(target as string)) {
+      const percent = Number((target as string).split('%')[0]) / 100
+      return percent * domRect[pos]
+    }
+
+    return Number(target)
+  }
+
+  return {
+    x: toOffset(offset.x, 'width'),
+    y: toOffset(offset.y, 'height'),
+  }
+}
+
 function setRect(node: Node, domRect: DOMRect): void {
   let size: { width: number | string; height: number | string } = {
     width: '',
@@ -43,7 +69,6 @@ function setRect(node: Node, domRect: DOMRect): void {
   size = sizeTransform(node?.size as any, domRect)
   offset = offsetTransform(
     withDefaultObject(node.offset, { x: 0, y: 0 }) as any,
-    node,
     domRect,
   )
 

@@ -6,7 +6,7 @@ export enum WorkspaceElement {
   MenuBar = 'menu-bar',
   ToolBar = 'tool-bar',
   PlayerBar = 'player-bar',
-  QuickAccessBar = 'quick-access-bar',
+  ClockBar = 'clock-bar',
   LeftDock = 'left-dock',
   RightDock = 'right-dock',
   TopDock = 'top-dock',

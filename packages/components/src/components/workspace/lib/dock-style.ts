@@ -1,5 +1,5 @@
 import type { StyleValue } from 'vue-demi'
-import type { DockConfig } from '@use-composable/definition'
+import type { IDockConfig } from '@use-composable/definition'
 
 export const setIconClass = (area: string) => {
   if (area.includes('left'))
@@ -9,7 +9,7 @@ export const setIconClass = (area: string) => {
   return null
 }
 
-export const setIconAreaType = (dock: DockConfig) => {
+export const setIconAreaType = (dock: IDockConfig) => {
   const status = dock.collapsed ?? false
 
   if (dock.area.includes('left')) {
@@ -26,7 +26,7 @@ export const setIconAreaType = (dock: DockConfig) => {
   return null
 }
 
-export const setIconStyle = (dock: DockConfig): StyleValue => {
+export const setIconStyle = (dock: IDockConfig): StyleValue => {
   const type = dock.area.includes('left') ? 'left' : 'right'
   if (!type)
     return

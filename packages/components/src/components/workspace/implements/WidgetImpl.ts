@@ -1,7 +1,7 @@
-import type { Widget, WidgetConfig } from '@use-composable/definition'
+import type { IWidget, IWidgetConfig } from '@use-composable/definition'
 
-export class WidgetImpl implements Widget {
-  config: WidgetConfig
+export class WidgetImpl implements IWidget {
+  config: IWidgetConfig
 
   private widgetView: any
 
