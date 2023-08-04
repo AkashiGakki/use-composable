@@ -6,11 +6,10 @@ import { useResizeObserver } from '.'
 interface Options {
   sampleInterval?: number
   sampleSize?: number
-  label?: string
 }
 
 const defaultOptions = {
-  sampleInterval: 100,
+  sampleInterval: 10,
   sampleSize: 3,
 }
 
@@ -20,9 +19,7 @@ export const useElementSize = (
 ): { domRect: Ref<{ width: number; height: number }> } => {
   const defaultRect = { width: 0, height: 0 }
   const rect = ref<{ width: number; height: number }>(defaultRect)
-  const sampleSize = options?.sampleSize ?? defaultOptions.sampleSize
-  const sampleInterval
-    = options?.sampleInterval ?? defaultOptions.sampleInterval
+  const { sampleSize, sampleInterval } = { ...defaultOptions, ...options }
 
   let observer: MutationObserver | undefined
   let timeoutHandler: any

@@ -86,6 +86,15 @@ watch([rect, recalculate], (watchValue) => {
   // console.log("element position", elementsPosition.value);
 })
 
+watch(
+  () => props.params,
+  () => {
+    // the configuration is updated and recalculated it
+    recalculate.value = !recalculate.value
+  },
+  { deep: true },
+)
+
 function getComponent(id: string): IDockConfig | IWidgetConfig | undefined {
   const component = components.value.find(d => d.id === id)
   if (component)
