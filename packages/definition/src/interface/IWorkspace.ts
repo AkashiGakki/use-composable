@@ -6,7 +6,6 @@ import type { IMenuBarConfig } from '../interface/IMenuBar'
 import type { IShortcutBarConfig } from '../interface/IShortcutBar'
 import type { IStatusBarConfig } from '../interface/IStatusBar'
 import type { IToolBarConfig } from '../interface/IToolBar'
-import type { IClockBarConfig } from '../interface/IClockBar'
 import type { WorkspaceArea } from '../types/WorkspaceArea'
 
 export interface WorkspaceCreateConfig {
@@ -34,8 +33,6 @@ export interface WorkspaceCreateConfig {
   statusBar?: IStatusBarConfig
 
   toolBars?: IToolBarConfig[]
-
-  clockBar?: IClockBarConfig
 }
 
 export interface WorkspaceConfig {

@@ -5,7 +5,6 @@ export * from './ILayout'
 export * from './IService'
 export * from './IWorkspace'
 
-export * from './IClockBar'
 export * from './IMenuBar'
 export * from './IShortcutBar'
 export * from './IStatusBar'
