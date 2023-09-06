@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { computed } from 'vue-demi'
-import { useForceRerender } from '@use-composable/core'
 import { useActiveStyle, useSizeStyle } from './hooks'
 
 import type { Size } from './hooks'
@@ -19,7 +18,6 @@ const buttonSize = computed(() => props.size ?? 'default')
 
 const sizeStyle = useSizeStyle(buttonSize)
 const { leftStyle, rightStyle, activeChange } = useActiveStyle()
-const { renderKey, forceRerender } = useForceRerender()
 
 function handleChange(change: boolean) {
   activeChange(change)

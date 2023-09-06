@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { IWidgetConfig, Workspace } from '@use-composable/definition'
-import { getCurrentInstance, inject, ref } from 'vue-demi'
+import type { IWidgetConfig } from '@use-composable/definition'
+import { getCurrentInstance, ref } from 'vue-demi'
 
 import { ServiceRender } from '@ui/index'
 import { WidgetImpl } from '~/components/workspace/implements'
@@ -12,7 +12,7 @@ const props = defineProps<{
 }>()
 
 const widgetRef = ref(null)
-const $workspace = inject<Workspace>('$workspace')
+// const $workspace = inject<Workspace>('$workspace')
 
 const visible = ref(props.widget.visible ?? true)
 const widget = ref(withDefaultRender(props.widget))

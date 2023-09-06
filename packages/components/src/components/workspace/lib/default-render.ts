@@ -85,21 +85,5 @@ export function withDefaultRender<
 export function withDefaultParams<
   T extends IWidgetConfig | IDockConfig | IWindowConfig,
 >(comp: T): T {
-  const map = {
-    'workspace': {},
-    'window': {},
-    'widget': {},
-    'left-dock': {},
-    'right-dock': {},
-    'menu-bar': {},
-    'shortcut-bar': {},
-    'status-bar': {},
-    'title-bar': { title: comp.title },
-    'tool-bar': {},
-  }
-
-  let params = comp?.params ?? {}
-  params = withDefaultObject(params, map[rangeHitId(comp.id)] ?? {})
-
   return comp
 }

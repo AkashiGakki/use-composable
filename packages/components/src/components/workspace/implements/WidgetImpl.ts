@@ -16,6 +16,6 @@ export class WidgetImpl implements IWidget {
   }
 
   setVisible(visible: boolean) {
-    // this.config.visible = visible
+    this.config.visible = visible
   }
 }

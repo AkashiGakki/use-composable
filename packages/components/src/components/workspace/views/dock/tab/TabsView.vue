@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed } from 'vue-demi'
 import type {
   IDockConfig,
   IDockTabConfig,
 
 } from '@use-composable/definition'
 
+import { ref } from 'vue'
 import { changeTranslateX } from '~/components/workspace/lib'
 
 const props = defineProps<{
@@ -57,20 +57,22 @@ const nextTabClick = (el, dock: IDockConfig) => {
   content.style.transform = `translate3d(${x}px, 0px, 0px)`
 }
 
-const slotStyle = computed(() => {
-  return (tab: IDockTabConfig) => {
-    if (tab.active)
-      return { '--slot-index': 1 }
+// const slotStyle = computed(() => {
+//   return (tab: IDockTabConfig) => {
+//     if (tab.active)
+//       return { '--slot-index': 1 }
 
-    return { '--slot-index': -1 }
-  }
-})
+//     return { '--slot-index': -1 }
+//   }
+// })
+
+const showScroll = ref(false)
 </script>
 
 <template>
   <div class="tab-content">
     <a-icon
-      v-show="false"
+      v-show="showScroll"
       class="tab-icon"
       type="left"
       @click="prevTabClick($el, props.dock)"
@@ -95,7 +97,7 @@ const slotStyle = computed(() => {
     </div>
 
     <a-icon
-      v-show="false"
+      v-show="showScroll"
       class="tab-icon"
       type="right"
       @click="nextTabClick($el, dock)"
