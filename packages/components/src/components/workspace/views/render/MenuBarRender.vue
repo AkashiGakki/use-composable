@@ -12,15 +12,26 @@ type Action = WorkspaceAction & { actions: WorkspaceAction[] }
 
 const actions = computed<Action[]>(() => props.params.actions)
 
-const showPopMenu = ref(false)
+const activeMap = ref(
+  actions.value.map((a) => {
+    return {
+      key: a.id,
+      show: false,
+    }
+  }),
+)
+
+function setActiveMenu(id: string) {
+  activeMap.value.forEach(item => (item.show = false))
+  const item = activeMap.value.find(item => item.key === id)
+  item.show = !item.show
+}
+
 async function handleClick(menu: Action) {
   if (menu?.actions) {
-    showPopMenu.value = !showPopMenu.value
+    setActiveMenu(menu.id)
   }
   else {
-    // do something click
-    // TODO: service-render request
-    console.log('click', menu)
     await serviceRequest({
       ...menu.request,
       params: props.params,
@@ -28,8 +39,16 @@ async function handleClick(menu: Action) {
   }
 }
 
-function handleClickPopMenu() {
-  showPopMenu.value = !showPopMenu.value
+async function handleClickPopMenu(menu: Action) {
+  activeMap.value.forEach(item => (item.show = false))
+  await serviceRequest({
+    ...menu.request,
+    params: props.params,
+  } as ServiceInvokeConfig)
+}
+
+function handleMouseLeave() {
+  activeMap.value.forEach(item => (item.show = false))
 }
 </script>
 
@@ -40,17 +59,17 @@ function handleClickPopMenu() {
       :key="action.id"
       class="action-content"
       @click="handleClick(action)"
+      @mouseleave="handleMouseLeave"
     >
       <img :src="action.icon" alt="Icon" class="icon">
       <span>{{ action.title }}</span>
 
-      <!-- TODO: pop menu -->
-      <!-- <PopMenu
+      <PopMenu
         v-if="action?.actions"
-        :show="showPopMenu"
+        :show="activeMap[index].show"
         :menus="action?.actions ?? []"
         @click="handleClickPopMenu"
-      /> -->
+      />
     </div>
   </div>
 </template>
