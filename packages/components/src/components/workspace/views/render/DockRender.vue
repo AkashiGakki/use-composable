@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { computed, inject, onMounted, reactive, ref } from 'vue-demi'
+import { computed, onMounted, reactive, ref } from 'vue-demi'
 import { isArray } from '@use-kit/functions'
-import type { IDockConfig, Workspace } from '@use-composable/definition'
+import type { IDockConfig } from '@use-composable/definition'
 
 import DockRenderer from '../dock/DockRenderer.vue'
 import DockTabRenderer from '../dock/DockTabRenderer.vue'
@@ -11,7 +11,7 @@ const props = defineProps<{
   params: any
 }>()
 
-const $workspace = inject<Workspace>('$workspace')
+// const $workspace = inject<Workspace>('$workspace')
 
 const dock: IDockConfig = reactive(props.params.dock ?? {})
 const isRenderTabs = computed(() => dock?.tabs && isArray(dock?.tabs))

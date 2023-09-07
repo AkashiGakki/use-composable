@@ -1,5 +1,5 @@
-import type { Ref } from 'vue'
-import { nextTick, ref, watch } from 'vue'
+import type { Ref } from 'vue-demi'
+import { nextTick, ref, watch } from 'vue-demi'
 
 import { useResizeObserver } from '.'
 

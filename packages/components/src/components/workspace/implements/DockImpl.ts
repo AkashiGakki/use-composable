@@ -47,7 +47,7 @@ export class DockImpl implements IDock {
   }
 
   getTab(tabId: string): IDockTab | undefined {
-    return this.workspaceView.getTab(this.config.id)
+    return this.workspaceView.getTab(tabId)
   }
 
   getAllTab(): IDockTab[] {

@@ -25,6 +25,8 @@ export class WorkspaceImpl implements Workspace {
 
   addDock(config: IDockConfig): IDock {
     const dock = this.docks.find((dock: IDockConfig) => dock.id === config.id)
+    if (dock)
+      return
     return this.workspaceView.addDock(config)
   }
 
