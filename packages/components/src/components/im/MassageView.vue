@@ -8,6 +8,7 @@ import {
 } from 'vue'
 
 import AvatarIcon from './AvatarIcon.vue'
+import MessageRender from './MassageRender.vue'
 
 const props = defineProps<{
   renderList: {
@@ -18,6 +19,7 @@ const props = defineProps<{
     layout: 'left' | 'right'
     content: string
     contentType: string
+    timestamp: number
   }[]
 }>()
 
@@ -36,20 +38,6 @@ const renderLayout = computed(() => {
     return layout === 'left'
       ? { 'align-items': 'start' }
       : { 'align-items': 'end' }
-  }
-})
-
-const computedMsgBackground = computed(() => {
-  return (layout: string) => {
-    return layout === 'left'
-      ? { 'background-color': '#ffffff' }
-      : { 'background-color': '#7cabff' }
-  }
-})
-
-const isThumbnail = computed(() => {
-  return (contentType: string) => {
-    return contentType !== 'msg-text'
   }
 })
 
@@ -93,24 +81,11 @@ function handleImageLoad() {
         <AvatarIcon :icon="render.icon" :title="render.name" />
       </div>
 
-      <div class="render-container" :style="renderLayout(render.layout)">
-        <span class="name">
-          {{ render.name }}
-        </span>
-
-        <div
-          class="render-content"
-          :style="computedMsgBackground(render.layout)"
-        >
-          <div v-if="!isThumbnail(render.contentType)" class="text">
-            {{ render.content }}
-          </div>
-
-          <div v-else class="thumbnail">
-            <MediaView />
-          </div>
-        </div>
-      </div>
+      <MessageRender
+        class="render-container"
+        :render="render"
+        :style="renderLayout(render.layout)"
+      />
 
       <div v-if="render.layout === 'right'" class="avatar-content">
         <AvatarIcon :icon="render.icon" :title="render.name" />
@@ -134,29 +109,12 @@ function handleImageLoad() {
       padding: 0 10px;
       display: flex;
       flex-direction: column;
-      // align-items: end;
+    }
 
-      .render-content {
-        // background: #efefef;
-        margin: 5px 0;
-        border-radius: 10px;
-
-        .thumbnail {
-          max-width: 300px;
-          // max-height: 400px;
-          // width: 300px;
-          // height: 400px;
-
-          .img {
-            width: 100%;
-            height: 100%;
-          }
-        }
-
-        .text {
-          padding: 10px;
-          word-break: break-all;
-          white-space: pre-line;
+    .render-container:hover {
+      .info-content {
+        .date {
+          visibility: visible;
         }
       }
     }
