@@ -7,8 +7,7 @@ import {
   watch,
 } from 'vue'
 
-import AvatarIcon from './AvatarIcon.vue'
-import MessageRender from './MassageRender.vue'
+import UserMessageRender from './UserMessageRender.vue'
 
 const props = defineProps<{
   renderList: {
@@ -33,14 +32,6 @@ const serviceLayout = computed(() => {
   }
 })
 
-const renderLayout = computed(() => {
-  return (layout: string) => {
-    return layout === 'left'
-      ? { 'align-items': 'start' }
-      : { 'align-items': 'end' }
-  }
-})
-
 const scrollContainer = ref(null)
 
 function scrollToBottom() {
@@ -51,10 +42,9 @@ onMounted(() => {
   scrollToBottom()
 
   scrollContainer.value.addEventListener('scroll', () => {
-    if (scrollContainer.value.scrollTop === 0) {
-      // console.log("Scrolled to top");
+    if (scrollContainer.value.scrollTop === 0)
+
       emit('top')
-    }
   })
 })
 
@@ -77,19 +67,7 @@ function handleImageLoad() {
       class="service-content"
       :style="serviceLayout(render.layout)"
     >
-      <div v-if="render.layout === 'left'" class="avatar-content">
-        <AvatarIcon :icon="render.icon" :title="render.name" />
-      </div>
-
-      <MessageRender
-        class="render-container"
-        :render="render"
-        :style="renderLayout(render.layout)"
-      />
-
-      <div v-if="render.layout === 'right'" class="avatar-content">
-        <AvatarIcon :icon="render.icon" :title="render.name" />
-      </div>
+      <UserMessageRender :render="render" @image-load="handleImageLoad" />
     </div>
   </div>
 </template>
@@ -100,24 +78,6 @@ function handleImageLoad() {
     display: flex;
     overflow: hidden;
 
-    .avatar-content {
-      display: flex;
-      padding: 5px 0;
-    }
-
-    .render-container {
-      padding: 0 10px;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .render-container:hover {
-      .info-content {
-        .date {
-          visibility: visible;
-        }
-      }
-    }
   }
 }
 </style>
