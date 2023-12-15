@@ -16,8 +16,10 @@ const props = defineProps<{
 }>()
 
 const computedMsgBackground = computed(() => {
-  return (layout: string) => {
-    return layout === 'left'
+  return (render: { layout: string; contentType: string }) => {
+    if (render.contentType !== 'text')
+      return { 'background-color': '#ffffff' }
+    return render.layout === 'left'
       ? { 'background-color': '#ffffff' }
       : { 'background-color': '#7cabff' }
   }
@@ -56,7 +58,7 @@ const computedTime = computed(() => {
       </div>
     </div>
 
-    <div class="render-content" :style="computedMsgBackground(render.layout)">
+    <div class="render-content" :style="computedMsgBackground(render)">
       <div v-if="!isThumbnail(render.contentType)" class="text">
         {{ render.content }}
       </div>
@@ -71,8 +73,9 @@ const computedTime = computed(() => {
 <style lang="less" scoped>
 .message-render {
   .render-content {
-    margin: 5px 0;
-    border-radius: 10px;
+    margin: 0;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 
     .thumbnail {
       max-width: 300px;
