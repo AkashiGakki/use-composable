@@ -17,7 +17,7 @@ importers:
         version: 1.0.0-rc.1(vue@3.3.4)
       vue-demi:
         specifier: latest
-        version: 0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.3.4)
+        version: 0.14.6(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^0.37.0
@@ -46,6 +46,9 @@ importers:
       fs-extra:
         specifier: ^11.1.1
         version: 11.1.1
+      moment:
+        specifier: ^2.29.4
+        version: 2.29.4
       rxjs:
         specifier: ^7.8.1
         version: 7.8.1
@@ -709,6 +712,7 @@ packages:
   /@babel/plugin-proposal-export-namespace-from@7.18.9(@babel/core@7.21.8):
     resolution: {integrity: sha512-k1NtHyOMvlDDFeb9G5PhUXuGj8m/wiwojgQVEhJ/fsVsMCpLyOP4h0uGEjYJKrRI+EVPlb5Jk+Gt9P97lOGwtA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-export-namespace-from instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -2669,7 +2673,7 @@ packages:
       '@types/web-bluetooth': 0.0.16
       '@vueuse/metadata': 10.1.0
       '@vueuse/shared': 10.1.0(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
-      vue-demi: 0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
+      vue-demi: 0.14.6(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -2682,7 +2686,7 @@ packages:
   /@vueuse/shared@10.1.0(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
     resolution: {integrity: sha512-2X52ogu12i9DkKOQ01yeb/BKg9UO87RNnpm5sXkQvyORlbq8ONS5l39MYkjkeVWWjdT0teJru7a2S41dmHmqjQ==}
     dependencies:
-      vue-demi: 0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
+      vue-demi: 0.14.6(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47)
     transitivePeerDependencies:
       - '@vue/composition-api'
       - vue
@@ -5419,6 +5423,10 @@ packages:
       ufo: 1.1.2
     dev: true
 
+  /moment@2.29.4:
+    resolution: {integrity: sha512-5LC9SOxjSc2HF6vO2CyuTDNivEdoz2IvyJJGj6X8DJ0eFyfszE0QiEd+iXmBvUP3WHxSjFH/vIsA0EN00cgr8w==}
+    dev: true
+
   /mri@1.2.0:
     resolution: {integrity: sha512-tzzskb3bG8LvYGFF/mDTpq3jpI6Q9wc3LEmBaghu+DdCssd1FakN7Bc0hVNmEyGq1bq3RgfkCb3cmQLpNPOroA==}
     engines: {node: '>=4'}
@@ -7106,8 +7114,8 @@ packages:
       vue: 3.2.47
     dev: false
 
-  /vue-demi@0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
-    resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
+  /vue-demi@0.14.6(@vue/composition-api@1.0.0-rc.1)(vue@3.2.47):
+    resolution: {integrity: sha512-8QA7wrYSHKaYgUxDA5ZC24w+eHm3sYCbp0EzcDwKqN3p6HqtTCGR/GVsPyZW92unff4UlcSh++lmqDWN3ZIq4w==}
     engines: {node: '>=12'}
     hasBin: true
     requiresBuild: true
@@ -7120,23 +7128,6 @@ packages:
     dependencies:
       '@vue/composition-api': 1.0.0-rc.1(vue@3.2.47)
       vue: 3.2.47
-    dev: true
-
-  /vue-demi@0.14.5(@vue/composition-api@1.0.0-rc.1)(vue@3.3.4):
-    resolution: {integrity: sha512-o9NUVpl/YlsGJ7t+xuqJKx8EBGf1quRhCiT6D/J0pfwmk9zUwYkC7yrF4SZCe6fETvSM3UNL2edcbYrSyc4QHA==}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
-    dependencies:
-      '@vue/composition-api': 1.0.0-rc.1(vue@3.3.4)
-      vue: 3.3.4
-    dev: false
 
   /vue-eslint-parser@9.2.1(eslint@8.42.0):
     resolution: {integrity: sha512-tPOex4n6jit4E7h68auOEbDMwE58XiP4dylfaVTCOVCouR45g+QFDBjgIdEU52EXJxKyjgh91dLfN2rxUcV0bQ==}
