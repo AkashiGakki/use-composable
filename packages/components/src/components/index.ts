@@ -6,5 +6,6 @@ export { default as ServiceRender } from './service-render/ServiceRender.vue'
 export { default as Dialog } from './dialog/Dialog.vue'
 export { default as SummaryTree } from './summary-tree/SummaryTree.vue'
 export { default as SummaryLineTree } from './summary-tree/SummaryLineTree.vue'
+export { default as DropView } from './drop/DropView.vue'
 
 export * from '~/components/service-render/register'

@@ -77,7 +77,7 @@ watch([rect, recalculate], (watchValue) => {
       type: 'dock' | 'widget'
     }>(elements, {
       padding: [0, 0, 0, 0],
-      size: { width: watchValue[0].value.width, height: watchValue[0].value.height },
+      size: { width: watchValue[0].width, height: watchValue[0].height },
     })
 
     if (elementsPosition.value.length)
