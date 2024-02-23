@@ -13,6 +13,8 @@ const filterEvent = (e: PointerEvent) => {
   return ['mouse', 'touch', 'pen'].includes(e.pointerType)
 }
 
+const positionDelta = ref({ x: -1, y: -1 })
+
 function start(event: PointerEvent) {
   if (!filterEvent(event))
     return
@@ -36,6 +38,8 @@ function move(event: PointerEvent) {
     console.log('moving')
     position.value.x = event.clientX - pressedDelta.value.x
     position.value.y = event.clientY - pressedDelta.value.y
+    // deep clone
+    positionDelta.value = JSON.parse(JSON.stringify(position.value))
 
     return {
       position,
@@ -57,6 +61,14 @@ function end(event: PointerEvent) {
   if (!filterEvent(event))
     return
 
+  if (
+    position.value.x === positionDelta.value.x
+    && position.value.y === positionDelta.value.y
+  ) {
+    pressedDelta.value = undefined
+    return
+  }
+
   pressedDelta.value = undefined
   console.log('end')
 }
@@ -64,11 +76,19 @@ function end(event: PointerEvent) {
 const draggingElement = ref<HTMLElement | null>(null)
 
 onMounted(() => {
-  // const moveDebounce = (event: PointerEvent) => _.debounce(move(event), 500);
-  const config = { capture: true }
+  const config = { capture: true, passive: true }
+
+  let pointerMoveTimer: any
+
   if (draggingElement.value) {
     draggingElement.value.addEventListener('pointerdown', start, config)
-    draggingElement.value.addEventListener('pointermove', move, config)
+    draggingElement.value.addEventListener('pointermove', (event) => {
+      cancelAnimationFrame(pointerMoveTimer)
+
+      pointerMoveTimer = requestAnimationFrame(() => {
+        move(event)
+      })
+    }, config)
     draggingElement.value.addEventListener('pointerup', end, config)
   }
 })
@@ -97,5 +117,15 @@ onUnmounted(() => {
   background: rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding: 10px;
+}
+
+.mask {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  color: rgba(0, 0, 0, 0);
+  top: 0;
+  left: 0;
+  z-index: -1;
 }
 </style>
